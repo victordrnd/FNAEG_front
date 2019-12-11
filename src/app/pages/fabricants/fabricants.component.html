@@ -1,0 +1,35 @@
+<div class="container">
+	<div class="text-center mb-5">
+		<h1>Gestion des fabricants</h1>
+	</div>
+	<app-search-fabricant></app-search-fabricant>
+	<div class="row mt-4 pl-5 pr-5">
+		<table class="table" style="box-shadow:inset 0px 0px 5px 1px rgba(151, 151, 151, 0.18)">
+			<thead>
+				<tr>
+					<th scope="col">CodeF</th>
+					<th scope="col">Nom</th>
+					<th scope="col">Pays</th>
+					<th scope="col">Ville</th>
+				</tr>
+			</thead>
+			<tbody *ngIf="fabricants">
+				<tr *ngFor="let fabricant of fabricants.data" >
+					<td style="border-bottom: 1px solid #fafafa;">{{fabricant.CodeF}}</td>
+					<td style="border-bottom: 1px solid #fafafa;">{{fabricant.Nom}}</td>
+					<td style="border-bottom: 1px solid #fafafa;">{{fabricant.Pays}}</td>
+					<td style="border-bottom: 1px solid #fafafa;">{{fabricant.Ville}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<nav class="float-right mt-2" aria-label="Page navigation example">
+		<ul class="pagination">
+			<li class="page-item"><a class="page-link" href="#">Previous</a></li>
+			<li class="page-item"><a class="page-link" href="#">1</a></li>
+			<li class="page-item"><a class="page-link" href="#">2</a></li>
+			<li class="page-item"><a class="page-link" href="#">3</a></li>
+			<li class="page-item"><a class="page-link" href="#">Next</a></li>
+		</ul>
+	</nav>
+</div>

@@ -1,0 +1,25 @@
+
+::ng-deep {
+  .custom-slider {
+    width: 20%;
+  }
+  .custom-slider .ng5-slider .ng5-slider-bar {
+    height: 5px;
+  }
+    .custom-slider .ng5-slider .ng5-slider-selection {
+        background: #ffc107;
+      }
+      .custom-slider .ng5-slider .ng5-slider-pointer {
+        width: 8px;
+        height: 16px;
+        top: auto; /* to remove the default positioning */
+        bottom: 0;
+        background-color: #333;
+        border-top-left-radius: 12px;
+        border-top-right-radius: 12px;
+      }
+      .custom-slider .ng5-slider .ng5-slider-pointer:after {
+        display: none;
+      }
+
+}
