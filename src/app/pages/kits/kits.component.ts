@@ -13,8 +13,8 @@ export class KitsComponent implements OnInit {
   filter = {
     min : 0,
     max :1000,
-    fabricant : undefined,
-    stock: null
+    fabricants : undefined,
+    stock: false
   };
   options: Options = {
     floor: 0,
@@ -32,9 +32,17 @@ export class KitsComponent implements OnInit {
    console.log(this.kits);
   }
 
-  sendFilter(){
-    this.kits = this.kitService.filter(this.filter).toPromise();
-    console.log(this.kits)
+  async sendFilter(){
+    console.log(this.filter)
+    this.kits = await this.kitService.filter(this.filter).toPromise();
+    console.log(this.kits.data)
+  }
+
+  async onExport(){
+    await this.kitService.exportKit().subscribe((xml : string) => {
+      var bb = new Blob([xml], {type: 'text/plain'});
+      window.open(window.URL.createObjectURL(bb), "_blank");
+    });
   }
 
 

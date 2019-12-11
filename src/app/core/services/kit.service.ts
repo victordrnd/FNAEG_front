@@ -26,4 +26,8 @@ export class KitService {
     return this.http.post(`${environment.apiurl}/kit/filter`, obj).pipe(map((res:any) => res.result));
   }
 
+  exportKit(){
+    return this.http.get(`${environment.apiurl}/kit/export`);
+  }
+
 }

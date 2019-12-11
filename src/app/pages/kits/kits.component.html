@@ -5,10 +5,10 @@
 	<div class=" mt-4 pl-5 pr-5">
 		<div class="row">
 			<div class="custom-slider col-3">
-				<ng5-slider [(value)]="filter.min" [(highValue)]="filter.max" [options]="options"></ng5-slider>
+				<ng5-slider (change)="sendFilter()" [(value)]="filter.min" [(highValue)]="filter.max" [options]="options"></ng5-slider>
 			</div>
 			<div class="col-3 pl-5">
-				<ng-select placeholder="Filtrer par fabricant" [multiple]="true" [(ngModel)]="filter.fabricant">
+				<ng-select (change)="sendFilter()" placeholder="Filtrer par fabricant" [multiple]="true" [(ngModel)]="filter.fabricants">
 					<ng-option *ngFor="let fabricant of fabricants" [value]="fabricant.CodeF"
 						[disabled]="fabricant.disabled">{{fabricant.Nom}}</ng-option>
 				</ng-select>
@@ -19,7 +19,7 @@
 			</div>
 			<div class="col-3">
 				<button type="button" class="btn btn-warning rounded-0">Import</button>
-				<button type="button" class="btn btn-dark rounded-0 ml-2">Export</button>
+				<button type="button" (click)="onExport()" class="btn btn-dark rounded-0 ml-2">Export</button>
 			</div>
 		</div>
 		<table class="table" style="box-shadow:inset 0px 0px 5px 1px rgba(151, 151, 151, 0.18)">
