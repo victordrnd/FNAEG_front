@@ -30,4 +30,8 @@ export class KitService {
     return this.http.get(`${environment.apiurl}/kit/export`);
   }
 
+  getPage(url){
+    return this.http.get(`${url}`);
+  }
+
 }

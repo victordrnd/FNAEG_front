@@ -14,6 +14,8 @@ import { SearchFabricantComponent } from './pages/fabricants/search-fabricant/se
 import { Ng5SliderModule } from 'ng5-slider';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { NgOptionHighlightModule } from '@ng-select/ng-option-highlight';
+import { ModalKitComponent } from './pages/kits/modal-kit/modal-kit.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,7 @@ import { NgOptionHighlightModule } from '@ng-select/ng-option-highlight';
     HeaderComponent,
     FabricantsComponent,
     SearchFabricantComponent,
+    ModalKitComponent,
   ],
   imports: [
     BrowserModule,
@@ -31,9 +34,11 @@ import { NgOptionHighlightModule } from '@ng-select/ng-option-highlight';
     NgSelectModule,
     NgOptionHighlightModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbModule,
   ],
   providers: [KitService, FabricantService],
+  entryComponents : [ModalKitComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

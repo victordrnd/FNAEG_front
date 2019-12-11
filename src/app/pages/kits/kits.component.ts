@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {KitService} from '../../core/services/kit.service';
 import {FabricantService} from '../../core/services/fabricant.service';
 import { Options } from 'ng5-slider';
+import { environment } from 'src/environments/environment';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalKitComponent } from './modal-kit/modal-kit.component';
 @Component({
   selector: 'app-kits',
   templateUrl: './kits.component.html',
@@ -18,11 +21,12 @@ export class KitsComponent implements OnInit {
   };
   options: Options = {
     floor: 0,
-    ceil: 250
+    ceil: 250,
+    step: 10
   };
   fabricants;
   constructor(private kitService:KitService,
-     private fabricantService:FabricantService) { 
+     private fabricantService:FabricantService, private modalService: NgbModal) { 
 
   }
 
@@ -39,16 +43,15 @@ export class KitsComponent implements OnInit {
   }
 
   async onExport(){
-    await this.kitService.exportKit().subscribe((xml : string) => {
-      var bb = new Blob([xml], {type: 'text/plain'});
-      window.open(window.URL.createObjectURL(bb), "_blank");
-    });
+    window.open(`${environment.apiurl}/kit/export`, "_blank");
   }
 
+  async getpagination(url){
+    const pagination = await this.kitService.getPage(url).toPromise();
+  }
 
-
-  openUpdateModal(){
-    //this.modalService.open(UpdateKit)
+  open() {
+    const modalRef = this.modalService.open(ModalKitComponent);
   }
 
 }

@@ -5,7 +5,7 @@
 	<div class=" mt-4 pl-5 pr-5">
 		<div class="row">
 			<div class="custom-slider col-3">
-				<ng5-slider (change)="sendFilter()" [(value)]="filter.min" [(highValue)]="filter.max" [options]="options"></ng5-slider>
+				<ng5-slider (userChange)="sendFilter()" [(value)]="filter.min" [(highValue)]="filter.max" [options]="options"></ng5-slider>
 			</div>
 			<div class="col-3 pl-5">
 				<ng-select (change)="sendFilter()" placeholder="Filtrer par fabricant" [multiple]="true" [(ngModel)]="filter.fabricants">
@@ -18,7 +18,7 @@
 				<label class="custom-control-label" for="customCheck1">En stock</label>
 			</div>
 			<div class="col-3">
-				<button type="button" class="btn btn-warning rounded-0">Import</button>
+				<button type="button" (click)="open()" class="btn btn-warning rounded-0">Import</button>
 				<button type="button" (click)="onExport()" class="btn btn-dark rounded-0 ml-2">Export</button>
 			</div>
 		</div>
@@ -53,11 +53,8 @@
 	</div>
 	<nav class="float-right mt-2" aria-label="Page navigation example">
 		<ul class="pagination">
-			<li class="page-item"><a class="page-link" href="#">Previous</a></li>
-			<li class="page-item"><a class="page-link" href="#">1</a></li>
-			<li class="page-item"><a class="page-link" href="#">2</a></li>
-			<li class="page-item"><a class="page-link" href="#">3</a></li>
-			<li class="page-item"><a class="page-link" href="#">Next</a></li>
+			<li class="page-item"><a class="page-link" (click)="getpagination(kits.last_page_url)" ><<</a></li>
+			<li class="page-item"><a class="page-link" (click)="getpagination(kits.next_page_url)" >>></a></li>
 		</ul>
 	</nav>
 </div>
