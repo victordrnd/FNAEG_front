@@ -1,6 +1,6 @@
 <div class="container">
 	<div class="text-center mb-5">
-		<h1>Gestion des kits</h1>
+		<h1><i class="feather icon-box"></i> Gestion des kits</h1>
 	</div>
 	<div class=" mt-4 pl-5 pr-5">
 		<div class="row">
@@ -15,22 +15,22 @@
 			</div>
 			<div class="custom-control custom-checkbox col-3 pl-5 mt-2">
 				<input (change)="sendFilter()" [(ngModel)]="filter.stock"  type="checkbox" class="custom-control-input" id="customCheck1">
-				<label class="custom-control-label" for="customCheck1">En stock</label>
+				<label class="custom-control-label" for="customCheck1">En Stock</label>
 			</div>
 			<div class="col-3">
-				<button type="button" (click)="open()" class="btn btn-warning rounded-0">Import</button>
-				<button type="button" (click)="onExport()" class="btn btn-dark rounded-0 ml-2">Export</button>
+				<button type="button" (click)="open()" class="btn btn-warning rounded-0"><i class="feather icon-plus-circle"></i> Import</button>
+				<button type="button" (click)="onExport()" class="btn btn-dark rounded-0 ml-2"><i class="feather icon-download"></i> Export</button>
 			</div>
 		</div>
 		<table class="table" style="box-shadow:inset 0px 0px 5px 1px rgba(151, 151, 151, 0.18)">
 			<thead>
 				<tr>
-					<th scope="col">CodeKit</th>
-					<th scope="col">Prix €</th>
-					<th scope="col">Année</th>
-					<th scope="col">Durée</th>
-					<th scope="col">Fabricant</th>
-					<th scope="col">Stock</th>
+					<th scope="col"><i class="feather icon-hash"></i> CodeKit</th>
+					<th scope="col"><i class="feather icon-dollar-sign"></i> Prix</th>
+					<th scope="col"><i class="feather icon-calendar"></i> Année</th>
+					<th scope="col"><i class="feather icon-clock"></i> Durée</th>
+					<th scope="col"><i class="feather icon-briefcase"></i> Fabricant</th>
+					<th scope="col"><i class="feather icon-package"></i> Stock</th>
 				</tr>
 			</thead>
 			<tbody *ngIf="kits">
@@ -41,20 +41,20 @@
 					<td style="border-bottom: 1px solid #fafafa;">{{kit.Duree}}</td>
 					<td style="border-bottom: 1px solid #fafafa;">{{kit.fabricant.Nom}}</td>
 					<td *ngIf="kit.Stock == 0" style="border-bottom: 1px solid #fafafa;"><span
-							class="badge badge-pill badge-danger">{{kit.Stock}}</span></td>
+							class="badge badge-pill badge-danger"><i class="feather icon-package"></i> {{kit.Stock}}</span></td>
 					<td *ngIf="kit.Stock > 0 && kit.Stock < 10" style="border-bottom: 1px solid #fafafa;"><span
 							style="background-color: #ffd250;"
-							class="badge badge-pill badge-warning">{{kit.Stock}}</span></td>
+							class="badge badge-pill badge-warning"><i class="feather icon-package"></i> {{kit.Stock}}</span></td>
 					<td *ngIf="kit.Stock >= 10" style="border-bottom: 1px solid #fafafa;"><span
-							class="badge badge-pill badge-light">{{kit.Stock}}</span></td>
+							class="badge badge-pill badge-light"><i class="feather icon-package"></i> {{kit.Stock}}</span></td>
 				</tr>
 			</tbody>
 		</table>
 	</div>
 	<nav class="float-right mt-2" aria-label="Page navigation example">
 		<ul class="pagination">
-			<li class="page-item"><a class="page-link" (click)="getpagination(kits.last_page_url)" ><<</a></li>
-			<li class="page-item"><a class="page-link" (click)="getpagination(kits.next_page_url)" >>></a></li>
+			<li class="page-item"><a class="page-link" (click)="getpagination(kits.last_page_url)" ><i class="feather icon-chevron-left"></i></a></li>
+			<li class="page-item"><a class="page-link" (click)="getpagination(kits.next_page_url)" ><i class="feather icon-chevron-right"></i></a></li>
 		</ul>
 	</nav>
 </div>

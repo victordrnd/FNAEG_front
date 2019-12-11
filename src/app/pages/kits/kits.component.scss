@@ -22,4 +22,19 @@
         display: none;
       }
 
+      .custom-checkbox .custom-control-label::before{
+        width: 20px;
+        height: 20px;
+        border-radius: 0px;
+      }
+      .custom-control-label{
+        font-size: 18px;
+      }
+      .table thead th{
+        border-bottom: none;
+      }
+      .table th{
+        border-top: none;
+        border-bottom: 1px solid #dee2e6;
+      }
 }
