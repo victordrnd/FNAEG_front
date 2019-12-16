@@ -1,60 +1,80 @@
-<div class="container">
-	<div class="text-center mb-5">
-		<h1><i class="feather icon-box"></i> Gestion des kits</h1>
-	</div>
-	<div class=" mt-4 pl-5 pr-5">
-		<div class="row">
-			<div class="custom-slider col-3">
-				<ng5-slider (userChange)="sendFilter()" [(value)]="filter.min" [(highValue)]="filter.max" [options]="options"></ng5-slider>
+<div class="row m-0 p-0">
+
+	<div class="col-10 d-block mx-auto">
+		<div class="text-center mb-5">
+			<h1><i class="feather icon-package"></i> Gestion des kits</h1>
+		</div>
+		<div class=" mt-4 pl-5 pr-5">
+			<div class="row my-3">
+				<div class="col-3">
+					<nz-slider [(ngModel)]="filter.range" nzRange [nzMax]="250" [nzMin]="0" [nzStep]="10"
+						(ngModelChange)="rangeChange($event)"></nz-slider>
+				</div>
+				<div class="col-3 pl-5">
+					<nz-select nzMode="multiple" nzPlaceHolder="Sélectionnez un fabricant"
+						[(ngModel)]="filter.fabricants" style="width:100%" (ngModelChange)="sendFilter()">
+						<nz-option *ngFor="let fabricant of fabricants" [nzLabel]="fabricant.Nom"
+							[nzValue]="fabricant.CodeF"></nz-option>
+					</nz-select>
+					<ng-template #tagPlaceHolder let-selectedList> and {{ selectedList.length }} more selected
+					</ng-template>
+				</div>
+				<div class="custom-control custom-checkbox col-3 pl-5 mt-2">
+					<label nz-checkbox [(ngModel)]="filter.stock" (ngModelChange)="sendFilter()">En stock</label>
+				</div>
+				<div class="col-3">
+					<ul class="list-inline">
+						<li class="list-inline-item">
+							<button nz-button nzType="primary" (click)="open()"><i nz-icon nzType="upload"></i>
+								Import</button>
+						</li>
+						<li class="list-inline-item">
+							<button nz-button nzType="default" (click)="onExport()"><i nz-icon
+									nzType="vertical-align-bottom" nzTheme="outline"></i> Export</button>
+						</li>
+					</ul>
+				</div>
 			</div>
-			<div class="col-3 pl-5">
-				<ng-select (change)="sendFilter()" placeholder="Filtrer par fabricant" [multiple]="true" [(ngModel)]="filter.fabricants">
-					<ng-option *ngFor="let fabricant of fabricants" [value]="fabricant.CodeF"
-						[disabled]="fabricant.disabled">{{fabricant.Nom}}</ng-option>
-				</ng-select>
-			</div>
-			<div class="custom-control custom-checkbox col-3 pl-5 mt-2">
-				<input (change)="sendFilter()" [(ngModel)]="filter.stock"  type="checkbox" class="custom-control-input" id="customCheck1">
-				<label class="custom-control-label" for="customCheck1">En Stock</label>
-			</div>
-			<div class="col-3">
-				<button type="button" (click)="open()" class="btn btn-warning rounded-0"><i class="feather icon-plus-circle"></i> Import</button>
-				<button type="button" (click)="onExport()" class="btn btn-dark rounded-0 ml-2"><i class="feather icon-download"></i> Export</button>
+			<table class="table" style="box-shadow:inset 0px 0px 5px 1px rgba(151, 151, 151, 0.18)">
+				<thead>
+					<tr>
+						<th scope="col"><i class="feather icon-hash"></i> CodeKit</th>
+						<th scope="col"><i class="feather icon-dollar-sign"></i> Prix</th>
+						<th scope="col"><i class="feather icon-calendar"></i> Année</th>
+						<th scope="col"><i class="feather icon-clock"></i> Durée</th>
+						<th scope="col"><i class="feather icon-briefcase"></i> Fabricant</th>
+						<th scope="col"><i class="feather icon-package"></i> Stock</th>
+					</tr>
+				</thead>
+				<tbody *ngIf="kits">
+					<tr *ngFor="let kit of kits.data">
+						<td style="border-bottom: 1px solid #fafafa;">{{kit.CodeKit}}</td>
+						<td style="border-bottom: 1px solid #fafafa;">{{kit.prix}} €</td>
+						<td style="border-bottom: 1px solid #fafafa;">{{kit.Annee | date }}</td>
+						<td style="border-bottom: 1px solid #fafafa;">{{kit.Duree}}</td>
+						<td style="border-bottom: 1px solid #fafafa;">{{kit.fabricant.Nom}}</td>
+						<td *ngIf="kit.Stock == 0" style="border-bottom: 1px solid #fafafa;"><span
+								class="badge badge-pill badge-danger"><i class="feather icon-package"></i>
+								{{kit.Stock}}</span></td>
+						<td *ngIf="kit.Stock > 0 && kit.Stock < 10" style="border-bottom: 1px solid #fafafa;"><span
+								style="background-color: #ffd250;" class="badge badge-pill badge-warning"><i
+									class="feather icon-package"></i> {{kit.Stock}}</span></td>
+						<td *ngIf="kit.Stock >= 10" style="border-bottom: 1px solid #fafafa;"><span
+								class="badge badge-pill badge-light"><i class="feather icon-package"></i>
+								{{kit.Stock}}</span></td>
+					</tr>
+				</tbody>
+			</table>
+			<div *ngIf="kits">
+				<div *ngIf="kits.data.length == 0">
+					<nz-empty></nz-empty>
+				</div>
 			</div>
 		</div>
-		<table class="table" style="box-shadow:inset 0px 0px 5px 1px rgba(151, 151, 151, 0.18)">
-			<thead>
-				<tr>
-					<th scope="col"><i class="feather icon-hash"></i> CodeKit</th>
-					<th scope="col"><i class="feather icon-dollar-sign"></i> Prix</th>
-					<th scope="col"><i class="feather icon-calendar"></i> Année</th>
-					<th scope="col"><i class="feather icon-clock"></i> Durée</th>
-					<th scope="col"><i class="feather icon-briefcase"></i> Fabricant</th>
-					<th scope="col"><i class="feather icon-package"></i> Stock</th>
-				</tr>
-			</thead>
-			<tbody *ngIf="kits">
-				<tr *ngFor="let kit of kits.data">
-					<td style="border-bottom: 1px solid #fafafa;">{{kit.CodeKit}}</td>
-					<td style="border-bottom: 1px solid #fafafa;">{{kit.prix}} €</td>
-					<td style="border-bottom: 1px solid #fafafa;">{{kit.Annee | date }}</td>
-					<td style="border-bottom: 1px solid #fafafa;">{{kit.Duree}}</td>
-					<td style="border-bottom: 1px solid #fafafa;">{{kit.fabricant.Nom}}</td>
-					<td *ngIf="kit.Stock == 0" style="border-bottom: 1px solid #fafafa;"><span
-							class="badge badge-pill badge-danger"><i class="feather icon-package"></i> {{kit.Stock}}</span></td>
-					<td *ngIf="kit.Stock > 0 && kit.Stock < 10" style="border-bottom: 1px solid #fafafa;"><span
-							style="background-color: #ffd250;"
-							class="badge badge-pill badge-warning"><i class="feather icon-package"></i> {{kit.Stock}}</span></td>
-					<td *ngIf="kit.Stock >= 10" style="border-bottom: 1px solid #fafafa;"><span
-							class="badge badge-pill badge-light"><i class="feather icon-package"></i> {{kit.Stock}}</span></td>
-				</tr>
-			</tbody>
-		</table>
+		<div *ngIf="kits">
+			<nav class="float-right mt-2" aria-label="Page navigation example">
+				<nz-pagination [nzPageIndex]="1" [nzTotal]="kits.last_page" [nzSimple]="true" (nzPageIndexChange)="changePage($event)"></nz-pagination>
+			</nav>
+		</div>
 	</div>
-	<nav class="float-right mt-2" aria-label="Page navigation example">
-		<ul class="pagination">
-			<li class="page-item"><a class="page-link" (click)="getpagination(kits.last_page_url)" ><i class="feather icon-chevron-left"></i></a></li>
-			<li class="page-item"><a class="page-link" (click)="getpagination(kits.next_page_url)" ><i class="feather icon-chevron-right"></i></a></li>
-		</ul>
-	</nav>
 </div>

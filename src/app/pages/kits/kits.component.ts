@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {KitService} from '../../core/services/kit.service';
 import {FabricantService} from '../../core/services/fabricant.service';
-import { Options } from 'ng5-slider';
 import { environment } from 'src/environments/environment';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalKitComponent } from './modal-kit/modal-kit.component';
@@ -17,12 +16,9 @@ export class KitsComponent implements OnInit {
     min : 0,
     max :1000,
     fabricants : undefined,
-    stock: false
-  };
-  options: Options = {
-    floor: 0,
-    ceil: 250,
-    step: 10
+    stock: false,
+    range : [60,180],
+    page: 1 
   };
   fabricants;
   constructor(private kitService:KitService,
@@ -33,13 +29,10 @@ export class KitsComponent implements OnInit {
    async ngOnInit() {
    this.kits = await this.kitService.getAllKitPaginate().toPromise();
    this.fabricants = await this.fabricantService.getAllFabricant().toPromise();
-   console.log(this.kits);
   }
 
   async sendFilter(){
-    console.log(this.filter)
     this.kits = await this.kitService.filter(this.filter).toPromise();
-    console.log(this.kits.data)
   }
 
   async onExport(){
@@ -50,8 +43,18 @@ export class KitsComponent implements OnInit {
     const pagination = await this.kitService.getPage(url).toPromise();
   }
 
+  async changePage(index){
+    this.filter.page = index;
+    this.sendFilter();
+  }
+
   open() {
     const modalRef = this.modalService.open(ModalKitComponent);
   }
 
+  rangeChange(range){
+    this.filter.min = range[0];
+    this.filter.max = range[1];
+    this.sendFilter();
+  }
 }
