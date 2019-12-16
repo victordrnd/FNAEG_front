@@ -4,6 +4,7 @@ import {FabricantService} from '../../core/services/fabricant.service';
 import { environment } from 'src/environments/environment';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalKitComponent } from './modal-kit/modal-kit.component';
+import { NzMarks } from 'ng-zorro-antd';
 @Component({
   selector: 'app-kits',
   templateUrl: './kits.component.html',
@@ -17,10 +18,15 @@ export class KitsComponent implements OnInit {
     max :1000,
     fabricants : undefined,
     stock: false,
-    range : [60,180],
-    page: 1 
+    range : [0,300],
+    page: 1,
+    ordersBy : []
   };
   fabricants;
+  marks : NzMarks = {
+    0 : '0€',
+    300 : '300€'
+  }
   constructor(private kitService:KitService,
      private fabricantService:FabricantService, private modalService: NgbModal) { 
 
@@ -57,4 +63,19 @@ export class KitsComponent implements OnInit {
     this.filter.max = range[1];
     this.sendFilter();
   }
+
+  sort(obj){
+    console.log(obj);
+    switch(obj.value){
+      case 'ascend':
+        obj.value = "asc";
+        break;
+      case 'descend':
+        obj.value = "desc";
+        break;
+    }  
+  const { length } = this.filter.ordersBy;
+  const found = this.filter.ordersBy.some(el => el.key === obj.key);
+  if (!found) this.filter.ordersBy.push(obj);
+}
 }
