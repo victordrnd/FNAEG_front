@@ -64,18 +64,18 @@ export class KitsComponent implements OnInit {
     this.sendFilter();
   }
 
-  sort(obj){
-    console.log(obj);
-    switch(obj.value){
-      case 'ascend':
-        obj.value = "asc";
-        break;
-      case 'descend':
-        obj.value = "desc";
-        break;
-    }  
-  const { length } = this.filter.ordersBy;
-  const found = this.filter.ordersBy.some(el => el.key === obj.key);
-  if (!found) this.filter.ordersBy.push(obj);
-}
+//   sort(obj){
+//     console.log(obj);
+//     switch(obj.value){
+//       case 'ascend':
+//         obj.value = "asc";
+//         break;
+//       case 'descend':
+//         obj.value = "desc";
+//         break;
+//     }  
+//   const { length } = this.filter.ordersBy;
+//   const found = this.filter.ordersBy.some(el => el.key === obj.key);
+//   if (!found) this.filter.ordersBy.push(obj);
+// }
 }
