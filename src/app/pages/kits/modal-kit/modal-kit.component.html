@@ -1,12 +1,12 @@
-<div>
-    <h4 class="modal-title text-center">Import de kit</h4>
-    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
-  </div>
-  <div class="modal-body">
-    <p>Veullez importer votre fichier XML :</p>
-     <input type="file" class="custom-file-input">
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Save</button>
-    <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
-  </div>
+<div class="modal-body">
+  <p>Veullez importer votre fichier XML :</p>
+  <nz-upload nzType="drag" [nzMultiple]="false" [nzLimit]="1" nzAction="{{environnement.apiurl}}/kit/import">
+    <p class="ant-upload-drag-icon">
+      <i nz-icon nzType="inbox"></i>
+    </p>
+    <p class="ant-upload-text">Cliquez ou déposez un fichier XML à importer</p>
+    <p class="ant-upload-hint">
+      Seul les fichiers de type xml généré par ce logiciel sont acceptés. En cas de problème, merci de contacter l'assistance de ce site.
+    </p>
+  </nz-upload>
+</div>

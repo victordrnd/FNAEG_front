@@ -15,11 +15,11 @@ import { Ng5SliderModule } from 'ng5-slider';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { NgOptionHighlightModule } from '@ng-select/ng-option-highlight';
 import { ModalKitComponent } from './pages/kits/modal-kit/modal-kit.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgZorroAntdModule, NZ_I18N, fr_FR } from 'ng-zorro-antd';
 
 import { registerLocaleData } from '@angular/common';
 import fr from '@angular/common/locales/fr';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
 registerLocaleData(fr);
 @NgModule({
   declarations: [
@@ -29,6 +29,7 @@ registerLocaleData(fr);
     FabricantsComponent,
     SearchFabricantComponent,
     ModalKitComponent,
+    DashboardComponent,
     
   ],
   imports: [
@@ -41,7 +42,6 @@ registerLocaleData(fr);
     NgOptionHighlightModule,
     FormsModule,
     ReactiveFormsModule,
-    NgbModule,
     NgZorroAntdModule
   ],
   providers: [
