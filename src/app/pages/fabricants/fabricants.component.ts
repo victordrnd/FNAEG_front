@@ -47,7 +47,7 @@ export class FabricantsComponent implements OnInit {
   }
 
   onOpenCreate(){
-    this.modalService.info({
+    const modalRef =this.modalService.info({
       nzTitle: "Creation d'un nouveau fabricant",
       nzBodyStyle : {
         padding : '15px'
@@ -63,6 +63,10 @@ export class FabricantsComponent implements OnInit {
       nzIconType : 'book',
       nzOkDisabled : true,
     });
+    
+    modalRef.afterClose.subscribe(async event => {
+      this.fabricants = await this.fabricantService.getAllFabricantPaginate().toPromise();
+    })
   }
 
 
