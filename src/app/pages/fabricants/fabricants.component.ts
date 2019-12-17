@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FabricantService} from '../../core/services/fabricant.service';
-import { NzDrawerService } from 'ng-zorro-antd';
+import { NzDrawerService, NzModalService } from 'ng-zorro-antd';
 import { InfoFabricantComponent } from './info-fabricant/info-fabricant.component';
+import { CreateFabricantComponent } from './create-fabricant/create-fabricant.component';
 
 @Component({
   selector: 'app-fabricants',
@@ -15,12 +16,14 @@ export class FabricantsComponent implements OnInit {
   filter = {
     keyword : '',
     fabricants: [],
-    ordersBy : []
+    ordersBy : [],
+    page : 1
   }
 
   constructor(
     private fabricantService:FabricantService,
-    private drawerService : NzDrawerService) { }
+    private drawerService : NzDrawerService,
+    private modalService : NzModalService) { }
 
   async ngOnInit() {
     this.fabricants = await this.fabricantService.getAllFabricantPaginate().toPromise();
@@ -40,6 +43,25 @@ export class FabricantsComponent implements OnInit {
         fabricant: fabricant
       },
       nzWidth : 500
+    });
+  }
+
+  onOpenCreate(){
+    this.modalService.info({
+      nzTitle: "Creation d'un nouveau fabricant",
+      nzBodyStyle : {
+        padding : '15px'
+      },
+      nzStyle : {
+        padding: '5px'
+      },
+      nzContent: CreateFabricantComponent,
+      nzCancelDisabled : false,
+      nzMaskClosable : true,
+      nzOkText : 'Valider',
+      nzWidth : 700,
+      nzIconType : 'book',
+      nzOkDisabled : true,
     });
   }
 
@@ -71,6 +93,10 @@ export class FabricantsComponent implements OnInit {
       
     });
     if (!found && !deleted) this.filter.ordersBy.push(obj);
+    this.sendFilter();
+  }
+  async changePage(index) {
+    this.filter.page = index;
     this.sendFilter();
   }
 

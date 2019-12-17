@@ -8,12 +8,12 @@
 <h6>Catalogue :</h6>
 <div class="mx-3">
 
-    <nz-list [nzDataSource]="fabricant.kits" [nzRenderItem]="item" [nzItemLayout]="'horizontal'" [nzLoading]="loading">
+    <nz-list [nzDataSource]="fabricant.kits" [nzRenderItem]="item" [nzItemLayout]="'horizontal'" [nzLoading]="'false'">
         <ng-template #item let-kit>
             <nz-list-item>
                 <nz-list-item-meta [nzTitle]="title" [nzDescription]="desc">
                     <ng-template #title>
-                        <a [routerLink]="kits">Kit #{{ kit.CodeKit }}</a>
+                        <a routerLink="/kits" class="primary">Kit #{{ kit.CodeKit }}</a>
                     </ng-template>
                     <ng-template #desc>
                         <div class="pl-3">

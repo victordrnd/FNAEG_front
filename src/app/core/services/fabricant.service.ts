@@ -25,4 +25,8 @@ export class FabricantService {
   filter(filter){
     return this.http.post(`${environment.apiurl}/fabricant/filter`, filter).pipe(map((res:any) => res.result));
   }
+
+  create(fabricant){
+    return this.http.post(`${environment.apiurl}/fabricant/create`,fabricant).pipe(map((res:any) => res.result));
+  }
 }

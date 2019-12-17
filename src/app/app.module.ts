@@ -21,6 +21,8 @@ import { registerLocaleData } from '@angular/common';
 import fr from '@angular/common/locales/fr';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { InfoFabricantComponent } from './pages/fabricants/info-fabricant/info-fabricant.component';
+import { CreateFabricantComponent } from './pages/fabricants/create-fabricant/create-fabricant.component';
+import { SidebarComponent } from './shared/sidebar/sidebar.component';
 registerLocaleData(fr);
 @NgModule({
   declarations: [
@@ -32,6 +34,8 @@ registerLocaleData(fr);
     ModalKitComponent,
     DashboardComponent,
     InfoFabricantComponent,
+    CreateFabricantComponent,
+    SidebarComponent,
     
   ],
   imports: [
@@ -51,7 +55,11 @@ registerLocaleData(fr);
     FabricantService,
     { provide: NZ_I18N, useValue: fr_FR }
   ],
-  entryComponents : [ModalKitComponent, InfoFabricantComponent],
+  entryComponents : [
+    ModalKitComponent,
+    InfoFabricantComponent,
+    CreateFabricantComponent
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

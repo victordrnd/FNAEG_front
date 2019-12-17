@@ -1,0 +1,23 @@
+<ul nz-menu nzMode="inline">
+    <li nz-menu-item nzIcon="home" routerLink="/" [nzSelected]="router.url == '/'"><i nz-icon nzType="home" nzTheme="outline"></i> Dashboard</li>
+    <li nz-submenu nzTitle="Kits" nzIcon="appstore" nzOpen>
+        <ul>
+            <li nz-menu-item routerLink="/kits" [nzSelected]="router.url == '/kits'">Liste des kits</li>
+            <li nz-menu-item>Exporter les kits</li>
+        </ul>
+    </li>
+    <li nz-submenu nzTitle="Fabricants" nzIcon="book" nzOpen>
+        <ul>
+            <li nz-menu-item routerLink="/fabricants" [nzSelected]="router.url == '/fabricants'">Afficher les fabricants</li>
+            <li nz-menu-item>A Venir</li>
+            <li nz-menu-item>A Venir</li>
+        </ul>
+    </li>
+    <li nz-submenu nzTitle="Commandes" nzIcon="setting">
+        <ul>
+            <li nz-menu-item>A Venir</li>
+            <li nz-menu-item>A Venir</li>
+            <li nz-menu-item>A Venir</li>
+        </ul>
+    </li>
+</ul>

@@ -1,0 +1,26 @@
+<form nz-form [formGroup]="form">
+    <nz-form-item>
+        <nz-form-label [nzSpan]="5">Code</nz-form-label>
+        <nz-form-control nzHasFeedback [nzSpan]="12" nzErrorTip="Le champs est requis et dois faire 4 caractères">
+            <input nz-input [formControl]="form.controls['CodeF']" name="code" required minlength="4" maxlength="4"/>
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-label [nzSpan]="5">Nom</nz-form-label>
+        <nz-form-control nzHasFeedback [nzSpan]="12" nzErrorTip="Le champs est requis">
+            <input nz-input [formControl]="form.controls['Nom']" name="nom" required/>
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-label [nzSpan]="5">Pays</nz-form-label>
+        <nz-form-control nzHasFeedback [nzSpan]="12" nzErrorTip="Le champs est requis">
+            <input nz-input [formControl]="form.controls['Pays']" name="pays" required/>
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-label [nzSpan]="5">Ville</nz-form-label>
+        <nz-form-control nzHasFeedback [nzSpan]="12" nzErrorTip="Le champs est requis">
+            <input nz-input [formControl]="form.controls['Ville']" name="ville" required />
+        </nz-form-control>
+    </nz-form-item>
+</form>
