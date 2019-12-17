@@ -1,48 +1,59 @@
-<div class="row m-0 p-0">
+<div class="row m-0 px-0 pb-5">
 
-	<div class="col-10 d-block mx-auto">
+	<div class="col-md-10 col-12 d-block mx-auto">
 		<div class="text-center mb-5">
 			<h1> Gestion des kits</h1>
 		</div>
-		<div class=" mt-4 pl-5 pr-5">
-			<div class="row my-3">
-				<div class="col-3">
-					<nz-slider [nzMarks]="marks" [(ngModel)]="filter.range" nzRange [nzMax]="300" [nzMin]="0" [nzStep]="10"
-						(ngModelChange)="rangeChange($event)"></nz-slider>
-				</div>
-				<div class="col-3 pl-5">
-					<nz-select nzMode="multiple" nzPlaceHolder="Sélectionnez un fabricant"
-						[(ngModel)]="filter.fabricants" style="width:100%" (ngModelChange)="sendFilter()">
-						<nz-option *ngFor="let fabricant of fabricants" [nzLabel]="fabricant.Nom"
-							[nzValue]="fabricant.CodeF"></nz-option>
-					</nz-select>
-					<ng-template #tagPlaceHolder let-selectedList> and {{ selectedList.length }} more selected
-					</ng-template>
-				</div>
-				<div class="custom-control custom-checkbox col-3 pl-5 mt-2">
-					<label nz-checkbox [(ngModel)]="filter.stock" (ngModelChange)="sendFilter()">En stock</label>
-				</div>
-				<div class="col-3">
-					<ul class="list-inline">
-						<li class="list-inline-item">
-							<button nz-button nzType="primary" (click)="open()"><i nz-icon nzType="upload"></i>
-								Import</button>
-						</li>
-						<li class="list-inline-item">
-							<button nz-button nzType="default" (click)="onExport()"><i nz-icon
-									nzType="vertical-align-bottom" nzTheme="outline"></i> Export</button>
-						</li>
-					</ul>
-				</div>
+		<div class="px-md-5">
+			<div class="mb-4 shadow-sm">
+				<nz-collapse [nzBordered]="false">
+					<nz-collapse-panel [nzHeader]="'Afficher les filtres'" [nzActive]="true">
+
+
+						<div class="row my-3">
+							<div class="col-md-3 col-12">
+								<nz-slider [nzMarks]="marks" [(ngModel)]="range" nzRange [nzMax]="300" [nzMin]="0"
+									[nzStep]="10" (ngModelChange)="rangeChange($event)"></nz-slider>
+							</div>
+							<div class="col-md-3 col-9 pl-md-5">
+								<nz-select nzMode="multiple" nzPlaceHolder="Sélectionnez un fabricant"
+									[(ngModel)]="filter.fabricants" style="width:100%" (ngModelChange)="sendFilter()">
+									<nz-option *ngFor="let fabricant of fabricants" [nzLabel]="fabricant.Nom"
+										[nzValue]="fabricant.CodeF"></nz-option>
+								</nz-select>
+								<ng-template #tagPlaceHolder let-selectedList> and {{ selectedList.length }} more
+									selected
+								</ng-template>
+							</div>
+							<div class="custom-control custom-checkbox col-md-3 col-3 pl-md-5 mt-2">
+								<label nz-checkbox [(ngModel)]="filter.stock" (ngModelChange)="sendFilter()">En
+									stock</label>
+							</div>
+							<div class="col-md-3 col-12 my-3 my-md-0">
+								<ul class="list-inline float-right">
+									<li class="list-inline-item">
+										<button nz-button nzType="primary" (click)="open()"><i nz-icon
+												nzType="upload"></i>
+											Import</button>
+									</li>
+									<li class="list-inline-item">
+										<button nz-button nzType="default" (click)="onExport()"><i nz-icon
+												nzType="vertical-align-bottom" nzTheme="outline"></i> Export</button>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</nz-collapse-panel>
+				</nz-collapse>
 			</div>
-			<nz-table class="table" style="box-shadow:inset 0px 0px 5px 1px rgba(151, 151, 151, 0.18)">
-				<thead (nzSortChange)="sort($event)" nzSingleSort>
+			<nz-table class="table">
+				<thead (nzSortChange)="sort($event)">
 					<tr>
 						<th nzShowSort nzSortKey="CodeKit" scope="col">CodeKit</th>
 						<th nzShowSort nzSortKey="Prix">Prix</th>
 						<th nzShowSort nzSortKey="Annee">Année</th>
 						<th nzShowSort nzSortKey="Duree">Durée</th>
-						<th nzShowSort nzSortKey="fabricant.Nom">Fabricant</th>
+						<th>Fabricant</th>
 						<th nzShowSort nzSortKey="Stock">Stock</th>
 					</tr>
 				</thead>
@@ -53,22 +64,23 @@
 						<td style="border-bottom: 1px solid #fafafa;">{{kit.Annee | date }}</td>
 						<td style="border-bottom: 1px solid #fafafa;">{{kit.Duree}}</td>
 						<td style="border-bottom: 1px solid #fafafa;">{{kit.fabricant.Nom}}</td>
-						<td *ngIf="kit.Stock == 0" style="border-bottom: 1px solid #fafafa;"><span
-								class="badge badge-pill badge-danger"><i class="feather icon-package"></i>
-								{{kit.Stock}}</span></td>
-						<td *ngIf="kit.Stock > 0 && kit.Stock < 10" style="border-bottom: 1px solid #fafafa;"><span
-								style="background-color: #ffd250;" class="badge badge-pill badge-warning"><i
-									class="feather icon-package"></i> {{kit.Stock}}</span></td>
-						<td *ngIf="kit.Stock >= 10" style="border-bottom: 1px solid #fafafa;"><span
-								class="badge badge-pill badge-light"><i class="feather icon-package"></i>
-								{{kit.Stock}}</span></td>
+						<td *ngIf="kit.Stock == 0" style="border-bottom: 1px solid #fafafa;">
+							<nz-badge nzColor="red" nzText="{{kit.Stock}}"></nz-badge>
+						</td>
+						<td *ngIf="kit.Stock > 0 && kit.Stock < 10" style="border-bottom: 1px solid #fafafa;">
+							<nz-badge nzStatus="default" nzText="{{kit.Stock}}"></nz-badge>
+						</td>
+						<td *ngIf="kit.Stock >= 10" style="border-bottom: 1px solid #fafafa;">
+							<nz-badge nzColor="#d8a864" nzText="{{kit.Stock}}"></nz-badge>
+						</td>
 					</tr>
 				</tbody>
 			</nz-table>
 		</div>
 		<div *ngIf="kits">
 			<nav class="float-right mt-2" aria-label="Page navigation example">
-				<nz-pagination [nzPageIndex]="1" [nzTotal]="kits.last_page" [nzSimple]="true" (nzPageIndexChange)="changePage($event)"></nz-pagination>
+				<nz-pagination [nzPageIndex]="1" [nzTotal]="kits.last_page" [nzSimple]="true"
+					(nzPageIndexChange)="changePage($event)"></nz-pagination>
 			</nav>
 		</div>
 	</div>

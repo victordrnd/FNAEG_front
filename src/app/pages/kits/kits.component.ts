@@ -11,12 +11,12 @@ import { NzMarks, NzModalService } from 'ng-zorro-antd';
 })
 export class KitsComponent implements OnInit {
   kits: any;
+  range :Array<number> = [0, 300]
   filter = {
-    min: 0,
-    max: 1000,
+    min: this.range[0],
+    max: this.range[1],
     fabricants: undefined,
     stock: false,
-    range: [0, 300],
     page: 1,
     ordersBy: []
   };

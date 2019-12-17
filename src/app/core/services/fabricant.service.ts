@@ -17,4 +17,8 @@ export class FabricantService {
   getAllFabricantPaginate() {
     return this.http.get(`${environment.apiurl}/fabricant/paginate`).pipe(map((res:any) => res.result));
   }
+
+  filter(filter){
+    return this.http.post(`${environment.apiurl}/fabricant/filter`, filter).pipe(map((res:any) => res.result));
+  }
 }
