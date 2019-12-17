@@ -9,12 +9,15 @@
 				<nz-collapse [nzBordered]="false">
 					<nz-collapse-panel [nzHeader]="'Afficher les filtres'" [nzActive]="true">
 						<div class="row my-3">
-							<div class="col-3 pl-5">
+							<div class="col-4 pl-5">
 									<nz-input-group nzSearch [nzAddOnAfter]="suffixIconButton">
-										<input type="text" nz-input placeholder="Rechercher un fabricant" />
+										<input type="text" nz-input [nzAutocomplete]="auto" placeholder="Rechercher un fabricant" [(ngModel)]="filter.keyword" />
 									</nz-input-group>
+									<nz-autocomplete #auto>
+										<nz-auto-option *ngFor="let row of autocomplete" [nzValue]="row.Nom">{{row.Nom}}</nz-auto-option>
+									  </nz-autocomplete>
 									<ng-template #suffixIconButton>
-										<button nz-button nzType="primary" nzSearch><i nz-icon
+										<button nz-button nzType="primary" nzSearch (click)="sendFilter()"><i nz-icon
 												nzType="search"></i></button>
 									</ng-template>
 							</div>
@@ -36,6 +39,7 @@
 						<th nzShowSort nzSortKey="Fabricant">Nom</th>
 						<th nzShowSort nzSortKey="Pays">Pays</th>
 						<th nzShowSort nzSortKey="Ville">Ville</th>
+						<th>Action</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -44,6 +48,7 @@
 						<td style="border-bottom: 1px solid #fafafa;">{{fabricant.Nom}}</td>
 						<td style="border-bottom: 1px solid #fafafa;">{{fabricant.Pays}}</td>
 						<td style="border-bottom: 1px solid #fafafa;">{{fabricant.Ville}}</td>
+						<td><i nz-icon nzType="info-circle" (click)="openInfo(fabricant)" nzTheme="outline"></i></td>
 					</tr>
 				</tbody>
 			</nz-table>
@@ -51,6 +56,8 @@
 		<nav class="float-right mt-2" aria-label="Page navigation example">
 			<nz-pagination [nzPageIndex]="1" [nzTotal]="fabricants?.last_page" [nzSimple]="true"
 				(nzPageIndexChange)="changePage($event)"></nz-pagination>
+
+
 		</nav>
 	</div>
 </div>

@@ -20,6 +20,7 @@ import { NgZorroAntdModule, NZ_I18N, fr_FR } from 'ng-zorro-antd';
 import { registerLocaleData } from '@angular/common';
 import fr from '@angular/common/locales/fr';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { InfoFabricantComponent } from './pages/fabricants/info-fabricant/info-fabricant.component';
 registerLocaleData(fr);
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ registerLocaleData(fr);
     SearchFabricantComponent,
     ModalKitComponent,
     DashboardComponent,
+    InfoFabricantComponent,
     
   ],
   imports: [
@@ -49,7 +51,7 @@ registerLocaleData(fr);
     FabricantService,
     { provide: NZ_I18N, useValue: fr_FR }
   ],
-  entryComponents : [ModalKitComponent],
+  entryComponents : [ModalKitComponent, InfoFabricantComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

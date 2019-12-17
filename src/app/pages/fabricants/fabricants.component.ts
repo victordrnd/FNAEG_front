@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FabricantService} from '../../core/services/fabricant.service';
+import { NzDrawerService } from 'ng-zorro-antd';
+import { InfoFabricantComponent } from './info-fabricant/info-fabricant.component';
 
 @Component({
   selector: 'app-fabricants',
@@ -9,21 +11,36 @@ import {FabricantService} from '../../core/services/fabricant.service';
 export class FabricantsComponent implements OnInit {
 
   fabricants:any;
+  autocomplete;
   filter = {
     keyword : '',
     fabricants: [],
     ordersBy : []
   }
 
-  constructor(private fabricantService:FabricantService) { }
+  constructor(
+    private fabricantService:FabricantService,
+    private drawerService : NzDrawerService) { }
 
   async ngOnInit() {
     this.fabricants = await this.fabricantService.getAllFabricantPaginate().toPromise();
+    this.autocomplete = await this.fabricantService.getMinimized().toPromise();
   }
 
 
   async sendFilter() {
     this.fabricants = await this.fabricantService.filter(this.filter).toPromise();
+  }
+
+  openInfo(fabricant){
+    const drawerRef =  this.drawerService.create<InfoFabricantComponent, { fabricant: any }, string>({
+      nzTitle: fabricant.Nom,
+      nzContent: InfoFabricantComponent,
+      nzContentParams: {
+        fabricant: fabricant
+      },
+      nzWidth : 500
+    });
   }
 
 

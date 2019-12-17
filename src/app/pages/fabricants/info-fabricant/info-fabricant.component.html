@@ -1,0 +1,33 @@
+<h6>Fabricant :</h6>
+<nz-descriptions [nzColumn]="1" nzTitle="">
+    <nz-descriptions-item nzTitle="Nom" [nzSpan]="1">{{fabricant.Nom}}</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="Pays" [nzSpan]="1">{{fabricant.Pays}}</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="Ville" [nzSpan]="1">{{fabricant.Ville}}</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="Site internet" [nzSpan]="1">http://gsb.com</nz-descriptions-item>
+</nz-descriptions>
+<h6>Catalogue :</h6>
+<div class="mx-3">
+
+    <nz-list [nzDataSource]="fabricant.kits" [nzRenderItem]="item" [nzItemLayout]="'horizontal'" [nzLoading]="loading">
+        <ng-template #item let-kit>
+            <nz-list-item>
+                <nz-list-item-meta [nzTitle]="title" [nzDescription]="desc">
+                    <ng-template #title>
+                        <a [routerLink]="kits">Kit #{{ kit.CodeKit }}</a>
+                    </ng-template>
+                    <ng-template #desc>
+                        <div class="pl-3">
+                            <nz-descriptions [nzColumn]="2" nzTitle="">
+                                <nz-descriptions-item nzTitle="Prix" [nzSpan]="1">{{kit.prix}} €</nz-descriptions-item>
+                                <nz-descriptions-item nzTitle="Duree" [nzSpan]="1">{{kit.Duree}} min
+                                </nz-descriptions-item>
+                                <nz-descriptions-item nzTitle="Annee" [nzSpan]="1">{{kit.Annee | date}}
+                                </nz-descriptions-item>
+                            </nz-descriptions>
+                        </div>
+                    </ng-template>
+                </nz-list-item-meta>
+            </nz-list-item>
+        </ng-template>
+    </nz-list>
+</div>

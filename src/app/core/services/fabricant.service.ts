@@ -18,6 +18,10 @@ export class FabricantService {
     return this.http.get(`${environment.apiurl}/fabricant/paginate`).pipe(map((res:any) => res.result));
   }
 
+  getMinimized(){
+    return this.http.get(`${environment.apiurl}/fabricant/minimized`).pipe(map((res :any) => res.result));
+  }
+
   filter(filter){
     return this.http.post(`${environment.apiurl}/fabricant/filter`, filter).pipe(map((res:any) => res.result));
   }
