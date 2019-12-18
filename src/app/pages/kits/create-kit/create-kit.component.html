@@ -1,0 +1,36 @@
+<form nz-form [formGroup]="form">
+        <nz-form-item>
+            <nz-form-label [nzSpan]="5">Code</nz-form-label>
+            <nz-form-control nzHasFeedback [nzSpan]="12" nzErrorTip="Le champs est requis et dois faire 4 caractères">
+                <input nz-input [formControl]="form.controls['CodeKit']" name="code" required minlength="4" maxlength="4"/>
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-label [nzSpan]="5">Duree</nz-form-label>
+            <nz-form-control nzHasFeedback [nzSpan]="12" nzErrorTip="Le champs est requis">
+                <input nz-input [formControl]="form.controls['Duree']" name="duree" required/>
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-label [nzSpan]="5">Annee</nz-form-label>
+            <nz-form-control nzHasFeedback [nzSpan]="12" nzErrorTip="Le champs est requis">
+                    <nz-date-picker [formControl]="form.controls['Annee']" name="annee" required></nz-date-picker>
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-label [nzSpan]="5">Prix</nz-form-label>
+            <nz-form-control nzHasFeedback [nzSpan]="12" nzErrorTip="Le champs est requis">
+                <input nz-input [formControl]="form.controls['prix']" name="prix" required />
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-label [nzSpan]="5">Fabricant</nz-form-label>
+            <nz-form-control nzHasFeedback [nzSpan]="12" nzErrorTip="Le champs est requis">
+                 <nz-select [formControl]="form.controls['CodeF']" name="codeF" required nzShowSearch nzAllowClear nzPlaceHolder="Select a person" [(ngModel)]="selectedValue">
+      <nz-option nzLabel="Jack" nzValue="jack"></nz-option>
+      <nz-option nzLabel="Lucy" nzValue="lucy"></nz-option>
+      <nz-option nzLabel="Tom" nzValue="tom"></nz-option>
+    </nz-select>
+            </nz-form-control>
+        </nz-form-item>
+    </form>

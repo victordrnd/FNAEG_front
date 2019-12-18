@@ -4,6 +4,8 @@ import { FabricantService } from '../../core/services/fabricant.service';
 import { environment } from 'src/environments/environment';
 import { ModalKitComponent } from './modal-kit/modal-kit.component';
 import { NzMarks, NzModalService } from 'ng-zorro-antd';
+import { CreateKitComponent } from './create-kit/create-kit.component';
+
 @Component({
   selector: 'app-kits',
   templateUrl: './kits.component.html',
@@ -63,7 +65,6 @@ export class KitsComponent implements OnInit {
       nzWidth : 700,
       nzOnOk: async () => this.kits = await this.kitService.getAllKitPaginate().toPromise()
     });
-    // const modalRef = this.modalService.open(ModalKitComponent);
   }
 
   rangeChange(range) {
@@ -100,5 +101,28 @@ export class KitsComponent implements OnInit {
     });
     if (!found && !deleted) this.filter.ordersBy.push(obj);
     this.sendFilter();
+  }
+
+  onOpenCreate(){
+    const modalRef =this.modalService.info({
+      nzTitle: "Creation d'un nouveau kit",
+      nzBodyStyle : {
+        padding : '15px'
+      },
+      nzStyle : {
+        padding: '5px'
+      },
+      nzContent: CreateKitComponent,
+      nzCancelDisabled : false,
+      nzMaskClosable : true,
+      nzOkText : 'Valider',
+      nzWidth : 700,
+      nzIconType : 'book',
+      nzOkDisabled : true,
+    });
+    
+    modalRef.afterClose.subscribe(async event => {
+      this.kits = await this.kitService.getAllKitPaginate().toPromise();
+    })
   }
 }

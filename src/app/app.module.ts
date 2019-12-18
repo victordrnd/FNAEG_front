@@ -23,6 +23,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { InfoFabricantComponent } from './pages/fabricants/info-fabricant/info-fabricant.component';
 import { CreateFabricantComponent } from './pages/fabricants/create-fabricant/create-fabricant.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
+import { CreateKitComponent } from './pages/kits/create-kit/create-kit.component';
 registerLocaleData(fr);
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ registerLocaleData(fr);
     InfoFabricantComponent,
     CreateFabricantComponent,
     SidebarComponent,
+    CreateKitComponent,
     
   ],
   imports: [
@@ -58,7 +60,8 @@ registerLocaleData(fr);
   entryComponents : [
     ModalKitComponent,
     InfoFabricantComponent,
-    CreateFabricantComponent
+    CreateFabricantComponent,
+    CreateKitComponent
     ],
   bootstrap: [AppComponent]
 })

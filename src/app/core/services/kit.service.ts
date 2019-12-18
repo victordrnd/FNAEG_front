@@ -34,4 +34,8 @@ export class KitService {
     return this.http.get(`${url}`);
   }
 
+  create(kit){
+    return this.http.post(`${environment.apiurl}/kit/create`,kit).pipe(map((res:any) => res.result));
+  }
+
 }

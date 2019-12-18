@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { NzModalRef, NzMessageService, NzModalService, NzNotificationService } from 'ng-zorro-antd';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { FabricantService } from 'src/app/core/services/fabricant.service';
-import { TestBed } from '@angular/core/testing';
 
 @Component({
   selector: 'app-create-fabricant',
