@@ -36,7 +36,7 @@
 				<thead (nzSortChange)="sort($event)">
 					<tr>
 						<th nzShowSort nzSortKey="CodeF" scope="col">Code</th>
-						<th nzShowSort nzSortKey="Fabricant">Nom</th>
+						<th nzShowSort nzSortKey="Nom">Nom</th>
 						<th nzShowSort nzSortKey="Pays">Pays</th>
 						<th nzShowSort nzSortKey="Ville">Ville</th>
 						<th>Action</th>
@@ -48,7 +48,7 @@
 						<td style="border-bottom: 1px solid #fafafa;">{{fabricant.Nom}}</td>
 						<td style="border-bottom: 1px solid #fafafa;">{{fabricant.Pays}}</td>
 						<td style="border-bottom: 1px solid #fafafa;">{{fabricant.Ville}}</td>
-						<td><i nz-icon nzType="info-circle" (click)="openInfo(fabricant)" nzTheme="outline"></i></td>
+						<td><a><i nz-icon nzType="info-circle" (click)="openInfo(fabricant)" nzTheme="outline"></i></a></td>
 					</tr>
 				</tbody>
 			</nz-table>
