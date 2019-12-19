@@ -4,6 +4,8 @@ import { AppComponent } from './app.component';
 import { KitsComponent } from './pages/kits/kits.component';
 import { FabricantsComponent } from './pages/fabricants/fabricants.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { InventairesComponent } from './pages/inventaires/inventaires.component';
+import { CommandesComponent } from './pages/commandes/commandes.component';
 
 const routes: Routes = [
   {
@@ -29,6 +31,20 @@ const routes: Routes = [
         component: FabricantsComponent,
         data: {
           breadcrumb: 'Fabricants'
+        }
+      },
+      {
+        path: 'inventaires',
+        component : InventairesComponent,
+        data : {
+          breadcrumb : 'Inventaires'
+        }
+      },
+      {
+        path : 'Commandes',
+        component : CommandesComponent,
+        data : {
+          breadcrumb : 'Commandes'
         }
       }
     ]

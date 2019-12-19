@@ -1,0 +1,67 @@
+<div class="row m-0 px-0 mb-5">
+
+  <div class="col-md-10 col-12 d-block mx-auto">
+    <div class="text-center mb-5">
+      <h1> Gestion des inventaires</h1>
+    </div>
+    <div class="px-md-5">
+      <div class="mb-4 shadow-sm">
+        <nz-collapse [nzBordered]="false">
+          <nz-collapse-panel [nzHeader]="'Afficher les filtres'" [nzActive]="true">
+            <div class="row my-3">
+              <div class="col-5 pl-5">
+                <nz-range-picker [(ngModel)]="dateRange" (ngModelChange)="onChangeRange($event)"></nz-range-picker>
+              </div>
+              <div class="col-2">
+                <nz-select [nzMaxTagPlaceholder]="tagPlaceHolder"  style="width:100%" nzMode="multiple" (ngModelChange)="sendFilter()" nzPlaceHolder="Réalisé par"
+                  [(ngModel)]="creators">
+                  <!-- <nz-option *ngFor="let option of listOfOption" [nzLabel]="option.label" [nzValue]="option.value"></nz-option> -->
+                </nz-select>
+                <ng-template #tagPlaceHolder let-selectedList> et {{ selectedList.length }} autres
+                </ng-template>
+              </div>
+
+            </div>
+          </nz-collapse-panel>
+        </nz-collapse>
+      </div>
+
+      <nz-list class="demo-loadmore-list" [nzDataSource]="inventaires?.data" [nzItemLayout]="'horizontal'"
+        [nzRenderItem]="item" [nzLoading]="false" [nzLoadMore]="loadMore">
+        <ng-template #item let-inventaire>
+          
+          <nz-list-item [nzActions]="item.loading ? [] : [moreAction]">
+            <nz-skeleton [nzAvatar]="true" [nzActive]="true" [nzTitle]="false" [nzLoading]="item.loading">
+              <ng-template #moreAction><a (click)="edit(item)"><i class="feather icon-chevron-right"></i></a>
+              </ng-template>
+              <nz-list-item-meta [nzTitle]="nzTitle" [nzAvatar]="iconTempl" [nzDescription]="nzDescription">
+                <ng-template #nzTitle>
+                  <a>Inventaire du {{inventaire.created_at | date:'medium'}}</a>
+                </ng-template>
+                <ng-template #nzDescription>
+                  <a>Réalisé par Victor
+                    <nz-divider nzType="vertical"></nz-divider>
+                    Kits comptés : {{inventaire.enregistrements.length}}
+                  </a>
+                  <nz-collapse [nzBordered]="false">
+                    <nz-collapse-panel [nzHeader]="'Détails'" [nzActive]="false">
+                    <!-- Afficher la listes des enregistrements avec list -->
+                    </nz-collapse-panel>
+                  </nz-collapse>
+                </ng-template>
+              </nz-list-item-meta>
+            </nz-skeleton>
+          </nz-list-item>
+        </ng-template>
+        <ng-template #loadMore>
+          <div class="loadmore">
+            <div class="d-block mx-auto">
+              <button nz-button nzType="primary" *ngIf="inventaires?.next_page_url !== null"
+                (click)="onLoadMore()">Charger plus</button>
+            </div>
+          </div>
+        </ng-template>
+      </nz-list>
+    </div>
+  </div>
+</div>

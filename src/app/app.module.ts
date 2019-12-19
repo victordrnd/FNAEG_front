@@ -19,11 +19,14 @@ import { NgZorroAntdModule, NZ_I18N, fr_FR } from 'ng-zorro-antd';
 
 import { registerLocaleData } from '@angular/common';
 import fr from '@angular/common/locales/fr';
+import { LOCALE_ID } from '@angular/core';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { InfoFabricantComponent } from './pages/fabricants/info-fabricant/info-fabricant.component';
 import { CreateFabricantComponent } from './pages/fabricants/create-fabricant/create-fabricant.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { CreateKitComponent } from './pages/kits/create-kit/create-kit.component';
+import { CommandesComponent } from './pages/commandes/commandes.component';
+import { InventairesComponent } from './pages/inventaires/inventaires.component';
 registerLocaleData(fr);
 @NgModule({
   declarations: [
@@ -38,6 +41,8 @@ registerLocaleData(fr);
     CreateFabricantComponent,
     SidebarComponent,
     CreateKitComponent,
+    CommandesComponent,
+    InventairesComponent,
     
   ],
   imports: [
@@ -55,7 +60,8 @@ registerLocaleData(fr);
   providers: [
     KitService,
     FabricantService,
-    { provide: NZ_I18N, useValue: fr_FR }
+    { provide: NZ_I18N, useValue: fr_FR },
+    {provide : LOCALE_ID, useValue : "fr-FR"}
   ],
   entryComponents : [
     ModalKitComponent,

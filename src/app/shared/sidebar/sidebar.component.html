@@ -15,14 +15,14 @@
     </li>
     <li nz-submenu nzTitle="Commandes" nzIcon="audit">
         <ul>
-            <li nz-menu-item>A Venir</li>
+            <li nz-menu-item routerLink="/commandes" [nzSelected]="router.url == '/commandes'">Liste des commandes</li>
             <li nz-menu-item>A Venir</li>
             <li nz-menu-item>A Venir</li>
         </ul>
     </li>
     <li nz-submenu nzTitle="Inventaires" nzIcon="barcode">
             <ul>
-                <li nz-menu-item>A Venir</li>
+                <li nz-menu-item routerLink="/inventaires" [nzSelected]="router.url == '/inventaires'">Liste des inventaires</li>
                 <li nz-menu-item>A Venir</li>
                 <li nz-menu-item>A Venir</li>
             </ul>
