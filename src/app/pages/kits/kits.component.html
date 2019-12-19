@@ -5,6 +5,10 @@
 			<h1> Gestion des kits</h1>
 		</div>
 		<div class="px-md-5">
+			<div class="text-right pb-3">
+				<a (click)="onOpenCreate()" class="primary-button"><i nz-icon nzType="plus" nzTheme="outline"></i>
+					Ajouter un kit</a>
+			</div>
 			<div class="mb-4 shadow-sm">
 				<nz-collapse [nzBordered]="false">
 					<nz-collapse-panel [nzHeader]="'Afficher les filtres'" [nzActive]="true">
@@ -16,7 +20,7 @@
 									[nzStep]="10" (ngModelChange)="rangeChange($event)"></nz-slider>
 							</div>
 							<div class="col-md-3 col-9 pl-md-5">
-								<nz-select nzMode="multiple" nzPlaceHolder="Sélectionnez un fabricant"
+								 <nz-select nzMode="multiple" nzPlaceHolder="Sélectionnez un fabricant"
 									[(ngModel)]="filter.fabricants" style="width:100%" (ngModelChange)="sendFilter()">
 									<nz-option *ngFor="let fabricant of fabricants" [nzLabel]="fabricant.Nom"
 										[nzValue]="fabricant.CodeF"></nz-option>
@@ -25,11 +29,11 @@
 									selected
 								</ng-template>
 							</div>
-							<div class="custom-control custom-checkbox col-md-3 col-3 pl-md-5 mt-2">
+							<div class="custom-control custom-checkbox col-md-2 col-3 pl-md-5 mt-2">
 								<label nz-checkbox [(ngModel)]="filter.stock" (ngModelChange)="sendFilter()">En
 									stock</label>
 							</div>
-							<div class="col-md-3 col-12 my-3 my-md-0">
+							<div class="col-md-4 col-12 my-3 my-md-0">
 								<ul class="list-inline float-right">
 									<li class="list-inline-item">
 										<button nz-button nzType="primary" (click)="open()"><i nz-icon
