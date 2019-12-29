@@ -16,7 +16,6 @@ export class InventairesComponent implements OnInit {
 
   async ngOnInit() {
     this.inventaires = await this.inventaireService.getAllInventaire().toPromise();
-    console.log(this.inventaires)
   }
 
 
@@ -31,11 +30,15 @@ export class InventairesComponent implements OnInit {
     this.inventaires = newInventaire;
   }
 
-  onChangeRange(){
+  onChangeRange(value){
 
+    this.filter.dateRange = value.length ? value.map(date => date.toISOString().split('T')[0]) : null;
+    this.sendFilter();
   }
-  sendFilter(){
-    this.inventaireService.filter(this.filter).toPromise();
+
+  async sendFilter(){
+    this.filter.page = 1;
+    this.inventaires = await this.inventaireService.filter(this.filter).toPromise();
   }
 
 }

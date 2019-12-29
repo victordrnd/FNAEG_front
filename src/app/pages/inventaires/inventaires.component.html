@@ -13,8 +13,8 @@
                 <nz-range-picker [(ngModel)]="dateRange" (ngModelChange)="onChangeRange($event)"></nz-range-picker>
               </div>
               <div class="col-2">
-                <nz-select [nzMaxTagPlaceholder]="tagPlaceHolder"  style="width:100%" nzMode="multiple" (ngModelChange)="sendFilter()" nzPlaceHolder="Réalisé par"
-                  [(ngModel)]="creators">
+                <nz-select [nzMaxTagPlaceholder]="tagPlaceHolder" style="width:100%" nzMode="multiple"
+                  (ngModelChange)="sendFilter()" nzPlaceHolder="Réalisé par" [(ngModel)]="creators">
                   <!-- <nz-option *ngFor="let option of listOfOption" [nzLabel]="option.label" [nzValue]="option.value"></nz-option> -->
                 </nz-select>
                 <ng-template #tagPlaceHolder let-selectedList> et {{ selectedList.length }} autres
@@ -29,11 +29,9 @@
       <nz-list class="demo-loadmore-list" [nzDataSource]="inventaires?.data" [nzItemLayout]="'horizontal'"
         [nzRenderItem]="item" [nzLoading]="false" [nzLoadMore]="loadMore">
         <ng-template #item let-inventaire>
-          
-          <nz-list-item [nzActions]="item.loading ? [] : [moreAction]">
+
+          <nz-list-item [nzActions]="[]">
             <nz-skeleton [nzAvatar]="true" [nzActive]="true" [nzTitle]="false" [nzLoading]="item.loading">
-              <ng-template #moreAction><a (click)="edit(item)"><i class="feather icon-chevron-right"></i></a>
-              </ng-template>
               <nz-list-item-meta [nzTitle]="nzTitle" [nzAvatar]="iconTempl" [nzDescription]="nzDescription">
                 <ng-template #nzTitle>
                   <a>Inventaire du {{inventaire.created_at | date:'medium'}}</a>
@@ -45,7 +43,33 @@
                   </a>
                   <nz-collapse [nzBordered]="false">
                     <nz-collapse-panel [nzHeader]="'Détails'" [nzActive]="false">
-                    <!-- Afficher la listes des enregistrements avec list -->
+                      <!-- Afficher la listes des enregistrements avec list -->
+                      <nz-table #basicTable [nzData]="inventaire.enregistrements" [nzShowPagination]="false" >
+                        <thead>
+                          <tr>
+                            <th>Référence</th>
+                            <th>Année</th>
+                            <th>Fabricant</th>
+                            <th>Stock</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let enregistrement of inventaire.enregistrements">
+                            <td>{{enregistrement.CodeKit}}</td>
+                            <td>{{enregistrement.kit.Annee | date}}</td>
+                            <td>{{enregistrement.kit.fabricant.Nom}}</td>
+                            <td *ngIf="enregistrement.Stock == 0">
+                              <nz-badge nzColor="red" nzText="{{enregistrement.Stock}}"></nz-badge>
+                            </td>
+                            <td *ngIf="enregistrement.Stock > 0 && enregistrement.Stock < 10">
+                              <nz-badge nzStatus="default" nzText="{{enregistrement.Stock}}"></nz-badge>
+                            </td>
+                            <td *ngIf="enregistrement.Stock >= 10">
+                              <nz-badge nzColor="#d8a864" nzText="{{enregistrement.Stock}}"></nz-badge>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </nz-table>
                     </nz-collapse-panel>
                   </nz-collapse>
                 </ng-template>
