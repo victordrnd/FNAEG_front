@@ -14,7 +14,7 @@ export class FabricantsComponent implements OnInit {
   fabricants:any;
   autocomplete;
   filter = {
-    keyword : '',
+    keyword : null,
     fabricants: [],
     ordersBy : [],
     page : 1
