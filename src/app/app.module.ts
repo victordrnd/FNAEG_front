@@ -27,6 +27,7 @@ import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { CreateKitComponent } from './pages/kits/create-kit/create-kit.component';
 import { CommandesComponent } from './pages/commandes/commandes.component';
 import { InventairesComponent } from './pages/inventaires/inventaires.component';
+import { CreateCommandeComponent } from './pages/commandes/create-commande/create-commande.component';
 registerLocaleData(fr);
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ registerLocaleData(fr);
     CreateKitComponent,
     CommandesComponent,
     InventairesComponent,
+    CreateCommandeComponent,
     
   ],
   imports: [

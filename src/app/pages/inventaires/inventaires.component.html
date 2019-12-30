@@ -12,7 +12,7 @@
               <div class="col-5 pl-5">
                 <nz-range-picker [(ngModel)]="dateRange" (ngModelChange)="onChangeRange($event)"></nz-range-picker>
               </div>
-              <div class="col-2">
+              <div class="col-3">
                 <nz-select [nzMaxTagPlaceholder]="tagPlaceHolder" style="width:100%" nzMode="multiple"
                   (ngModelChange)="sendFilter()" nzPlaceHolder="Réalisé par" [(ngModel)]="creators">
                   <!-- <nz-option *ngFor="let option of listOfOption" [nzLabel]="option.label" [nzValue]="option.value"></nz-option> -->
@@ -20,7 +20,13 @@
                 <ng-template #tagPlaceHolder let-selectedList> et {{ selectedList.length }} autres
                 </ng-template>
               </div>
+              <div class="col">
 
+                <div class="float-right">
+                  <button nz-button nzType="primary"><i nz-icon nzType="vertical-align-bottom"></i>
+                    Télécharger l'outil</button>
+                </div>
+              </div>
             </div>
           </nz-collapse-panel>
         </nz-collapse>
@@ -44,7 +50,7 @@
                   <nz-collapse [nzBordered]="false">
                     <nz-collapse-panel [nzHeader]="'Détails'" [nzActive]="false">
                       <!-- Afficher la listes des enregistrements avec list -->
-                      <nz-table #basicTable [nzData]="inventaire.enregistrements" [nzShowPagination]="false" >
+                      <nz-table #basicTable [nzData]="inventaire.enregistrements" [nzShowPagination]="false">
                         <thead>
                           <tr>
                             <th>Référence</th>

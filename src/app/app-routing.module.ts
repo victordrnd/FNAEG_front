@@ -41,7 +41,7 @@ const routes: Routes = [
         }
       },
       {
-        path : 'Commandes',
+        path : 'commandes',
         component : CommandesComponent,
         data : {
           breadcrumb : 'Commandes'
