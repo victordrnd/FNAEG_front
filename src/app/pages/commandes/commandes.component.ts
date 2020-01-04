@@ -16,6 +16,10 @@ export class CommandesComponent implements OnInit {
     this.commandes = await this.commandeService.getAll().toPromise(); 
   }
 
+  async changeStatus(commande){
+    await this.commandeService.update(commande).toPromise();
+    this.commandes = await this.commandeService.getAll().toPromise(); 
+  }
 
 
 }

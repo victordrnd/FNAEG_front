@@ -23,10 +23,10 @@
                             <div class="col">
 
                                 <div class="float-right">
-                                  <button nz-button nzType="primary"><i nz-icon nzType="plus"></i>
-                                    Réaliser une nouvelle commande</button>
+                                    <button nz-button nzType="primary" routerLink="new"><i nz-icon nzType="plus"></i>
+                                        Réaliser une nouvelle commande</button>
                                 </div>
-                              </div>
+                            </div>
                         </div>
                     </nz-collapse-panel>
                 </nz-collapse>
@@ -34,7 +34,7 @@
 
             <nz-list class="demo-loadmore-list" [nzDataSource]="commandes?.data" [nzItemLayout]="'horizontal'"
                 [nzRenderItem]="item" [nzLoading]="false" [nzLoadMore]="loadMore">
-                <ng-template #item let-commande>
+                <ng-template #item let-commande let-index="index">
 
                     <nz-list-item [nzActions]="[]">
                         <nz-skeleton [nzAvatar]="true" [nzActive]="true" [nzTitle]="false" [nzLoading]="item.loading">
@@ -44,10 +44,24 @@
                                     <a>Commande du {{commande.created_at | date:'medium'}}</a>
                                 </ng-template>
                                 <ng-template #nzDescription>
-                                    <a>Réalisé par Victor
-                                        <nz-divider nzType="vertical"></nz-divider>
-                                        Statut : <span class="badge text-white" style="background-color: #d8a864;font-weight: 200;">{{commande.status.libelle}}</span>
-                                    </a>
+                                    <div class="row">
+                                        <div class="col">
+
+                                            <a>Réalisé par Victor
+                                                <nz-divider nzType="vertical"></nz-divider>
+                                                Statut : <span class="badge text-white"
+                                                    style="background-color: #d8a864;font-weight: 200;">{{commande.status.libelle}}</span>
+                                            </a>
+                                        </div>
+                                        <div class="col-2"  *ngIf="commande.status.libelle=='En attente'">
+                                            <nz-select [(ngModel)]="commande.status_id" (ngModelChange)="changeStatus(commande)" class="w-100" nzAllowClear nzPlaceHolder="Statut">
+                                                <nz-option nzValue="1" nzLabel="En attente"></nz-option>
+                                                <nz-option nzValue="2" nzLabel="Validée"></nz-option>
+                                                <nz-option nzValue="3" nzLabel="Annulée"></nz-option>
+                                            </nz-select>
+                                        </div>
+
+                                    </div>
                                     <nz-collapse [nzBordered]="false">
                                         <nz-collapse-panel [nzHeader]="'Détails'" [nzActive]="false">
                                             <!-- Afficher la listes des enregistrements avec list -->
@@ -68,7 +82,7 @@
                                                             <nz-badge nzStatus="default" nzText="{{detail.Qte}}">
                                                             </nz-badge>
                                                         </td>
-                                                        
+
 
                                                     </tr>
                                                 </tbody>

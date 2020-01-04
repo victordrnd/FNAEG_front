@@ -14,6 +14,14 @@ export class CommandeService {
     return this.http.get(`${environment.apiurl}/order/paginate`).pipe(map((res:any) => res.result));
   }
 
+  update(commande){
+    return this.http.post(`${environment.apiurl}/order/update`,commande).pipe(map((res:any) => res.result));
+  }
+
+  create(commande){
+    return this.http.post(`${environment.apiurl}/order/create`, commande).pipe(map((res :any) => res.result));
+  }
+
 
 
 }

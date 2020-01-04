@@ -6,6 +6,7 @@ import { FabricantsComponent } from './pages/fabricants/fabricants.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { InventairesComponent } from './pages/inventaires/inventaires.component';
 import { CommandesComponent } from './pages/commandes/commandes.component';
+import { CreateCommandeComponent } from './pages/commandes/create-commande/create-commande.component';
 
 const routes: Routes = [
   {
@@ -42,10 +43,22 @@ const routes: Routes = [
       },
       {
         path : 'commandes',
-        component : CommandesComponent,
         data : {
           breadcrumb : 'Commandes'
-        }
+        },
+        children : [
+          {
+            path :'',
+            component : CommandesComponent,
+          },
+          {
+            path : 'new',
+            component : CreateCommandeComponent,
+            data: {
+              breadcrumb :'Nouvelle commande'
+            }
+          }
+        ]
       }
     ]
   },

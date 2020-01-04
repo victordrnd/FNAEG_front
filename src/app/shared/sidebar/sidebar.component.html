@@ -13,14 +13,14 @@
             <li nz-menu-item>A Venir</li>
         </ul>
     </li>
-    <li nz-submenu nzTitle="Commandes" nzIcon="audit">
+    <li nz-submenu nzTitle="Commandes" nzIcon="audit" nzOpen>
         <ul>
             <li nz-menu-item routerLink="/commandes" [nzSelected]="router.url == '/commandes'">Liste des commandes</li>
-            <li nz-menu-item>Nouvelle commande</li>
+            <li nz-menu-item routerLink="/commandes/new" [nzSelected]="router.url == '/commandes/new'">Nouvelle commande</li>
             <li nz-menu-item>A Venir</li>
         </ul>
     </li>
-    <li nz-submenu nzTitle="Inventaires" nzIcon="barcode">
+    <li nz-submenu nzTitle="Inventaires" nzIcon="barcode" nzOpen>
             <ul>
                 <li nz-menu-item routerLink="/inventaires" [nzSelected]="router.url == '/inventaires'">Liste des inventaires</li>
                 <li nz-menu-item>A Venir</li>
