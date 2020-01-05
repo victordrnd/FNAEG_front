@@ -1,1 +1,62 @@
+<div class="row m-0 px-0 mb-5">
 
+
+    <div class="col-md-10 col-12 d-block mx-auto">
+        <div class="row px-4">
+            <div class="col bg-white py-3 px-5 rounded shadow-sm">
+                <div class="mx-auto d-block text-center">
+                    <div style="background:#e3f3fe; height:50px;width:50px;" class="rounded-circle mx-auto d-block">
+                        <i nz-icon nzType="audit" style="color:#0a7ef5" class="my-3"></i>
+                    </div>
+                    <nz-statistic [nzValue]="1128 +' €'"
+                        [nzSuffix]="'Chiffre d&nbsp;affaire'"></nz-statistic>
+                </div>
+            </div>
+            <div class="offset-1 col bg-white py-3 px-5 rounded shadow-sm">
+                <div class="mx-auto d-block text-center">
+                    <div style="background:#e8e2fd; height:50px;width:50px;" class="rounded-circle mx-auto d-block">
+                        <i nz-icon nzType="appstore" style="color:#8668fd" class="my-3"></i>
+                    </div>
+                    <nz-statistic [nzValue]="168"
+                        [nzSuffix]="'&nbsp;&nbsp;&nbsp; Kits en stock &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'"></nz-statistic>
+                </div>
+            </div>
+            <div class="offset-1 col bg-white py-3 px-5 rounded shadow-sm">
+                <div class="mx-auto d-block text-center">
+                    <div style="background:#fffae0; height:50px;width:50px;" class="rounded-circle mx-auto d-block">
+                        <i nz-icon nzType="audit" style="color:#e9ba3e" class="my-3"></i>
+                    </div>
+                    <nz-statistic [nzValue]="1128 +' €'"
+                        [nzSuffix]="'Chiffre d&nbsp;affaire'"></nz-statistic>
+                </div>
+            </div>
+            <div class="offset-1 col bg-white py-3 px-5 rounded shadow-sm">
+                <div class="mx-auto d-block text-center">
+                    <div style="background:#ebf9e8; height:50px;width:50px;" class="rounded-circle mx-auto d-block">
+                        <i nz-icon nzType="barcode" style="color:#41bd3f" class="my-3"></i>
+                    </div>
+                    <nz-statistic [nzValue]="'il y a 5 jours'"
+                        [nzSuffix]="'Dernier inventaire'"></nz-statistic>
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col my-4">
+                <div style="display: block;height:30vh;background-color: #d8a864;" class="p-3 rounded shadow-sm">
+                    <canvas baseChart #myCanvas [datasets]="lineChartData" [labels]="lineChartLabels"
+                        [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend"
+                        [chartType]="lineChartType"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" style="height:300px">
+            <div class="col">
+                <div class="w-100 h-100 bg-white">t</div>
+            </div>
+            <div class="col">
+                <div class="w-100 h-100 bg-white">t</div>
+            </div>
+        </div>
+    </div>

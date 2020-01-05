@@ -3,7 +3,7 @@
     <li nz-submenu nzTitle="Kits" nzIcon="appstore" nzOpen>
         <ul>
             <li nz-menu-item routerLink="/kits" [nzSelected]="router.url == '/kits'">Liste des kits</li>
-            <li nz-menu-item>Exporter les kits</li>
+            <li nz-menu-item (click)="onExport()">Exporter les kits</li>
         </ul>
     </li>
     <li nz-submenu nzTitle="Fabricants" nzIcon="book" nzOpen>

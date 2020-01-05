@@ -58,7 +58,7 @@
                                 <td *ngIf="kit.direction == 'right'">{{ kit.prix }}€</td>
                                 <td *ngIf="kit.direction == 'right'">{{kit.Stock}}</td>
                                 <td *ngIf="kit.direction == 'right'"><input nz-input class="w-50" (input)="calculateOrderPrice()" [(ngModel)]="kit.Qte"  min="1"  type="number" name="qte" required /></td>
-                                <td *ngIf="kit.direction == 'right'">{{kit.Qte + kit.Stock}}</td>
+                                <td *ngIf="kit.direction == 'right'"><nz-badge nzColor="#d8a864" nzText="{{kit.Qte + kit.Stock}}"></nz-badge></td>
                             </tr>
                         </tbody>
                     </nz-table>

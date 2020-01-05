@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-sidebar',
@@ -13,4 +14,8 @@ export class SidebarComponent implements OnInit {
   ngOnInit() {
   }
 
+
+  onExport(){
+    window.open(`${environment.apiurl}/kit/export`, "_blank");
+  }
 }

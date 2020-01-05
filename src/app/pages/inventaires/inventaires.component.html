@@ -14,7 +14,7 @@
               </div>
               <div class="col-3">
                 <nz-select [nzMaxTagPlaceholder]="tagPlaceHolder" style="width:100%" nzMode="multiple"
-                  (ngModelChange)="sendFilter()" nzPlaceHolder="Réalisé par" [(ngModel)]="creators">
+                  (ngModelChange)="sendFilter()" nzPlaceHolder="Réalisé par" [(ngModel)]="filter.creators">
                   <!-- <nz-option *ngFor="let option of listOfOption" [nzLabel]="option.label" [nzValue]="option.value"></nz-option> -->
                 </nz-select>
                 <ng-template #tagPlaceHolder let-selectedList> et {{ selectedList.length }} autres
@@ -37,8 +37,8 @@
         <ng-template #item let-inventaire>
 
           <nz-list-item [nzActions]="[]">
-            <nz-skeleton [nzAvatar]="true" [nzActive]="true" [nzTitle]="false" [nzLoading]="item.loading">
-              <nz-list-item-meta [nzTitle]="nzTitle" [nzAvatar]="iconTempl" [nzDescription]="nzDescription">
+            <nz-skeleton [nzAvatar]="true" [nzActive]="true" [nzTitle]="false" [nzLoading]="false">
+              <nz-list-item-meta [nzTitle]="nzTitle" [nzDescription]="nzDescription">
                 <ng-template #nzTitle>
                   <a>Inventaire du {{inventaire.created_at | date:'medium'}}</a>
                 </ng-template>

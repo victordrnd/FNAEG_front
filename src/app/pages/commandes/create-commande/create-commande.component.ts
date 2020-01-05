@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { KitService } from 'src/app/core/services/kit.service';
-import { type } from 'os';
 import { CommandeService } from 'src/app/core/services/commande.service';
 import { NzNotificationService } from 'ng-zorro-antd';
 import { Router } from '@angular/router';

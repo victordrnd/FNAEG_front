@@ -15,7 +15,7 @@
                             </div>
                             <div class="col-3">
                                 <nz-select [nzMaxTagPlaceholder]="tagPlaceHolder" style="width:100%" nzMode="multiple"
-                                    (ngModelChange)="sendFilter()" nzPlaceHolder="Réalisé par" [(ngModel)]="creators">
+                                    (ngModelChange)="sendFilter()" nzPlaceHolder="Réalisé par" [(ngModel)]="filter.creators">
                                 </nz-select>
                                 <ng-template #tagPlaceHolder let-selectedList> et {{ selectedList.length }} autres
                                 </ng-template>
@@ -37,8 +37,8 @@
                 <ng-template #item let-commande let-index="index">
 
                     <nz-list-item [nzActions]="[]">
-                        <nz-skeleton [nzAvatar]="true" [nzActive]="true" [nzTitle]="false" [nzLoading]="item.loading">
-                            <nz-list-item-meta [nzTitle]="nzTitle" [nzAvatar]="iconTempl"
+                        <nz-skeleton [nzAvatar]="true" [nzActive]="true" [nzTitle]="false" [nzLoading]="false">
+                            <nz-list-item-meta [nzTitle]="nzTitle"
                                 [nzDescription]="nzDescription">
                                 <ng-template #nzTitle>
                                     <a>Commande du {{commande.created_at | date:'medium'}}</a>
@@ -49,12 +49,12 @@
 
                                             <a>Réalisé par Victor
                                                 <nz-divider nzType="vertical"></nz-divider>
-                                                Statut : <span class="badge text-white"
-                                                    style="background-color: #d8a864;font-weight: 200;">{{commande.status.libelle}}</span>
+                                                Statut : <span class="badge text-white" [ngClass]="{'1':'waiting','2':'validated','3':'cancelled'}[commande.status.id]"
+                                                    style="font-weight: 200;">{{commande.status.libelle}}</span>
                                             </a>
                                         </div>
-                                        <div class="col-2"  *ngIf="commande.status.libelle=='En attente'">
-                                            <nz-select [(ngModel)]="commande.status_id" (ngModelChange)="changeStatus(commande)" class="w-100" nzAllowClear nzPlaceHolder="Statut">
+                                        <div class="col-2">
+                                            <nz-select [(ngModel)]="commande.status_id"  (ngModelChange)="changeStatus(commande)" [nzNotFoundContent]="'Non trouvé'" [nzDisabled]="commande.status_id > 1" class="w-100" nzAllowClear>
                                                 <nz-option nzValue="1" nzLabel="En attente"></nz-option>
                                                 <nz-option nzValue="2" nzLabel="Validée"></nz-option>
                                                 <nz-option nzValue="3" nzLabel="Annulée"></nz-option>
@@ -95,12 +95,6 @@
                     </nz-list-item>
                 </ng-template>
                 <ng-template #loadMore>
-                    <div class="loadmore">
-                        <div class="d-block mx-auto">
-                            <button nz-button nzType="primary" *ngIf="inventaires?.next_page_url !== null"
-                                (click)="onLoadMore()">Charger plus</button>
-                        </div>
-                    </div>
                 </ng-template>
             </nz-list>
         </div>

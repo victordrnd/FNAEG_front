@@ -32,7 +32,7 @@ const routes: Routes = [
         component: FabricantsComponent,
         data: {
           breadcrumb: 'Fabricants'
-        }
+        } 
       },
       {
         path: 'inventaires',

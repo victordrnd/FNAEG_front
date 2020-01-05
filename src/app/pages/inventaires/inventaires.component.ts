@@ -12,6 +12,7 @@ export class InventairesComponent implements OnInit {
     creators : [],
     dateRange : []
   }
+  dateRange;
   constructor(private inventaireService : InventaireService) { }
 
   async ngOnInit() {

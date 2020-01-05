@@ -8,6 +8,10 @@ import { CommandeService } from 'src/app/core/services/commande.service';
 })
 export class CommandesComponent implements OnInit {
   commandes;
+  dateRange
+  filter = {
+    creators : []
+  }
 
   constructor(private commandeService : CommandeService) { }
 
@@ -21,5 +25,8 @@ export class CommandesComponent implements OnInit {
     this.commandes = await this.commandeService.getAll().toPromise(); 
   }
 
+  sendFilter(){}
+  onChangeRange(value){}
+  
 
 }
