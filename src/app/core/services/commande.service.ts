@@ -23,5 +23,8 @@ export class CommandeService {
   }
 
 
+  stats(){
+    return this.http.get(`${environment.apiurl}/order/stats`).pipe(map((res:any) => res.result));
+  }
 
 }

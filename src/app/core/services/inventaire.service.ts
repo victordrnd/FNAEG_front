@@ -16,4 +16,8 @@ export class InventaireService {
   filter(obj){
     return this.http.post(`${environment.apiurl}/inventory/filter`,obj).pipe(map((res:any) => res.result));
   }
+
+  stats(){
+    return this.http.get(`${environment.apiurl}/inventory/stats`).pipe(map((res:any) => res.result))
+  }
 }

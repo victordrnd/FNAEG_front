@@ -2,14 +2,13 @@
 
 
     <div class="col-md-10 col-12 d-block mx-auto">
-        <div class="row px-4">
+        <div class="row px-3">
             <div class="col bg-white py-3 px-5 rounded shadow-sm">
                 <div class="mx-auto d-block text-center">
                     <div style="background:#e3f3fe; height:50px;width:50px;" class="rounded-circle mx-auto d-block">
                         <i nz-icon nzType="audit" style="color:#0a7ef5" class="my-3"></i>
                     </div>
-                    <nz-statistic [nzValue]="1128 +' €'"
-                        [nzSuffix]="'Chiffre d&nbsp;affaire'"></nz-statistic>
+                    <nz-statistic [nzValue]="1128 +' €'" [nzSuffix]="'Chiffre d&nbsp;affaire'"></nz-statistic>
                 </div>
             </div>
             <div class="offset-1 col bg-white py-3 px-5 rounded shadow-sm">
@@ -18,7 +17,8 @@
                         <i nz-icon nzType="appstore" style="color:#8668fd" class="my-3"></i>
                     </div>
                     <nz-statistic [nzValue]="168"
-                        [nzSuffix]="'&nbsp;&nbsp;&nbsp; Kits en stock &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'"></nz-statistic>
+                        [nzSuffix]="'&nbsp;&nbsp;&nbsp; Kits en stock &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'">
+                    </nz-statistic>
                 </div>
             </div>
             <div class="offset-1 col bg-white py-3 px-5 rounded shadow-sm">
@@ -26,8 +26,7 @@
                     <div style="background:#fffae0; height:50px;width:50px;" class="rounded-circle mx-auto d-block">
                         <i nz-icon nzType="audit" style="color:#e9ba3e" class="my-3"></i>
                     </div>
-                    <nz-statistic [nzValue]="1128 +' €'"
-                        [nzSuffix]="'Chiffre d&nbsp;affaire'"></nz-statistic>
+                    <nz-statistic [nzValue]="1128 +' €'" [nzSuffix]="'Chiffre d&nbsp;affaire'"></nz-statistic>
                 </div>
             </div>
             <div class="offset-1 col bg-white py-3 px-5 rounded shadow-sm">
@@ -35,8 +34,7 @@
                     <div style="background:#ebf9e8; height:50px;width:50px;" class="rounded-circle mx-auto d-block">
                         <i nz-icon nzType="barcode" style="color:#41bd3f" class="my-3"></i>
                     </div>
-                    <nz-statistic [nzValue]="'il y a 5 jours'"
-                        [nzSuffix]="'Dernier inventaire'"></nz-statistic>
+                    <nz-statistic [nzValue]="'il y a 5 jours'" [nzSuffix]="'Dernier inventaire'"></nz-statistic>
                 </div>
             </div>
 
@@ -53,10 +51,58 @@
 
         <div class="row" style="height:300px">
             <div class="col">
-                <div class="w-100 h-100 bg-white">t</div>
+                <div class="w-100 h-100 bg-white p-3">
+                    <h6 nz-text class="text-center">Inventaire récents</h6>
+                    <nz-table [nzNoResult]="tableFooter" #basicTable [nzData]="dataSet">
+                        <thead>
+                            <tr>
+                                <th>Référence</th>
+                                <th>Montant</th>
+                                <th>Quantité</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let inventaire of inventaires">
+                                <td>{{inventaire.id}}</td>
+                                <td>{{inventaire.prix}}€</td>
+                                <td><nz-badge nzColor="#d8a864" nzText="{{inventaire.quantite}}">
+                                </nz-badge></td> 
+                                <td><span class="small text-muted">{{inventaire.last_update}}</span></td>
+                            </tr>
+                        </tbody>
+                    </nz-table>
+                    <ng-template #tableFooter>
+                        <a routerLink="/inventaires">Voir plus</a>
+                    </ng-template>
+                </div>
             </div>
             <div class="col">
-                <div class="w-100 h-100 bg-white">t</div>
+                <div class="w-100 h-100 bg-white p-3">
+                    <h6 nz-text class="text-center">Commandes récentes</h6>
+                    <nz-table [nzNoResult]="tableFooter2" #basicTable [nzData]="dataSet">
+                        <thead>
+                            <tr>
+                                <th>Référence</th>
+                                <th>Montant</th>
+                                <th>Status</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let commande of commandes">
+                                <td>{{commande.id}}</td>
+                                <td>{{commande.prix}}€</td>
+                                <td> <span class="badge text-white" [ngClass]="{'1':'waiting','2':'validated','3':'cancelled'}[commande.status_id]"
+                                    style="font-weight: 200;">{{commande.status}}</span></td> 
+                                <td><span class="small text-muted">{{commande.last_created}}</span></td>
+                            </tr>
+                        </tbody>
+                    </nz-table>
+                    <ng-template #tableFooter2> 
+                        <a routerLink="/commandes">Voir plus</a>
+                    </ng-template>
+                </div>
             </div>
         </div>
     </div>
