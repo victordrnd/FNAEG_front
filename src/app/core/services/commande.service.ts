@@ -27,4 +27,8 @@ export class CommandeService {
     return this.http.get(`${environment.apiurl}/order/stats`).pipe(map((res:any) => res.result));
   }
 
+  amount(){
+    return this.http.get(`${environment.apiurl}/order/amount`).pipe(map((res:any) => res.result));
+  }
+
 }

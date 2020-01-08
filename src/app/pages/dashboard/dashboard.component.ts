@@ -3,6 +3,7 @@ import { ChartDataSets, ChartOptions } from 'chart.js';
 import { Color, BaseChartDirective, Label } from 'ng2-charts';
 import { CommandeService } from 'src/app/core/services/commande.service';
 import { InventaireService } from 'src/app/core/services/inventaire.service';
+import { KitService } from 'src/app/core/services/kit.service';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -12,23 +13,36 @@ export class DashboardComponent implements OnInit {
   @ViewChild(BaseChartDirective, { static: true }) chart: BaseChartDirective;
 
   constructor(private commandeService : CommandeService,
-    private inventaireService : InventaireService) {
-
+    private inventaireService : InventaireService,
+    private kitService : KitService) {
   }
+
   commandes;
   inventaires;
+  inventaireCount;
+  lineChartData : ChartDataSets[];
+  lineChartLabels;
+  lastInventaire;
+  currentStock;
+  ordersAmount;
 
   async ngOnInit() {
+    const allMonths = ["January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"];;
     this.commandes = await this.commandeService.stats().toPromise();
     this.inventaires = await this.inventaireService.stats().toPromise();
-
+    this.inventaireCount = await this.inventaireService.graphs().toPromise();
+    this.lineChartLabels = Object.getOwnPropertyNames(this.inventaireCount).reverse();
+    this.inventaireCount = Object.values(this.inventaireCount).reverse();
+    this.lineChartData = [{ data: this.inventaireCount, label: 'Stock global' }];
+    this.lineChartLabels = this.lineChartLabels.sort((a,b) => allMonths.indexOf(a)- allMonths.indexOf(b));
+    this.lastInventaire = await this.inventaireService.last().toPromise()
+    this.lastInventaire = this.lastInventaire.last_update;
+    this.currentStock = await this.kitService.count().toPromise();
+    this.ordersAmount = await this.commandeService.amount().toPromise();
   }
-    
 
-  public lineChartData: ChartDataSets[] = [
-    { data: [65, 59, 80, 81, 56, 55, 100], label: 'Stock global' }
-  ];
-  public lineChartLabels: Label[] = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+  
   public lineChartOptions: (ChartOptions) = {
     responsive: true,
     maintainAspectRatio: false,

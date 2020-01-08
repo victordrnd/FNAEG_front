@@ -20,4 +20,12 @@ export class InventaireService {
   stats(){
     return this.http.get(`${environment.apiurl}/inventory/stats`).pipe(map((res:any) => res.result))
   }
+
+  graphs(){
+    return this.http.get(`${environment.apiurl}/inventory/graphs`).pipe(map((res:any) => res.result));
+  }
+
+  last(){
+    return this.http.get(`${environment.apiurl}/inventory/last`).pipe(map((res:any) => res.result));
+  }
 }
