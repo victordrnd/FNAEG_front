@@ -7,7 +7,7 @@
 	<div class="collapse navbar-collapse" id="navbarNav">
 		<ul class="navbar-nav mr-auto">
 			<li class="nav-item">
-				<a class="nav-link" [ngClass]="{'active' : router.url == ''}" routerLink="/">Dashboard</a>
+				<a class="nav-link" [ngClass]="{'active' : router.url == '/dashboard'}" routerLink="/dashboard">Dashboard</a>
 			</li>
 			<li class="nav-item">
 				<a class="nav-link" routerLink="/kits" [ngClass]="{'active' : router.url == '/kits'}">Kits<span
@@ -27,7 +27,7 @@
 			</li>
 		</ul>
 		<div class="d-inline">
-			<button nz-button nzType="primary"><i nz-icon nzType="user" nzTheme="outline"></i>Se Connecter</button>
+			<button nz-button nzType="primary"><i nz-icon nzType="import" nzTheme="outline"></i>Déconnexion</button>
 		</div>
 	</div>
 </nav>

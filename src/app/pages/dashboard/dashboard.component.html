@@ -2,8 +2,8 @@
 
 
     <div class="col-md-10 col-12 d-block mx-auto">
-        <div class="row px-3">
-            <div class="col bg-white py-3 px-5 rounded shadow-sm">
+        <div class="row px-3" *ngIf="currentStock">
+            <div class="col bg-white py-3 px-4 rounded shadow-sm">
                 <div class="mx-auto d-block text-center">
                     <div style="background:#e3f3fe; height:50px;width:50px;" class="rounded-circle mx-auto d-block">
                         <i nz-icon nzType="audit" style="color:#0a7ef5" class="my-3"></i>
@@ -11,23 +11,23 @@
                     <nz-statistic [nzValue]="ordersAmount +' €'" [nzSuffix]="'Charges variables annuelles'"></nz-statistic>
                 </div>
             </div>
-            <div class="offset-1 col bg-white py-3 px-5 rounded shadow-sm">
+            <div class="offset-1 col bg-white py-3 px-4 rounded shadow-sm">
                 <div class="mx-auto d-block text-center">
                     <div style="background:#e8e2fd; height:50px;width:50px;" class="rounded-circle mx-auto d-block">
                         <i nz-icon nzType="appstore" style="color:#8668fd" class="my-3"></i>
                     </div>
-                    <nz-statistic [nzValue]="currentStock" [nzSuffix]="'&nbsp;&nbsp;&nbsp; Kits en stock &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'"></nz-statistic>
+                    <nz-statistic [nzValue]="currentStock.count" [nzSuffix]="'&nbsp;&nbsp;&nbsp; Kits en stock &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'"></nz-statistic>
                 </div>
             </div>
-            <div class="offset-1 col bg-white py-3 px-5 rounded shadow-sm">
+            <div class="offset-1 col bg-white py-3 px-4 rounded shadow-sm">
                 <div class="mx-auto d-block text-center">
                     <div style="background:#fffae0; height:50px;width:50px;" class="rounded-circle mx-auto d-block">
                         <i nz-icon nzType="audit" style="color:#e9ba3e" class="my-3"></i>
                     </div>
-                    <nz-statistic [nzValue]="1128 +' €'" [nzSuffix]="'Chiffre d&nbsp;affaire'"></nz-statistic>
+                    <nz-statistic [nzValue]="currentStock.amount +' €'" [nzSuffix]="'Montant du stock'"></nz-statistic>
                 </div>
             </div>
-            <div class="offset-1 col bg-white py-3 px-5 rounded shadow-sm">
+            <div class="offset-1 col bg-white py-3 px-4 rounded shadow-sm">
                 <div class="mx-auto d-block text-center">
                     <div style="background:#ebf9e8; height:50px;width:50px;" class="rounded-circle mx-auto d-block">
                         <i nz-icon nzType="barcode" style="color:#41bd3f" class="my-3"></i>
@@ -49,12 +49,12 @@
 
         <div class="row" style="height:300px">
             <div class="col">
-                <div class="w-100 h-100 bg-white p-3">
+                <div class="w-100 h-100 bg-white p-3 rounded">
                     <h6 nz-text class="text-center">Inventaire récents</h6>
-                    <nz-table [nzNoResult]="tableFooter" #basicTable [nzData]="dataSet">
+                    <nz-table [nzNoResult]="tableFooter" #basicTable [nzData]="inventaires">
                         <thead>
                             <tr>
-                                <th>Référence</th>
+                                <th>#</th>
                                 <th>Montant</th>
                                 <th>Quantité</th>
                                 <th>Date</th>
@@ -76,12 +76,12 @@
                 </div>
             </div>
             <div class="col">
-                <div class="w-100 h-100 bg-white p-3">
+                <div class="w-100 h-100 bg-white p-3 rounded">
                     <h6 nz-text class="text-center">Commandes récentes</h6>
-                    <nz-table [nzNoResult]="tableFooter2" #basicTable [nzData]="dataSet">
+                    <nz-table [nzNoResult]="tableFooter2" #basicTable [nzData]="commandes">
                         <thead>
                             <tr>
-                                <th>Référence</th>
+                                <th>#</th>
                                 <th>Montant</th>
                                 <th>Status</th>
                                 <th>Date</th>

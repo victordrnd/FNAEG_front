@@ -7,17 +7,24 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { InventairesComponent } from './pages/inventaires/inventaires.component';
 import { CommandesComponent } from './pages/commandes/commandes.component';
 import { CreateCommandeComponent } from './pages/commandes/create-commande/create-commande.component';
+import { AuthenticationComponent } from './pages/authentication/authentication.component';
 
 const routes: Routes = [
   {
     path: '',
-    //component: DashboardComponent,
     data: {
       breadcrumb: 'Accueil'
     },
     children: [
       {
         path : '',
+        component : AuthenticationComponent,
+        data: {
+          breadcrumb : "Connexion"
+        }
+      },
+      {
+        path : 'dashboard',
         component : DashboardComponent
       },
       {

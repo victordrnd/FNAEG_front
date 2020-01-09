@@ -27,6 +27,7 @@ import { ModalKitComponent } from './pages/kits/modal-kit/modal-kit.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { ChartsModule } from 'ng2-charts';
+import { AuthenticationComponent } from './pages/authentication/authentication.component';
 registerLocaleData(fr);
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ registerLocaleData(fr);
     CommandesComponent,
     InventairesComponent,
     CreateCommandeComponent,
+    AuthenticationComponent,
     
   ],
   imports: [

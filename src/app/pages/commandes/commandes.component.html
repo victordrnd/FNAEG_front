@@ -54,6 +54,9 @@
                                             </a>
                                         </div>
                                         <div class="col-2">
+                                            Montant : {{commande.prix}}€
+                                        </div>
+                                        <div class="col-2">
                                             <nz-select [(ngModel)]="commande.status_id"  (ngModelChange)="changeStatus(commande)" [nzNotFoundContent]="'Non trouvé'" [nzDisabled]="commande.status_id > 1" class="w-100" nzAllowClear>
                                                 <nz-option nzValue="1" nzLabel="En attente"></nz-option>
                                                 <nz-option nzValue="2" nzLabel="Validée"></nz-option>
@@ -64,7 +67,6 @@
                                     </div>
                                     <nz-collapse [nzBordered]="false">
                                         <nz-collapse-panel [nzHeader]="'Détails'" [nzActive]="false">
-                                            <!-- Afficher la listes des enregistrements avec list -->
                                             <nz-table #basicTable [nzData]="commande.details"
                                                 [nzShowPagination]="false">
                                                 <thead>
