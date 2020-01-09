@@ -7,18 +7,18 @@
         <div class="px-md-5">
             <div class="row">
                 <div class="col-md-6 bg-white shadow-sm rounded p-4 col-12 d-block mx-auto">
-                    <form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
+                    <form nz-form [formGroup]="form" class="login-form" (ngSubmit)="submitForm()">
                         <nz-form-item>
                             <nz-form-control nzErrorTip="Saisissez votre adresse email">
                                 <nz-input-group nzPrefixIcon="user">
-                                    <input type="text" nz-input formControlName="userName" placeholder="Adresse email" />
+                                    <input type="text" nz-input autocomplete="email" formControlName="email" name="email" placeholder="Adresse email" />
                                 </nz-input-group>
                             </nz-form-control>
                         </nz-form-item>
                         <nz-form-item>
                             <nz-form-control nzErrorTip="Saisissez votre mot de passe">
                                 <nz-input-group nzPrefixIcon="lock">
-                                    <input type="password" nz-input formControlName="password" placeholder="Mot de passe" />
+                                    <input type="password" autocomplete="current-password" nz-input formControlName="password" name="password" placeholder="Mot de passe" />
                                 </nz-input-group>
                             </nz-form-control>
                         </nz-form-item>

@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { UserService } from 'src/app/core/services/user.service';
+import { NzNotificationService } from 'ng-zorro-antd';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-authentication',
@@ -8,22 +11,32 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class AuthenticationComponent implements OnInit {
 
-  validateForm: FormGroup;
+  form: FormGroup;
 
-  submitForm(): void {
-    for (const i in this.validateForm.controls) {
-      this.validateForm.controls[i].markAsDirty();
-      this.validateForm.controls[i].updateValueAndValidity();
-    }
-  }
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder,
+    private userService: UserService,
+    private notificationService: NzNotificationService,
+    private router: Router) { }
 
-  ngOnInit(): void {
-    this.validateForm = this.fb.group({
-      userName: [null, [Validators.required]],
+  async ngOnInit() {
+    this.form = this.fb.group({
+      email: [null, [Validators.required]],
       password: [null, [Validators.required]],
       remember: [true]
     });
   }
+
+  async submitForm() {
+    this.userService.attemptAuth(this.form.value).subscribe((res) => {
+      console.log(res);
+      this.router.navigate(['/dashboard'])
+    },
+      err => this.notificationService.error("Identifiants incorrects", "Les identifiants saisis ne correspondent à aucun compte."))
+
+  }
+
+
+  get email() { return this.form.get('email') }
+  get password() { return this.form.get('password') }
 }

@@ -1,5 +1,5 @@
 import { registerLocaleData } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import fr from '@angular/common/locales/fr';
 import { LOCALE_ID, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -28,6 +28,7 @@ import { HeaderComponent } from './shared/header/header.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { ChartsModule } from 'ng2-charts';
 import { AuthenticationComponent } from './pages/authentication/authentication.component';
+import { HttpTokenInterceptor } from './core/services/interceptors/http.token.interceptor';
 registerLocaleData(fr);
 @NgModule({
   declarations: [
@@ -65,7 +66,8 @@ registerLocaleData(fr);
     KitService,
     FabricantService,
     { provide: NZ_I18N, useValue: fr_FR },
-    {provide : LOCALE_ID, useValue : "fr-FR"}
+    {provide : LOCALE_ID, useValue : "fr-FR"},
+    {provide: HTTP_INTERCEPTORS, useClass: HttpTokenInterceptor, multi: true},
   ],
   entryComponents : [
     ModalKitComponent,

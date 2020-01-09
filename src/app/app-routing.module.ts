@@ -8,7 +8,7 @@ import { InventairesComponent } from './pages/inventaires/inventaires.component'
 import { CommandesComponent } from './pages/commandes/commandes.component';
 import { CreateCommandeComponent } from './pages/commandes/create-commande/create-commande.component';
 import { AuthenticationComponent } from './pages/authentication/authentication.component';
-
+import {AuthGuardService} from './core/services/guards/auth-guard.service';
 const routes: Routes = [
   {
     path: '',
@@ -25,11 +25,13 @@ const routes: Routes = [
       },
       {
         path : 'dashboard',
-        component : DashboardComponent
+        component : DashboardComponent,
+        canActivate: [AuthGuardService]
       },
       {
         path: 'kits',
         component: KitsComponent,
+        canActivate: [AuthGuardService],
         data: {
           breadcrumb: 'Kits'
         }
@@ -37,6 +39,7 @@ const routes: Routes = [
       {
         path: 'fabricants',
         component: FabricantsComponent,
+        canActivate: [AuthGuardService],
         data: {
           breadcrumb: 'Fabricants'
         } 
@@ -44,12 +47,14 @@ const routes: Routes = [
       {
         path: 'inventaires',
         component : InventairesComponent,
+        canActivate: [AuthGuardService],
         data : {
           breadcrumb : 'Inventaires'
         }
       },
       {
         path : 'commandes',
+        canActivate: [AuthGuardService],
         data : {
           breadcrumb : 'Commandes'
         },

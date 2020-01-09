@@ -51,7 +51,7 @@
             <div class="col">
                 <div class="w-100 h-100 bg-white p-3 rounded">
                     <h6 nz-text class="text-center">Inventaire récents</h6>
-                    <nz-table [nzNoResult]="tableFooter" #basicTable [nzData]="inventaires">
+                    <nz-table [nzNoResult]="tableFooter" #basicTable>
                         <thead>
                             <tr>
                                 <th>#</th>
@@ -78,7 +78,7 @@
             <div class="col">
                 <div class="w-100 h-100 bg-white p-3 rounded">
                     <h6 nz-text class="text-center">Commandes récentes</h6>
-                    <nz-table [nzNoResult]="tableFooter2" #basicTable [nzData]="commandes">
+                    <nz-table [nzNoResult]="tableFooter2" #basicTable>
                         <thead>
                             <tr>
                                 <th>#</th>
