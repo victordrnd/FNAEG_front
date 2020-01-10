@@ -1,5 +1,6 @@
 <ul nz-menu nzMode="inline">
-    <li nz-menu-item nzIcon="home" routerLink="/dashboard" [nzSelected]="router.url == '/dashboard'"><i nz-icon nzType="home" nzTheme="outline"></i> Dashboard</li>
+    <li nz-menu-item nzIcon="home" routerLink="/dashboard" [nzSelected]="router.url == '/dashboard'"><i nz-icon
+            nzType="home" nzTheme="outline"></i> Dashboard</li>
     <li nz-submenu nzTitle="Kits" nzIcon="appstore" nzOpen>
         <ul>
             <li nz-menu-item routerLink="/kits" [nzSelected]="router.url == '/kits'">Liste des kits</li>
@@ -8,23 +9,23 @@
     </li>
     <li nz-submenu nzTitle="Fabricants" nzIcon="book" nzOpen>
         <ul>
-            <li nz-menu-item routerLink="/fabricants" [nzSelected]="router.url == '/fabricants'">Afficher les fabricants</li>
-            <li nz-menu-item>A Venir</li>
-            <li nz-menu-item>A Venir</li>
+            <li nz-menu-item routerLink="/fabricants" [nzSelected]="router.url == '/fabricants'">Afficher les fabricants
+            </li>
         </ul>
     </li>
     <li nz-submenu nzTitle="Commandes" nzIcon="audit" nzOpen>
         <ul>
             <li nz-menu-item routerLink="/commandes" [nzSelected]="router.url == '/commandes'">Liste des commandes</li>
-            <li nz-menu-item routerLink="/commandes/new" [nzSelected]="router.url == '/commandes/new'">Nouvelle commande</li>
-            <li nz-menu-item>A Venir</li>
+            <li nz-menu-item routerLink="/commandes/new" [nzSelected]="router.url == '/commandes/new'">Nouvelle commande
+            </li>
         </ul>
     </li>
     <li nz-submenu nzTitle="Inventaires" nzIcon="barcode" nzOpen>
-            <ul>
-                <li nz-menu-item routerLink="/inventaires" [nzSelected]="router.url == '/inventaires'">Liste des inventaires</li>
-                <li nz-menu-item>A Venir</li>
-                <li nz-menu-item>A Venir</li>
-            </ul>
-        </li>
+        <ul>
+            <li nz-menu-item routerLink="/inventaires" [nzSelected]="router.url == '/inventaires'">Liste des inventaires
+            </li>
+        </ul>
+    </li>
+    <li nz-menu-item nzIcon="user" routerLink="/users" [nzSelected]="router.url == '/users'"><i nz-icon
+        nzType="user" nzTheme="outline"></i> Utilisateurs</li>
 </ul>

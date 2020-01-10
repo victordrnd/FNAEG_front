@@ -46,8 +46,7 @@
                                 <ng-template #nzDescription>
                                     <div class="row">
                                         <div class="col">
-
-                                            <a>Réalisé par Victor
+                                            <a>Réalisé par {{commande.creator.firstname}} {{commande.creator.lastname}}
                                                 <nz-divider nzType="vertical"></nz-divider>
                                                 Statut : <span class="badge text-white" [ngClass]="{'1':'waiting','2':'validated','3':'cancelled'}[commande.status.id]"
                                                     style="font-weight: 200;">{{commande.status.libelle}}</span>
@@ -57,7 +56,7 @@
                                             Montant : {{commande.prix}}€
                                         </div>
                                         <div class="col-2">
-                                            <nz-select [(ngModel)]="commande.status_id"  (ngModelChange)="changeStatus(commande)" [nzNotFoundContent]="'Non trouvé'" [nzDisabled]="commande.status_id > 1" class="w-100" nzAllowClear>
+                                            <nz-select [(ngModel)]="commande.status_id"  (ngModelChange)="changeStatus(commande)" [nzNotFoundContent]="'Non trouvé'" class="w-100" nzAllowClear>
                                                 <nz-option nzValue="1" nzLabel="En attente"></nz-option>
                                                 <nz-option nzValue="2" nzLabel="Validée"></nz-option>
                                                 <nz-option nzValue="3" nzLabel="Annulée"></nz-option>

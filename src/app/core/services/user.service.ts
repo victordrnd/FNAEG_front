@@ -67,9 +67,9 @@ export class UserService {
 
 
   purgeAuth() {
-    //this.destroyToken();
-    //this.currentUserSubject.next({});
-    //this.isAuthenticatedSubject.next(false);
+    this.destroyToken();
+    this.currentUserSubject.next({});
+    this.isAuthenticatedSubject.next(false);
   }
 
   private formatErrors(error: any) {

@@ -10,8 +10,7 @@
 				<a class="nav-link" [ngClass]="{'active' : router.url == '/dashboard'}" routerLink="/dashboard">Dashboard</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" routerLink="/kits" [ngClass]="{'active' : router.url == '/kits'}">Kits<span
-						class="sr-only">(current)</span></a>
+				<a class="nav-link" routerLink="/kits" [ngClass]="{'active' : router.url == '/kits'}">Kits</a>
 			</li>
 			<li class="nav-item">
 				<a class="nav-link" routerLink="/fabricants"
@@ -27,7 +26,7 @@
 			</li>
 		</ul>
 		<div class="d-inline">
-			<button nz-button nzType="primary"><i nz-icon nzType="import" nzTheme="outline"></i>Déconnexion</button>
+			<button nz-button nzType="primary" (click)="logOut()"><i nz-icon nzType="import" nzTheme="outline"></i>Déconnexion</button>
 		</div>
 	</div>
 </nav>
