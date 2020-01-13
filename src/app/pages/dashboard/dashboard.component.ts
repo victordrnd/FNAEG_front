@@ -27,8 +27,8 @@ export class DashboardComponent implements OnInit {
   ordersAmount;
 
   async ngOnInit() {
-    const allMonths = ["January", "February", "March", "April", "May", "June",
-    "July", "August", "September", "October", "November", "December"];;
+    const allMonths = [
+    "July", "August", "September", "October", "November", "December","January", "February", "March", "April", "May", "June"];;
     this.commandes = await this.commandeService.stats().toPromise();
     this.inventaires = await this.inventaireService.stats().toPromise();
     this.inventaireCount = await this.inventaireService.graphs().toPromise();

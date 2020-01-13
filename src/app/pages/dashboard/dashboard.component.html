@@ -8,15 +8,15 @@
                     <div style="background:#e3f3fe; height:50px;width:50px;" class="rounded-circle mx-auto d-block">
                         <i nz-icon nzType="audit" style="color:#0a7ef5" class="my-3"></i>
                     </div>
-                    <nz-statistic [nzValue]="ordersAmount +' €'" [nzSuffix]="'Charges variables annuelles'"></nz-statistic>
+                    <nz-statistic [nzValue]="(ordersAmount ? ordersAmount : 0) + '€'" [nzSuffix]="'Charges variables annuelles'"></nz-statistic>
                 </div>
-            </div>
+            </div> 
             <div class="offset-1 col bg-white py-3 px-4 rounded shadow-sm">
                 <div class="mx-auto d-block text-center">
                     <div style="background:#e8e2fd; height:50px;width:50px;" class="rounded-circle mx-auto d-block">
                         <i nz-icon nzType="appstore" style="color:#8668fd" class="my-3"></i>
                     </div>
-                    <nz-statistic [nzValue]="currentStock.count" [nzSuffix]="'&nbsp;&nbsp;&nbsp; Kits en stock &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'"></nz-statistic>
+                    <nz-statistic [nzValue]="currentStock.count" [nzSuffix]="'Kits en stock'"></nz-statistic>
                 </div>
             </div>
             <div class="offset-1 col bg-white py-3 px-4 rounded shadow-sm">
@@ -49,9 +49,9 @@
 
         <div class="row" style="height:300px">
             <div class="col">
-                <div class="w-100 h-100 bg-white p-3 rounded">
+                <div class="w-100 h-100 p-3 rounded">
                     <h6 nz-text class="text-center">Inventaire récents</h6>
-                    <nz-table [nzNoResult]="tableFooter" #basicTable>
+                    <nz-table class="shadow-sm" [nzNoResult]="tableFooter" #basicTable>
                         <thead>
                             <tr>
                                 <th>#</th>
@@ -76,9 +76,9 @@
                 </div>
             </div>
             <div class="col">
-                <div class="w-100 h-100 bg-white p-3 rounded">
+                <div class="w-100 h-100  p-3 rounded">
                     <h6 nz-text class="text-center">Commandes récentes</h6>
-                    <nz-table [nzNoResult]="tableFooter2" #basicTable>
+                    <nz-table class="shadow-sm" [nzNoResult]="tableFooter2" #basicTable>
                         <thead>
                             <tr>
                                 <th>#</th>
