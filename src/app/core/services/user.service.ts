@@ -18,6 +18,7 @@ export class UserService {
   public isAuthenticated = this.isAuthenticatedSubject.asObservable();
 
 
+  public permissions : Array<any>;
   constructor(private http : HttpClient) { }
 
   async populate() {
@@ -45,6 +46,7 @@ export class UserService {
       this.saveToken(token);
     }
     this.currentUserSubject.next(user);
+    this.permissions = user.permissions;
     this.isAuthenticatedSubject.next(true);
   }
 

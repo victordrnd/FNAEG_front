@@ -19,7 +19,6 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { CreateFabricantComponent } from './pages/fabricants/create-fabricant/create-fabricant.component';
 import { FabricantsComponent } from './pages/fabricants/fabricants.component';
 import { InfoFabricantComponent } from './pages/fabricants/info-fabricant/info-fabricant.component';
-import { SearchFabricantComponent } from './pages/fabricants/search-fabricant/search-fabricant.component';
 import { InventairesComponent } from './pages/inventaires/inventaires.component';
 import { CreateKitComponent } from './pages/kits/create-kit/create-kit.component';
 import { KitsComponent } from './pages/kits/kits.component';
@@ -29,6 +28,7 @@ import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { ChartsModule } from 'ng2-charts';
 import { AuthenticationComponent } from './pages/authentication/authentication.component';
 import { HttpTokenInterceptor } from './core/services/interceptors/http.token.interceptor';
+import { UsersComponent } from './pages/users/users.component';
 registerLocaleData(fr);
 @NgModule({
   declarations: [
@@ -36,7 +36,6 @@ registerLocaleData(fr);
     KitsComponent,
     HeaderComponent,
     FabricantsComponent,
-    SearchFabricantComponent,
     ModalKitComponent,
     DashboardComponent,
     InfoFabricantComponent,
@@ -47,6 +46,7 @@ registerLocaleData(fr);
     InventairesComponent,
     CreateCommandeComponent,
     AuthenticationComponent,
+    UsersComponent,
     
   ],
   imports: [

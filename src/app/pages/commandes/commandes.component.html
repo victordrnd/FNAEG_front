@@ -56,7 +56,7 @@
                                             Montant : {{commande.prix}}€
                                         </div>
                                         <div class="col-2">
-                                            <nz-select [(ngModel)]="commande.status_id"  (ngModelChange)="changeStatus(commande)" [nzNotFoundContent]="'Non trouvé'" class="w-100" nzAllowClear>
+                                            <nz-select [(ngModel)]="commande.status_id" [nzDisabled]="commande.status.id == 2" (ngModelChange)="changeStatus(commande)" [nzNotFoundContent]="'Non trouvé'" class="w-100" nzAllowClear>
                                                 <nz-option nzValue="1" nzLabel="En attente"></nz-option>
                                                 <nz-option nzValue="2" nzLabel="Validée"></nz-option>
                                                 <nz-option nzValue="3" nzLabel="Annulée"></nz-option>

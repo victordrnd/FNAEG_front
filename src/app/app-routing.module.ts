@@ -9,6 +9,7 @@ import { CommandesComponent } from './pages/commandes/commandes.component';
 import { CreateCommandeComponent } from './pages/commandes/create-commande/create-commande.component';
 import { AuthenticationComponent } from './pages/authentication/authentication.component';
 import {AuthGuardService} from './core/services/guards/auth-guard.service';
+import { UsersComponent } from './pages/users/users.component';
 const routes: Routes = [
   {
     path: '',
@@ -71,6 +72,14 @@ const routes: Routes = [
             }
           }
         ]
+      },
+      {
+        path : 'users',
+        canActivate : [AuthGuardService],
+        data : {
+          breadcrumb : 'Utilisateurs'
+        },
+        component : UsersComponent
       }
     ]
   },

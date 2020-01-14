@@ -1,0 +1,55 @@
+<div class="row m-0 px-0 pb-5">
+
+    <div class="col-md-10 col-12 d-block mx-auto">
+        <div class="text-center mb-5">
+            <h1>Gestion des utilisateurs</h1>
+        </div>
+        <div class="px-md-5">
+            <div class="mb-4 shadow-sm">
+                <nz-collapse [nzBordered]="false">
+                    <nz-collapse-panel [nzHeader]="'Afficher les filtres'" [nzActive]="true">
+                        <div class="row my-3">
+                            <div class="col-5 pl-5">
+                                
+                            </div>
+                            <div class="col-3">
+                                
+                            </div>
+                            <div class="col">
+                                <div class="float-right">
+                                    <button nz-button nzType="primary"><i nz-icon nzType="plus"></i>
+                                        Ajouter un nouvel utilisateur</button>
+                                </div>
+                            </div>
+                        </div>
+                    </nz-collapse-panel>
+                </nz-collapse>
+            </div>
+
+            <nz-table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Nom</th>
+                        <th>Prénom</th>
+                        <th>Adresse mail</th>
+                        <th>Rôle</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody *ngIf="users">
+                    <tr *ngFor="let user of users">
+                        <td>{{user.firstname}}</td>
+                        <td>{{user.lastname}}</td>
+                        <td>{{user.email}}</td>
+                        <td>{{user.role.libelle}}</td>
+                        <td>
+                            <a><i nz-icon nzType="delete" nzTheme="outline"></i></a>
+                            <nz-divider nzType="vertical"></nz-divider>
+                            <a><i nz-icon nzType="edit" nzTheme="outline"></i></a>
+                        </td>
+                    </tr>
+                </tbody>
+            </nz-table>
+        </div>
+    </div>
+</div>
