@@ -53,7 +53,7 @@
                                             </a>
                                         </div>
                                         <div class="col-2">
-                                            Montant : {{commande.prix}}€
+                                            Montant : {{commande.prix | currency: 'EUR'}}
                                         </div>
                                         <div class="col-2">
                                             <nz-select [(ngModel)]="commande.status_id" [nzDisabled]="commande.status.id == 2" (ngModelChange)="changeStatus(commande)" [nzNotFoundContent]="'Non trouvé'" class="w-100" nzAllowClear>

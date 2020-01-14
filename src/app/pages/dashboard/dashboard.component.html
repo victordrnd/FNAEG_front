@@ -8,7 +8,7 @@
                     <div style="background:#e3f3fe; height:50px;width:50px;" class="rounded-circle mx-auto d-block">
                         <i nz-icon nzType="audit" style="color:#0a7ef5" class="my-3"></i>
                     </div>
-                    <nz-statistic [nzValue]="(ordersAmount ? ordersAmount : 0) + '€'" [nzSuffix]="'Charges variables annuelles'"></nz-statistic>
+                    <nz-statistic nzValue="{{ordersAmount | currency:'EUR'}}" [nzSuffix]="'Charges variables annuelles'"></nz-statistic>
                 </div>
             </div> 
             <div class="offset-1 col bg-white py-3 px-4 rounded shadow-sm">
@@ -24,7 +24,7 @@
                     <div style="background:#fffae0; height:50px;width:50px;" class="rounded-circle mx-auto d-block">
                         <i nz-icon nzType="audit" style="color:#e9ba3e" class="my-3"></i>
                     </div>
-                    <nz-statistic [nzValue]="currentStock.amount +' €'" [nzSuffix]="'Montant du stock'"></nz-statistic>
+                    <nz-statistic nzValue="{{currentStock.amount | currency:'EUR'}}" [nzSuffix]="'Montant du stock'"></nz-statistic>
                 </div>
             </div>
             <div class="offset-1 col bg-white py-3 px-4 rounded shadow-sm">
@@ -62,8 +62,8 @@
                         </thead>
                         <tbody>
                             <tr *ngFor="let inventaire of inventaires">
-                                <td>{{inventaire.id}}</td>
-                                <td>{{inventaire.prix}}€</td>
+                                <td class="font-weight-bold">{{inventaire.id}}</td>
+                                <td>{{inventaire.prix | currency: 'EUR'}}</td>
                                 <td><nz-badge nzColor="#d8a864" nzText="{{inventaire.quantite}}">
                                 </nz-badge></td> 
                                 <td><span class="small text-muted">{{inventaire.last_update}}</span></td>
@@ -89,8 +89,8 @@
                         </thead>
                         <tbody>
                             <tr *ngFor="let commande of commandes">
-                                <td>{{commande.id}}</td>
-                                <td>{{commande.prix}}€</td>
+                                <td class="font-weight-bold">{{commande.id}}</td>
+                                <td>{{commande.prix | currency: 'EUR'}}</td>
                                 <td> <span class="badge text-white" [ngClass]="{'1':'waiting','2':'validated','3':'cancelled'}[commande.status_id]"
                                     style="font-weight: 200;">{{commande.status}}</span></td> 
                                 <td><span class="small text-muted">{{commande.last_created}}</span></td>

@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { ModalKitComponent } from './modal-kit/modal-kit.component';
 import { NzMarks, NzModalService } from 'ng-zorro-antd';
 import { CreateKitComponent } from './create-kit/create-kit.component';
+import { UserService } from 'src/app/core/services/user.service';
 
 @Component({
   selector: 'app-kits',
@@ -30,6 +31,7 @@ export class KitsComponent implements OnInit {
   constructor(private kitService: KitService,
     private fabricantService: FabricantService,
     private modalService: NzModalService,
+    private userService : UserService
     ) {
 
   }
@@ -44,7 +46,7 @@ export class KitsComponent implements OnInit {
   }
 
   async onExport() {
-    window.open(`${environment.apiurl}/kit/export`, "_blank");
+    window.open(`${environment.apiurl}/kit/export?token=`+this.userService.getToken(), "_blank");
   }
 
   async changePage(index) {

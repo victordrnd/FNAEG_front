@@ -9,11 +9,22 @@
                 <nz-collapse [nzBordered]="false">
                     <nz-collapse-panel [nzHeader]="'Afficher les filtres'" [nzActive]="true">
                         <div class="row my-3">
-                            <div class="col-5 pl-5">
-                                
+                            <div class="col-4 pl-5">
+                                <nz-input-group nzSearch [nzAddOnAfter]="suffixIconButton">
+                                    <input type="text" nz-input nzAllowClear [nzAutocomplete]="auto"
+                                        (input)="sendFilter()" placeholder="Rechercher un utilisateur"/>
+                                </nz-input-group>
+                                <nz-autocomplete #auto>
+                                    <nz-auto-option *ngFor="let row of autocomplete" [nzValue]="row.Nom">{{row.Nom}}
+                                    </nz-auto-option>
+                                </nz-autocomplete>
+                                <ng-template #suffixIconButton>
+                                    <button nz-button nzType="primary" nzSearch (click)="sendFilter()"><i nz-icon
+                                            nzType="search"></i></button>
+                                </ng-template>
                             </div>
                             <div class="col-3">
-                                
+
                             </div>
                             <div class="col">
                                 <div class="float-right">

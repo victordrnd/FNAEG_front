@@ -22,7 +22,7 @@ export class SidebarComponent implements OnInit {
 
   onExport() {
     if(this.isAuthenticated){
-      window.open(`${environment.apiurl}/kit/export`, "_blank");
+      window.open(`${environment.apiurl}/kit/export?token=`+this.userService.getToken(), "_blank");
     }
   }
 }

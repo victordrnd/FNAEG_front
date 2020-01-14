@@ -27,7 +27,7 @@
                                     (nzCheckedChange)="onItemSelect(kit)" *ngIf="kit.direction == 'left'"></td>
                                 <td *ngIf="kit.direction == 'left'">{{ kit.CodeKit }}</td>
                                 <td *ngIf="kit.direction == 'left'">{{ kit.fabricant.Nom }}</td>
-                                <td *ngIf="kit.direction == 'left'">{{ kit.prix }}€</td>
+                                <td *ngIf="kit.direction == 'left'">{{ kit.prix |currency: 'EUR'}}</td>
                                 <td *ngIf="kit.direction == 'left'"><nz-badge nzStatus="default" nzText="{{kit.Stock}}"></nz-badge></td>
                             </tr>
                         </tbody>
@@ -55,7 +55,7 @@
                                     (nzCheckedChange)="onItemSelect(kit)" *ngIf="kit.direction == 'right'"></td>
                                 <td *ngIf="kit.direction == 'right'">{{ kit.CodeKit }}</td>
                                 <td *ngIf="kit.direction == 'right'">{{ kit.fabricant.Nom }}</td>
-                                <td *ngIf="kit.direction == 'right'">{{ kit.prix }}€</td>
+                                <td *ngIf="kit.direction == 'right'">{{ kit.prix | currency: 'EUR'}}</td>
                                 <td *ngIf="kit.direction == 'right'">{{kit.Stock}}</td>
                                 <td *ngIf="kit.direction == 'right'"><input nz-input class="w-50" (input)="calculateOrderPrice()" [(ngModel)]="kit.Qte"  min="1"  type="number" name="qte" required /></td>
                                 <td *ngIf="kit.direction == 'right'"><nz-badge nzColor="#d8a864" nzText="{{kit.Qte + kit.Stock}}"></nz-badge></td>
@@ -67,7 +67,7 @@
 
             <div class="card mt-5 bg-white border-0">
                 <div class="row p-4">
-                    <div class="col"><h5>Sous total : {{commande.prix}}€</h5></div>
+                    <div class="col"><h5>Sous total : {{commande.prix | currency: 'EUR'}}</h5></div>
                     <div class="col">
                         <nz-divider nzType="vertical"></nz-divider>
                         <span nz-text class="text-muted">
