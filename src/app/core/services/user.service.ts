@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { distinctUntilChanged, map, catchError } from 'rxjs/operators';
 import { BehaviorSubject, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { NgxPermissionsService } from 'ngx-permissions';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +20,8 @@ export class UserService {
 
 
   public permissions : Array<any>;
-  constructor(private http : HttpClient) { }
+  constructor(private http : HttpClient,
+    private permissionsService : NgxPermissionsService) { }
 
   async populate() {
     if (this.getToken()) {
@@ -47,6 +49,7 @@ export class UserService {
     }
     this.currentUserSubject.next(user);
     this.permissions = user.permissions;
+    this.permissionsService.loadPermissions(this.permissions);
     this.isAuthenticatedSubject.next(true);
   }
 

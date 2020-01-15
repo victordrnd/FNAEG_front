@@ -12,15 +12,14 @@
                             <div class="col-4 pl-5">
                                 <nz-input-group nzSearch [nzAddOnAfter]="suffixIconButton">
                                     <input type="text" nz-input nzAllowClear [nzAutocomplete]="auto"
-                                         placeholder="Rechercher un utilisateur"/>
+                                        placeholder="Rechercher un utilisateur" />
                                 </nz-input-group>
                                 <nz-autocomplete #auto>
                                     <!-- <nz-auto-option *ngFor="let row of autocomplete" [nzValue]="row.Nom">{{row.Nom}}
                                     </nz-auto-option> -->
                                 </nz-autocomplete>
                                 <ng-template #suffixIconButton>
-                                    <button nz-button nzType="primary" nzSearch><i nz-icon
-                                            nzType="search"></i></button>
+                                    <button nz-button nzType="primary" nzSearch><i nz-icon nzType="search"></i></button>
                                 </ng-template>
                             </div>
                             <div class="col-3">
@@ -28,7 +27,7 @@
                             </div>
                             <div class="col">
                                 <div class="float-right">
-                                    <button nz-button nzType="primary"><i nz-icon nzType="plus"></i>
+                                    <button nz-button nzType="primary" (click)="openCreateUserModal()"><i nz-icon nzType="plus"></i>
                                         Ajouter un nouvel utilisateur</button>
                                 </div>
                             </div>
@@ -52,9 +51,13 @@
                         <td>{{user.firstname}}</td>
                         <td>{{user.lastname}}</td>
                         <td>{{user.email}}</td>
-                        <td>{{user.role.libelle}}</td>
                         <td>
-                            <a><i nz-icon nzType="delete" nzTheme="outline"></i></a>
+                            <nz-select [(ngModel)]="user.role.id" (ngModelChange)="updateRole(user)" nzAllowClear nzPlaceHolder="Choose">
+                                <nz-option *ngFor="let role of roles" [nzValue]="role.id" [nzLabel]="role.libelle"></nz-option>
+                            </nz-select>
+                        </td>
+                        <td>
+                            <a><i class="p-2" nz-icon nzType="delete" (click)="deleteUser(user)" nzTheme="outline"></i></a>
                             <nz-divider nzType="vertical"></nz-divider>
                             <a><i nz-icon nzType="edit" nzTheme="outline"></i></a>
                         </td>

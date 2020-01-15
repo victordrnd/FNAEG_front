@@ -15,5 +15,13 @@ export class UtilisateurService {
   }
 
 
+  updateUser(user){
+    return this.http.post(`${environment.apiurl}/users/update`, user).pipe(map((res:any) => res.result));
+  }
+
+
+  delete(user){
+    return this.http.post(`${environment.apiurl}/users/delete/${user.id}`, {}).pipe(map((res:any)=> res.result));
+  }
 
 }

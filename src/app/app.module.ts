@@ -29,6 +29,8 @@ import { ChartsModule } from 'ng2-charts';
 import { AuthenticationComponent } from './pages/authentication/authentication.component';
 import { HttpTokenInterceptor } from './core/services/interceptors/http.token.interceptor';
 import { UsersComponent } from './pages/users/users.component';
+import { NgxPermissionsModule } from 'ngx-permissions';
+import { CreateUserComponent } from './pages/users/create-user/create-user.component';
 registerLocaleData(fr);
 @NgModule({
   declarations: [
@@ -47,6 +49,7 @@ registerLocaleData(fr);
     CreateCommandeComponent,
     AuthenticationComponent,
     UsersComponent,
+    CreateUserComponent,
     
   ],
   imports: [
@@ -60,7 +63,8 @@ registerLocaleData(fr);
     FormsModule,
     ReactiveFormsModule,
     NgZorroAntdModule,
-    ChartsModule
+    ChartsModule,
+    NgxPermissionsModule.forRoot()
   ],
   providers: [
     KitService,
@@ -73,7 +77,8 @@ registerLocaleData(fr);
     ModalKitComponent,
     InfoFabricantComponent,
     CreateFabricantComponent,
-    CreateKitComponent
+    CreateKitComponent,
+    CreateUserComponent
     ],
   bootstrap: [AppComponent]
 })
