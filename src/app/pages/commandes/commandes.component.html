@@ -23,7 +23,7 @@
                             <div class="col">
 
                                 <div class="float-right">
-                                    <button nz-button nzType="primary" routerLink="new"><i nz-icon nzType="plus"></i>
+                                    <button nz-button nzType="primary" routerLink="new" *ngxPermissionsOnly="'orders.create'"><i nz-icon nzType="plus"></i>
                                         Réaliser une nouvelle commande</button>
                                 </div>
                             </div>
@@ -55,7 +55,7 @@
                                         <div class="col-2">
                                             Montant : {{commande.prix | currency: 'EUR'}}
                                         </div>
-                                        <div class="col-2">
+                                        <div class="col-2" *ngxPermissionsOnly="'orders.update'">
                                             <nz-select [(ngModel)]="commande.status_id" [nzDisabled]="commande.status.id == 2" (ngModelChange)="changeStatus(commande)" [nzNotFoundContent]="'Non trouvé'" class="w-100" nzAllowClear>
                                                 <nz-option [nzValue]="1" nzLabel="En attente"></nz-option>
                                                 <nz-option [nzValue]="2" nzLabel="Validée"></nz-option>

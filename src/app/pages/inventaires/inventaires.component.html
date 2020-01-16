@@ -13,10 +13,10 @@
                 <nz-range-picker [(ngModel)]="dateRange" (ngModelChange)="onChangeRange($event)"></nz-range-picker>
               </div>
               <div class="col-3">
-                <nz-select [nzMaxTagPlaceholder]="tagPlaceHolder" style="width:100%" nzMode="multiple"
+                <!-- <nz-select [nzMaxTagPlaceholder]="tagPlaceHolder" style="width:100%" nzMode="multiple"
                   (ngModelChange)="sendFilter()" nzPlaceHolder="Réalisé par" [(ngModel)]="filter.creators">
-                  <!-- <nz-option *ngFor="let option of listOfOption" [nzLabel]="option.label" [nzValue]="option.value"></nz-option> -->
-                </nz-select>
+                   <nz-option *ngFor="let option of listOfOption" [nzLabel]="option.label" [nzValue]="option.value"></nz-option>
+                </nz-select> -->
                 <ng-template #tagPlaceHolder let-selectedList> et {{ selectedList.length }} autres
                 </ng-template>
               </div>

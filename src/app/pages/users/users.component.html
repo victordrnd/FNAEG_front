@@ -11,13 +11,9 @@
                         <div class="row my-3">
                             <div class="col-4 pl-5">
                                 <nz-input-group nzSearch [nzAddOnAfter]="suffixIconButton">
-                                    <input type="text" nz-input nzAllowClear [nzAutocomplete]="auto"
+                                    <input type="text" (input)="sendFilter()" [(ngModel)]="filter.keyword" nz-input nzAllowClear
                                         placeholder="Rechercher un utilisateur" />
                                 </nz-input-group>
-                                <nz-autocomplete #auto>
-                                    <!-- <nz-auto-option *ngFor="let row of autocomplete" [nzValue]="row.Nom">{{row.Nom}}
-                                    </nz-auto-option> -->
-                                </nz-autocomplete>
                                 <ng-template #suffixIconButton>
                                     <button nz-button nzType="primary" nzSearch><i nz-icon nzType="search"></i></button>
                                 </ng-template>
@@ -42,7 +38,7 @@
                         <th scope="col">Nom</th>
                         <th>Prénom</th>
                         <th>Adresse mail</th>
-                        <th>Rôle</th>
+                        <th>Rôle de l'utilisateur</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -52,7 +48,7 @@
                         <td>{{user.lastname}}</td>
                         <td>{{user.email}}</td>
                         <td>
-                            <nz-select [(ngModel)]="user.role.id" (ngModelChange)="updateRole(user)" nzAllowClear nzPlaceHolder="Choose">
+                            <nz-select [nzAllowClear]="false" [(ngModel)]="user.role.id" (ngModelChange)="updateRole(user)" nzAllowClear nzPlaceHolder="Choose">
                                 <nz-option *ngFor="let role of roles" [nzValue]="role.id" [nzLabel]="role.libelle"></nz-option>
                             </nz-select>
                         </td>

@@ -18,6 +18,9 @@ export class UsersComponent implements OnInit {
 
   users;
   roles;
+  filter = {
+    keyword:''
+  }
   async ngOnInit() {
     this.users = await this.userService.getAllUsers().toPromise();
     this.roles = await this.roleService.getAllRole().toPromise();
@@ -59,6 +62,10 @@ export class UsersComponent implements OnInit {
     modalRef.afterClose.subscribe(async event => {
       this.users = await this.userService.getAllUsers().toPromise();
     })
+  }
+
+  async sendFilter() {
+    this.users = await this.userService.filter(this.filter).toPromise();
   }
 }
 

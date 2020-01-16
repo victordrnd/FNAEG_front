@@ -71,7 +71,7 @@
                         </tbody>
                     </nz-table>
                     <ng-template #tableFooter>
-                        <a routerLink="/inventaires">Voir plus</a>
+                        <a routerLink="/inventaires" *ngxPermissionsOnly="'inventory.view'">Voir plus</a>
                     </ng-template>
                 </div>
             </div>
@@ -98,7 +98,7 @@
                         </tbody>
                     </nz-table>
                     <ng-template #tableFooter2> 
-                        <a routerLink="/commandes">Voir plus</a>
+                        <a routerLink="/commandes" *ngxPermissionsOnly="'orders.view'">Voir plus</a>
                     </ng-template>
                 </div>
             </div>

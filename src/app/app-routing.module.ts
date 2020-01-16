@@ -8,8 +8,9 @@ import { InventairesComponent } from './pages/inventaires/inventaires.component'
 import { CommandesComponent } from './pages/commandes/commandes.component';
 import { CreateCommandeComponent } from './pages/commandes/create-commande/create-commande.component';
 import { AuthenticationComponent } from './pages/authentication/authentication.component';
-import {AuthGuardService} from './core/services/guards/auth-guard.service';
+import { AuthGuardService } from './core/services/guards/auth-guard.service';
 import { UsersComponent } from './pages/users/users.component';
+import { NgxPermissionsGuard } from 'ngx-permissions';
 const routes: Routes = [
   {
     path: '',
@@ -18,68 +19,93 @@ const routes: Routes = [
     },
     children: [
       {
-        path : '',
-        component : AuthenticationComponent,
+        path: '',
+        component: AuthenticationComponent,
         data: {
-          breadcrumb : "Connexion"
+          breadcrumb: "Connexion"
         }
       },
       {
-        path : 'dashboard',
-        component : DashboardComponent,
+        path: 'dashboard',
+        component: DashboardComponent,
         canActivate: [AuthGuardService]
       },
       {
         path: 'kits',
         component: KitsComponent,
-        canActivate: [AuthGuardService],
+        canActivate: [AuthGuardService, NgxPermissionsGuard],
         data: {
-          breadcrumb: 'Kits'
+          breadcrumb: 'Kits',
+          permissions: {
+            only: 'kits.view',
+            redirectTo: '/dashboard'
+          }
         }
       },
       {
         path: 'fabricants',
         component: FabricantsComponent,
-        canActivate: [AuthGuardService],
+        canActivate: [AuthGuardService, NgxPermissionsGuard],
         data: {
-          breadcrumb: 'Fabricants'
-        } 
-      },
-      {
-        path: 'inventaires',
-        component : InventairesComponent,
-        canActivate: [AuthGuardService],
-        data : {
-          breadcrumb : 'Inventaires'
+          breadcrumb: 'Fabricants',
+          permissions: {
+            only: 'fabricants.view',
+            redirectTo: '/dashboard'
+          }
         }
       },
       {
-        path : 'commandes',
-        canActivate: [AuthGuardService],
-        data : {
-          breadcrumb : 'Commandes'
+        path: 'inventaires',
+        component: InventairesComponent,
+        canActivate: [AuthGuardService, NgxPermissionsGuard],
+        data: {
+          breadcrumb: 'Inventaires',
+          permissions: {
+            only: 'inventory.view',
+            redirectTo: '/dashboard'
+          }
+        }
+      },
+      {
+        path: 'commandes',
+        canActivate: [AuthGuardService, NgxPermissionsGuard],
+        data: {
+          breadcrumb: 'Commandes',
+          permissions: {
+            only : 'orders.view',
+            redirectTo: '/dashboard'
+          },
         },
-        children : [
+        children: [
           {
-            path :'',
-            component : CommandesComponent,
+            path: '',
+            component: CommandesComponent,
           },
           {
-            path : 'new',
-            component : CreateCommandeComponent,
+            path: 'new',
+            component: CreateCommandeComponent,
+            canActivate: [NgxPermissionsGuard],
             data: {
-              breadcrumb :'Nouvelle commande'
+              breadcrumb: 'Nouvelle commande',
+              permissions: {
+                only : 'orders.create',
+                redirectTo: '/commandes'
+              }
             }
           }
         ]
       },
       {
-        path : 'users',
-        canActivate : [AuthGuardService],
-        data : {
-          breadcrumb : 'Utilisateurs'
+        path: 'users',
+        canActivate: [AuthGuardService, NgxPermissionsGuard],
+        data: {
+          breadcrumb: 'Utilisateurs',
+          permissions: {
+            only: 'users.view',
+            redirectTo: '/dashboard'
+          }
         },
-        component : UsersComponent
+        component: UsersComponent
       }
     ]
   },

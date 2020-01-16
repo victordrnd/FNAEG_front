@@ -20,8 +20,16 @@ export class UtilisateurService {
   }
 
 
+  createUser(user){
+    return this.http.post(`${environment.apiurl}/users/create`, user).pipe(map((res:any) => res.result));
+  }
+
   delete(user){
     return this.http.post(`${environment.apiurl}/users/delete/${user.id}`, {}).pipe(map((res:any)=> res.result));
+  }
+
+  filter(filter){
+    return this.http.post(`${environment.apiurl}/users/filter`, filter).pipe(map((res:any)=>res.result));
   }
 
 }

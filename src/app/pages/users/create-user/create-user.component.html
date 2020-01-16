@@ -13,20 +13,20 @@
     </nz-form-item>
     <nz-form-item>
         <nz-form-label [nzSpan]="5">Email</nz-form-label>
-        <nz-form-control nzHasFeedback [nzSpan]="12" nzErrorTip="Le champs est requis">
+        <nz-form-control nzHasFeedback [nzSpan]="12" nzErrorTip="L'adresse email est invalide">
             <input nz-input [formControl]="form.controls['email']" name="email" required/>
         </nz-form-control>
     </nz-form-item>
     <nz-form-item>
         <nz-form-label [nzSpan]="5">Mot de passe</nz-form-label>
-        <nz-form-control nzHasFeedback [nzSpan]="12" nzErrorTip="Le champs est requis">
+        <nz-form-control nzHasFeedback [nzSpan]="12" nzErrorTip="Le champ doit contenir au moins 4 caractères">
             <input nz-input [formControl]="form.controls['password']" name="password" required />
         </nz-form-control>
     </nz-form-item>
     <nz-form-item>
-        <nz-form-label [nzSpan]="5">Role</nz-form-label>
+        <nz-form-label [nzSpan]="5">Rôle</nz-form-label>
         <nz-form-control nzHasFeedback [nzSpan]="12" nzErrorTip="Le champs est requis">
-            <nz-select [formControl]="form.controls['role_id']" nzAllowClear nzPlaceHolder="Choisissez le role">
+            <nz-select [nzAllowClear]="false" [formControl]="form.controls['role_id']" nzAllowClear nzPlaceHolder="Choisissez le role">
                 <nz-option *ngFor="let role of roles" [nzValue]="role.id" [nzLabel]="role.libelle"></nz-option>
             </nz-select>
         </nz-form-control> 
