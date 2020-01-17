@@ -30,7 +30,6 @@ export class CreateCommandeComponent implements OnInit {
   }
 
   select(ev){
-    console.log(ev);
   }
   change(ev){
     this.commande.lignes = this.kits.filter(kit => kit.direction == 'right');

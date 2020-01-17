@@ -3,6 +3,7 @@ import { UtilisateurService } from 'src/app/core/services/utilisateur.service';
 import { RoleService } from 'src/app/core/services/role.service';
 import { NzNotificationService, NzModalService } from 'ng-zorro-antd';
 import { CreateUserComponent } from './create-user/create-user.component';
+import { EditUserComponent } from './edit-user/edit-user.component';
 
 @Component({
   selector: 'app-users',
@@ -37,6 +38,7 @@ export class UsersComponent implements OnInit {
   async deleteUser(user) {
     await this.userService.delete(user).toPromise();
     this.users = await this.userService.getAllUsers().toPromise();
+    this.notificationService.success("Succès", `${user.firstname} a correctement été supprimé !`);
   }
 
 
@@ -59,6 +61,32 @@ export class UsersComponent implements OnInit {
       nzOkDisabled: true,
     });
 
+    modalRef.afterClose.subscribe(async event => {
+      this.users = await this.userService.getAllUsers().toPromise();
+    })
+  }
+
+
+  editUser(user){
+    const modalRef = this.modalService.info({
+      nzTitle: "Edition d'utilisateur",
+      nzBodyStyle: {
+        padding: '15px'
+      },
+      nzStyle: {
+        padding: '5px'
+      },
+      nzContent: EditUserComponent,
+      nzCancelDisabled: false,
+      nzMaskClosable: true,
+      nzOkText: 'Valider',
+      nzWidth: 700,
+      nzIconType: 'book',
+      nzOkDisabled: false,
+      nzComponentParams : {
+        user:user
+      }
+    });
     modalRef.afterClose.subscribe(async event => {
       this.users = await this.userService.getAllUsers().toPromise();
     })

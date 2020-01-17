@@ -9,21 +9,20 @@
                 <nz-collapse [nzBordered]="false">
                     <nz-collapse-panel [nzHeader]="'Afficher les filtres'" [nzActive]="true">
                         <div class="row my-3">
-                            <div class="col-5 pl-5">
-                                <nz-range-picker [(ngModel)]="dateRange" (ngModelChange)="onChangeRange($event)">
-                                </nz-range-picker>
-                            </div>
-                            <div class="col-3">
-                                <nz-select [nzMaxTagPlaceholder]="tagPlaceHolder" style="width:100%" nzMode="multiple"
-                                    (ngModelChange)="sendFilter()" nzPlaceHolder="Réalisé par" [(ngModel)]="filter.creators">
-                                </nz-select>
+                            <div class="col-4">
+                                <nz-select nzMode="multiple" nzPlaceHolder="Commandes réalisées par"
+									[(ngModel)]="filter.creators" style="width:100%" (ngModelChange)="sendFilter()">
+									<nz-option *ngFor="let user of users" [nzLabel]="user.firstname + ' '+ user.lastname"
+										[nzValue]="user.id"></nz-option>
+								</nz-select>
                                 <ng-template #tagPlaceHolder let-selectedList> et {{ selectedList.length }} autres
                                 </ng-template>
                             </div>
                             <div class="col">
 
                                 <div class="float-right">
-                                    <button nz-button nzType="primary" routerLink="new" *ngxPermissionsOnly="'orders.create'"><i nz-icon nzType="plus"></i>
+                                    <button nz-button nzType="primary" routerLink="new"
+                                        *ngxPermissionsOnly="'orders.create'"><i nz-icon nzType="plus"></i>
                                         Réaliser une nouvelle commande</button>
                                 </div>
                             </div>
@@ -38,8 +37,7 @@
 
                     <nz-list-item [nzActions]="[]">
                         <nz-skeleton [nzAvatar]="true" [nzActive]="true" [nzTitle]="false" [nzLoading]="false">
-                            <nz-list-item-meta [nzTitle]="nzTitle"
-                                [nzDescription]="nzDescription">
+                            <nz-list-item-meta [nzTitle]="nzTitle" [nzDescription]="nzDescription">
                                 <ng-template #nzTitle>
                                     <a>Commande du {{commande.created_at | date:'medium'}}</a>
                                 </ng-template>
@@ -48,7 +46,8 @@
                                         <div class="col">
                                             <a>Réalisé par {{commande.creator.firstname}} {{commande.creator.lastname}}
                                                 <nz-divider nzType="vertical"></nz-divider>
-                                                Statut : <span class="badge text-white" [ngClass]="{'1':'waiting','2':'validated','3':'cancelled'}[commande.status.id]"
+                                                Statut : <span class="badge text-white"
+                                                    [ngClass]="{'1':'waiting','2':'validated','3':'cancelled'}[commande.status.id]"
                                                     style="font-weight: 200;">{{commande.status.libelle}}</span>
                                             </a>
                                         </div>
@@ -56,7 +55,10 @@
                                             Montant : {{commande.prix | currency: 'EUR'}}
                                         </div>
                                         <div class="col-2" *ngxPermissionsOnly="'orders.update'">
-                                            <nz-select [(ngModel)]="commande.status_id" [nzDisabled]="commande.status.id == 2" (ngModelChange)="changeStatus(commande)" [nzNotFoundContent]="'Non trouvé'" class="w-100" nzAllowClear>
+                                            <nz-select [(ngModel)]="commande.status_id"
+                                                [nzDisabled]="commande.status.id == 2"
+                                                (ngModelChange)="changeStatus(commande)"
+                                                [nzNotFoundContent]="'Non trouvé'" class="w-100" nzAllowClear>
                                                 <nz-option [nzValue]="1" nzLabel="En attente"></nz-option>
                                                 <nz-option [nzValue]="2" nzLabel="Validée"></nz-option>
                                                 <nz-option [nzValue]="3" nzLabel="Annulée"></nz-option>

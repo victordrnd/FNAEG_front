@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommandeService } from 'src/app/core/services/commande.service';
+import { UtilisateurService } from 'src/app/core/services/utilisateur.service';
 
 @Component({
   selector: 'app-commandes',
@@ -12,12 +13,15 @@ export class CommandesComponent implements OnInit {
   filter = {
     creators : []
   }
+  users;
 
-  constructor(private commandeService : CommandeService) { }
+  constructor(private commandeService : CommandeService,
+    private userService : UtilisateurService) { }
 
 
   async ngOnInit() {
-    this.commandes = await this.commandeService.getAll().toPromise(); 
+    this.commandes = await this.commandeService.getAll().toPromise();
+    this.users = await this.userService.getAllUsers().toPromise(); 
   }
 
   async changeStatus(commande){
@@ -25,7 +29,11 @@ export class CommandesComponent implements OnInit {
     this.commandes = await this.commandeService.getAll().toPromise(); 
   }
 
-  sendFilter(){}
+  async sendFilter(){
+    this.commandes = await this.commandeService.filter(this.filter).toPromise()
+  }
+
+  
   onChangeRange(value){}
   
 

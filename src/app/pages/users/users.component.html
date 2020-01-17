@@ -48,14 +48,21 @@
                         <td>{{user.lastname}}</td>
                         <td>{{user.email}}</td>
                         <td>
-                            <nz-select [nzAllowClear]="false" [(ngModel)]="user.role.id" (ngModelChange)="updateRole(user)" nzAllowClear nzPlaceHolder="Choose">
+                            <p *ngIf="user.deleted_at">{{user.role.libelle}}</p>
+                            <nz-select *ngIf="!user.deleted_at" [nzAllowClear]="false" [(ngModel)]="user.role.id" (ngModelChange)="updateRole(user)" nzAllowClear nzPlaceHolder="Choose">
                                 <nz-option *ngFor="let role of roles" [nzValue]="role.id" [nzLabel]="role.libelle"></nz-option>
                             </nz-select>
                         </td>
                         <td>
-                            <a><i class="p-2" nz-icon nzType="delete" (click)="deleteUser(user)" nzTheme="outline"></i></a>
-                            <nz-divider nzType="vertical"></nz-divider>
-                            <a><i nz-icon nzType="edit" nzTheme="outline"></i></a>
+                            <span *ngIf="user.deleted_at" class="badge text-white bg-secondary" style="font-weight: 200;">Utilisateur supprimé</span>
+                            <div *ngIf="!user.deleted_at">
+                                <a nz-popconfirm nzPopconfirmTitle="Voulez vous vraiment supprimer cet utilisateur ?" [nzIcon]="iconTpl" (nzOnConfirm)="deleteUser(user)"><i class="p-2" nz-icon nzType="delete"  nzTheme="outline"></i></a>
+                                <ng-template #iconTpl>
+                                    <i nz-icon nzType="exclamation-circle" color="red"></i>
+                                </ng-template>
+                                <nz-divider nzType="vertical"></nz-divider>
+                                <a><i (click)="editUser(user)" nz-icon nzType="edit" nzTheme="outline"></i></a>
+                            </div>
                         </td>
                     </tr>
                 </tbody>

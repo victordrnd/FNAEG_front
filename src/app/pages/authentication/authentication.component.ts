@@ -29,7 +29,6 @@ export class AuthenticationComponent implements OnInit {
 
   async submitForm() {
     this.userService.attemptAuth(this.form.value).subscribe((res) => {
-      console.log(res);
       this.router.navigate(['/dashboard'])
     },
       err => this.notificationService.error("Identifiants incorrects", "Les identifiants saisis ne correspondent à aucun compte."))
