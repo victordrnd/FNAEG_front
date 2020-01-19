@@ -20,7 +20,7 @@
             </li>
         </ul>
     </li>
-    <li nz-submenu nzTitle="Inventaires" nzIcon="barcode" nzOpen>
+    <li nz-submenu nzTitle="Inventaires" *ngxPermissionsOnly="'inventory.view'" nzIcon="barcode" nzOpen>
         <ul>
             <li nz-menu-item routerLink="/inventaires" [nzSelected]="router.url == '/inventaires'">Liste des inventaires
             </li>
