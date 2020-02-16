@@ -43,7 +43,7 @@
                   <a>Inventaire du {{inventaire.created_at | date:'medium'}}</a>
                 </ng-template>
                 <ng-template #nzDescription>
-                  <a>Réalisé par Victor
+                  <a>Réalisé par {{inventaire.creator.firstname}} {{inventaire.creator.lastname}}
                     <nz-divider nzType="vertical"></nz-divider>
                     Kits comptés : {{inventaire.enregistrements.length}}
                   </a>
