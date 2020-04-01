@@ -32,4 +32,10 @@
             </li>
         </ul>
     </li>
+    <li nz-submenu nzTitle="Réglages" nzIcon="setting"  *ngxPermissionsOnly="'permission.edit'" nzOpen>
+        <ul>
+            <li nz-menu-item routerLink="/settings" [nzSelected]="router.url == '/settings'">Gestion des permissions
+            </li>
+        </ul>
+    </li>
 </ul>

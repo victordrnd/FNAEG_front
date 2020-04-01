@@ -11,6 +11,7 @@ import { AuthenticationComponent } from './pages/authentication/authentication.c
 import { AuthGuardService } from './core/services/guards/auth-guard.service';
 import { UsersComponent } from './pages/users/users.component';
 import { NgxPermissionsGuard } from 'ngx-permissions';
+import { SettingsComponent } from './pages/settings/settings.component';
 const routes: Routes = [
   {
     path: '',
@@ -106,6 +107,18 @@ const routes: Routes = [
           }
         },
         component: UsersComponent
+      },
+      {
+        path : 'settings',
+        canActivate : [AuthGuardService, NgxPermissionsGuard],
+        data : {
+          breadcrumb : 'Réglages',
+          permissions : {
+            only : "permission.edit",
+            redirectTo : "/dashboard"
+          }
+        },
+        component : SettingsComponent
       }
     ]
   },

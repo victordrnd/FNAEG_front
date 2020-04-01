@@ -30,7 +30,7 @@ export class EditUserComponent implements OnInit {
       role_id : [this.user.role.id, Validators.required]
     });
 
-    this.roles = await this.roleService.getAllRole().toPromise();
+    this.roles = await this.roleService.getAllRoles().toPromise();
     this.onValidated();
     this.modal.getContentComponent().modal.nzOnOk = this._onSubmit.bind(this);
   }

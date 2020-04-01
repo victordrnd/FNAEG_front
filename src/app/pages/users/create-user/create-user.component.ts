@@ -28,7 +28,7 @@ export class CreateUserComponent implements OnInit {
      }
 
   async ngOnInit() {
-    this.roles = await this.roleService.getAllRole().toPromise();
+    this.roles = await this.roleService.getAllRoles().toPromise();
     this.onValidated();
     this.modal.getContentComponent().modal.nzOnOk = this._onSubmit.bind(this);
   }

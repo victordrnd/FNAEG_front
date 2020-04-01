@@ -32,6 +32,7 @@ import { UsersComponent } from './pages/users/users.component';
 import { NgxPermissionsModule } from 'ngx-permissions';
 import { CreateUserComponent } from './pages/users/create-user/create-user.component';
 import { EditUserComponent } from './pages/users/edit-user/edit-user.component';
+import { SettingsComponent } from './pages/settings/settings.component';
 registerLocaleData(fr);
 @NgModule({
   declarations: [
@@ -52,7 +53,7 @@ registerLocaleData(fr);
     UsersComponent,
     CreateUserComponent,
     EditUserComponent,
-    
+    SettingsComponent
   ],
   imports: [
     BrowserModule,
