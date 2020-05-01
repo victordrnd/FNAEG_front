@@ -65,7 +65,7 @@
 					<tr *ngFor="let kit of kits.data">
 						<td style="border-bottom: 1px solid #fafafa;">{{kit.CodeKit}}</td>
 						<td style="border-bottom: 1px solid #fafafa;">{{kit.prix}} €</td>
-						<td style="border-bottom: 1px solid #fafafa;">{{kit.Annee | date }}</td>
+						<td style="border-bottom: 1px solid #fafafa;">{{kit.Annee | date:'yyyy'}}</td>
 						<td style="border-bottom: 1px solid #fafafa;">{{kit.Duree}}</td>
 						<td style="border-bottom: 1px solid #fafafa;">{{kit.fabricant.Nom}}</td>
 						<td *ngIf="kit.Stock == 0" style="border-bottom: 1px solid #fafafa;">

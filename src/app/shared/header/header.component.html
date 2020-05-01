@@ -28,6 +28,10 @@
 				<a class="nav-link" *ngxPermissionsOnly="'users.view'" routerLink="/users"
 					[ngClass]="{'active' : router.url == '/users'}">Utilisateurs</a>
 			</li>
+			<li class="nav-item">
+				<a class="nav-link" *ngxPermissionsOnly="'permission.edit'" routerLink="/settings"
+					[ngClass]="{'active' : router.url == '/settings'}">Réglages</a>
+			</li>
 		</ul>
 		<div class="d-inline">
 			<button nz-button nzType="primary" (click)="logOut()"><i nz-icon nzType="import" nzTheme="outline"></i>Déconnexion</button>

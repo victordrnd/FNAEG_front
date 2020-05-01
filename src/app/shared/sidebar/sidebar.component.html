@@ -20,19 +20,19 @@
             </li>
         </ul>
     </li>
-    <li nz-submenu nzTitle="Inventaires" *ngxPermissionsOnly="'inventory.view'" nzIcon="barcode" nzOpen>
+    <li nz-submenu nzTitle="Inventaires" *ngxPermissionsOnly="'inventory.view'" nzIcon="barcode"> 
         <ul>
             <li nz-menu-item routerLink="/inventaires" [nzSelected]="router.url == '/inventaires'">Liste des inventaires
             </li>
         </ul>
     </li>
-    <li nz-submenu nzTitle="Utilisateurs" nzIcon="user" *ngxPermissionsOnly="'users.view'" nzOpen>
+    <li nz-submenu nzTitle="Utilisateurs" nzIcon="user" *ngxPermissionsOnly="'users.view'" >
         <ul>
             <li nz-menu-item routerLink="/users" [nzSelected]="router.url == '/users'">Liste des utilisateurs
             </li>
         </ul>
     </li>
-    <li nz-submenu nzTitle="Réglages" nzIcon="setting"  *ngxPermissionsOnly="'permission.edit'" nzOpen>
+    <li nz-submenu nzTitle="Réglages" nzIcon="setting"  *ngxPermissionsOnly="'permission.edit'">
         <ul>
             <li nz-menu-item routerLink="/settings" [nzSelected]="router.url == '/settings'">Gestion des permissions
             </li>

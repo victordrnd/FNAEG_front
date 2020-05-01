@@ -12,6 +12,10 @@ import { AuthGuardService } from './core/services/guards/auth-guard.service';
 import { UsersComponent } from './pages/users/users.component';
 import { NgxPermissionsGuard } from 'ngx-permissions';
 import { SettingsComponent } from './pages/settings/settings.component';
+
+
+
+
 const routes: Routes = [
   {
     path: '',
