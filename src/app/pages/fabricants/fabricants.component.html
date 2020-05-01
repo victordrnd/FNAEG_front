@@ -14,7 +14,7 @@
 										<input type="text" nz-input nzAllowClear [nzAutocomplete]="auto"  (input)="sendFilter()"  placeholder="Rechercher un fabricant" [(ngModel)]="filter.keyword" />
 									</nz-input-group>
 									<nz-autocomplete #auto>
-										<nz-auto-option *ngFor="let row of autocomplete" [nzValue]="row.,om">{{row.nom}}</nz-auto-option>
+										<nz-auto-option *ngFor="let row of autocomplete" [nzValue]="row.nom">{{row.nom}}</nz-auto-option>
 									  </nz-autocomplete>
 									<ng-template #suffixIconButton>
 										<button nz-button nzType="primary" nzSearch (click)="sendFilter()"><i nz-icon
