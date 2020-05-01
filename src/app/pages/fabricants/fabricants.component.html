@@ -14,7 +14,7 @@
 										<input type="text" nz-input nzAllowClear [nzAutocomplete]="auto"  (input)="sendFilter()"  placeholder="Rechercher un fabricant" [(ngModel)]="filter.keyword" />
 									</nz-input-group>
 									<nz-autocomplete #auto>
-										<nz-auto-option *ngFor="let row of autocomplete" [nzValue]="row.Nom">{{row.Nom}}</nz-auto-option>
+										<nz-auto-option *ngFor="let row of autocomplete" [nzValue]="row.,om">{{row.nom}}</nz-auto-option>
 									  </nz-autocomplete>
 									<ng-template #suffixIconButton>
 										<button nz-button nzType="primary" nzSearch (click)="sendFilter()"><i nz-icon
@@ -35,19 +35,19 @@
 			<nz-table class="table">
 				<thead (nzSortChange)="sort($event)">
 					<tr>
-						<th nzShowSort nzSortKey="CodeF" scope="col">Code</th>
-						<th nzShowSort nzSortKey="Nom">Nom</th>
-						<th nzShowSort nzSortKey="Pays">Pays</th>
-						<th nzShowSort nzSortKey="Ville">Ville</th>
+						<th nzShowSort nzSortKey="codef" scope="col">Code</th>
+						<th nzShowSort nzSortKey="nom">Nom</th>
+						<th nzShowSort nzSortKey="pays">Pays</th>
+						<th nzShowSort nzSortKey="ville">Ville</th>
 						<th>Action</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr *ngFor="let fabricant of fabricants?.data">
-						<td style="border-bottom: 1px solid #fafafa;">{{fabricant.CodeF}}</td>
-						<td style="border-bottom: 1px solid #fafafa;">{{fabricant.Nom}}</td>
-						<td style="border-bottom: 1px solid #fafafa;">{{fabricant.Pays}}</td>
-						<td style="border-bottom: 1px solid #fafafa;">{{fabricant.Ville}}</td>
+						<td style="border-bottom: 1px solid #fafafa;">{{fabricant.codef}}</td>
+						<td style="border-bottom: 1px solid #fafafa;">{{fabricant.nom}}</td>
+						<td style="border-bottom: 1px solid #fafafa;">{{fabricant.pays}}</td>
+						<td style="border-bottom: 1px solid #fafafa;">{{fabricant.ville}}</td>
 						<td><a><i nz-icon nzType="info-circle" (click)="openInfo(fabricant)" nzTheme="outline"></i></a></td>
 					</tr>
 				</tbody>

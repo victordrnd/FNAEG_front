@@ -79,10 +79,10 @@
                                                 </thead>
                                                 <tbody>
                                                     <tr *ngFor="let detail of commande.details">
-                                                        <td>{{detail.CodeKit}}</td>
-                                                        <td>{{detail.kit.fabricant.Nom}}</td>
+                                                        <td>{{detail.codekit}}</td>
+                                                        <td>{{detail.kit.fabricant.nom}}</td>
                                                         <td>
-                                                            <nz-badge nzStatus="default" nzText="{{detail.Qte}}">
+                                                            <nz-badge nzStatus="default" nzText="{{detail.qte}}">
                                                             </nz-badge>
                                                         </td>
 

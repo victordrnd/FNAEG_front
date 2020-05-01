@@ -26,7 +26,7 @@ export class CreateCommandeComponent implements OnInit {
 
   async ngOnInit() {
     this.kits = await this.kitService.getAllKit().toPromise();
-    this.kits.map(kit => kit.Qte = 1);
+    this.kits.map(kit => kit.qte = 1);
   }
 
   select(ev){
@@ -41,7 +41,7 @@ export class CreateCommandeComponent implements OnInit {
   calculateOrderPrice(){
     this.commande.prix = 0;
     for(const kit of this.commande.lignes){
-      this.commande.prix += kit.prix * kit.Qte;
+      this.commande.prix += kit.prix * kit.qte;
     }
   }
 

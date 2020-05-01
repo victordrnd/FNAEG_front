@@ -2,14 +2,14 @@
     <nz-form-item>
         <nz-form-label [nzSpan]="5">Code</nz-form-label>
         <nz-form-control nzHasFeedback [nzSpan]="12" nzErrorTip="Le champs est requis et dois faire 4 caractères">
-            <input nz-input [formControl]="form.controls['CodeKit']" name="code" required minlength="4" maxlength="4" />
+            <input nz-input [formControl]="form.controls['codekit']" name="code" required minlength="4" maxlength="4" />
         </nz-form-control>
     </nz-form-item>
     <nz-form-item>
         <nz-form-label [nzSpan]="5">Duree</nz-form-label>
         <nz-form-control nzHasFeedback [nzSpan]="12" nzErrorTip="Le champs est requis">
             <nz-input-group [nzSuffix]="dureeSuffix">
-                <input nz-input [formControl]="form.controls['Duree']" min="0" type="number" name="duree" required />
+                <input nz-input [formControl]="form.controls['duree']" min="0" type="number" name="duree" required />
             </nz-input-group>
             <ng-template #dureeSuffix>
                 <span style="color: rgba(0, 0, 0, 0.25)"><i nz-icon nzType="hourglass" nzTheme="outline"></i></span>
@@ -19,7 +19,7 @@
     <nz-form-item>
         <nz-form-label [nzSpan]="5">Annee</nz-form-label>
         <nz-form-control nzHasFeedback [nzSpan]="12" nzErrorTip="Le champs est requis">
-            <nz-year-picker [formControl]="form.controls['Annee']" [nzSize]="'large'" name="annee" required></nz-year-picker>
+            <nz-year-picker [formControl]="form.controls['annee']" [nzSize]="'large'" name="annee" required></nz-year-picker>
         </nz-form-control>
     </nz-form-item>
     <nz-form-item>
@@ -36,9 +36,9 @@
     <nz-form-item>
         <nz-form-label [nzSpan]="5">Fabricant</nz-form-label>
         <nz-form-control nzHasFeedback [nzSpan]="12" nzErrorTip="Le champs est requis">
-            <nz-select [formControl]="form.controls['CodeF']" name="codeF" required nzShowSearch nzAllowClear
+            <nz-select [formControl]="form.controls['codef']" name="codeF" required nzShowSearch nzAllowClear
                 nzPlaceHolder="Selectionnez un fabricant">
-                <nz-option *ngFor="let fabricant of fabricants" [nzLabel]="fabricant.Nom" [nzValue]="fabricant.CodeF">
+                <nz-option *ngFor="let fabricant of fabricants" [nzLabel]="fabricant.nom" [nzValue]="fabricant.codef">
                 </nz-option>
 
             </nz-select>

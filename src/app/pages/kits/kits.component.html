@@ -22,8 +22,8 @@
 							<div class="col-md-3 col-9 pl-md-5">
 								 <nz-select nzMode="multiple" nzPlaceHolder="Sélectionnez un fabricant"
 									[(ngModel)]="filter.fabricants" style="width:100%" (ngModelChange)="sendFilter()">
-									<nz-option *ngFor="let fabricant of fabricants" [nzLabel]="fabricant.Nom"
-										[nzValue]="fabricant.CodeF"></nz-option>
+									<nz-option *ngFor="let fabricant of fabricants" [nzLabel]="fabricant.nom"
+										[nzValue]="fabricant.codef"></nz-option>
 								</nz-select>
 								<ng-template #tagPlaceHolder let-selectedList> and {{ selectedList.length }} more
 									selected
@@ -53,29 +53,29 @@
 			<nz-table class="table">
 				<thead (nzSortChange)="sort($event)">
 					<tr>
-						<th nzShowSort nzSortKey="CodeKit" scope="col">Référence</th>
-						<th nzShowSort nzSortKey="Prix">Prix</th>
-						<th nzShowSort nzSortKey="Annee">Année</th>
-						<th nzShowSort nzSortKey="Duree">Durée</th>
+						<th nzShowSort nzSortKey="codekit" scope="col">Référence</th>
+						<th nzShowSort nzSortKey="prix">Prix</th>
+						<th nzShowSort nzSortKey="annee">Année</th>
+						<th nzShowSort nzSortKey="duree">Durée</th>
 						<th>Fabricant</th>
-						<th nzShowSort nzSortKey="Stock">Stock</th>
+						<th nzShowSort nzSortKey="stock">Stock</th>
 					</tr>
 				</thead>
 				<tbody *ngIf="kits">
 					<tr *ngFor="let kit of kits.data">
-						<td style="border-bottom: 1px solid #fafafa;">{{kit.CodeKit}}</td>
+						<td style="border-bottom: 1px solid #fafafa;">{{kit.codekit}}</td>
 						<td style="border-bottom: 1px solid #fafafa;">{{kit.prix}} €</td>
-						<td style="border-bottom: 1px solid #fafafa;">{{kit.Annee | date:'yyyy'}}</td>
-						<td style="border-bottom: 1px solid #fafafa;">{{kit.Duree}}</td>
-						<td style="border-bottom: 1px solid #fafafa;">{{kit.fabricant.Nom}}</td>
-						<td *ngIf="kit.Stock == 0" style="border-bottom: 1px solid #fafafa;">
-							<nz-badge nzColor="red" nzText="{{kit.Stock}}"></nz-badge>
+						<td style="border-bottom: 1px solid #fafafa;">{{kit.annee | date:'yyyy'}}</td>
+						<td style="border-bottom: 1px solid #fafafa;">{{kit.duree}}</td>
+						<td style="border-bottom: 1px solid #fafafa;">{{kit.fabricant.nom}}</td>
+						<td *ngIf="kit.stock == 0" style="border-bottom: 1px solid #fafafa;">
+							<nz-badge nzColor="red" nzText="{{kit.stock}}"></nz-badge>
 						</td>
-						<td *ngIf="kit.Stock > 0 && kit.Stock < 10" style="border-bottom: 1px solid #fafafa;">
-							<nz-badge nzStatus="default" nzText="{{kit.Stock}}"></nz-badge>
+						<td *ngIf="kit.stock > 0 && kit.stock < 10" style="border-bottom: 1px solid #fafafa;">
+							<nz-badge nzStatus="default" nzText="{{kit.stock}}"></nz-badge>
 						</td>
-						<td *ngIf="kit.Stock >= 10" style="border-bottom: 1px solid #fafafa;">
-							<nz-badge nzColor="#d8a864" nzText="{{kit.Stock}}"></nz-badge>
+						<td *ngIf="kit.stock >= 10" style="border-bottom: 1px solid #fafafa;">
+							<nz-badge nzColor="#d8a864" nzText="{{kit.stock}}"></nz-badge>
 						</td>
 					</tr>
 				</tbody>

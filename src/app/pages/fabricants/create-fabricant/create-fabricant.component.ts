@@ -17,10 +17,10 @@ export class CreateFabricantComponent implements OnInit {
     private fabricantService: FabricantService,
     private notificationService: NzNotificationService) {
     this.form = this.fb.group({
-      CodeF: ['', Validators.required],
-      Nom: ['', Validators.required],
-      Pays: ['', Validators.required],
-      Ville: ['', Validators.required]
+      codef: ['', Validators.required],
+      nom: ['', Validators.required],
+      pays: ['', Validators.required],
+      ville: ['', Validators.required]
     })
   }
 
@@ -46,9 +46,9 @@ export class CreateFabricantComponent implements OnInit {
       });
   }
 
-  get CodeF() { return this.form.get('CodeF'); }
-  get Nom() { return this.form.get('Nom'); }
-  get Pays() { return this.form.get('Pays'); }
-  get Ville() { return this.form.get('Ville'); }
+  get codef() { return this.form.get('codef'); }
+  get nom() { return this.form.get('nom'); }
+  get pays() { return this.form.get('pays'); }
+  get ville() { return this.form.get('ville'); }
 
 }

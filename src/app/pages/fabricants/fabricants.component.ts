@@ -37,7 +37,7 @@ export class FabricantsComponent implements OnInit {
 
   openInfo(fabricant){
     const drawerRef =  this.drawerService.create<InfoFabricantComponent, { fabricant: any }, string>({
-      nzTitle: fabricant.Nom,
+      nzTitle: fabricant.nom,
       nzContent: InfoFabricantComponent,
       nzContentParams: {
         fabricant: fabricant

@@ -1,8 +1,8 @@
 <h6>Fabricant :</h6>
 <nz-descriptions [nzColumn]="1" nzTitle="">
-    <nz-descriptions-item nzTitle="Nom" [nzSpan]="1">{{fabricant.Nom}}</nz-descriptions-item>
-    <nz-descriptions-item nzTitle="Pays" [nzSpan]="1">{{fabricant.Pays}}</nz-descriptions-item>
-    <nz-descriptions-item nzTitle="Ville" [nzSpan]="1">{{fabricant.Ville}}</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="Nom" [nzSpan]="1">{{fabricant.nom}}</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="Pays" [nzSpan]="1">{{fabricant.pays}}</nz-descriptions-item>
+    <nz-descriptions-item nzTitle="Ville" [nzSpan]="1">{{fabricant.ville}}</nz-descriptions-item>
     <nz-descriptions-item nzTitle="Site internet" [nzSpan]="1">http://gsb.com</nz-descriptions-item>
 </nz-descriptions>
 <h6>Catalogue :</h6>
@@ -13,15 +13,15 @@
             <nz-list-item>
                 <nz-list-item-meta [nzTitle]="title" [nzDescription]="desc">
                     <ng-template #title>
-                        <a routerLink="/kits" class="primary">Kit #{{ kit.CodeKit }}</a>
+                        <a routerLink="/kits" class="primary">Kit #{{ kit.codekit }}</a>
                     </ng-template>
                     <ng-template #desc>
                         <div class="pl-3">
                             <nz-descriptions [nzColumn]="2" nzTitle="">
                                 <nz-descriptions-item nzTitle="Prix" [nzSpan]="1">{{kit.prix}} €</nz-descriptions-item>
-                                <nz-descriptions-item nzTitle="Durée" [nzSpan]="1">{{kit.Duree}} min
+                                <nz-descriptions-item nzTitle="Durée" [nzSpan]="1">{{kit.duree}} min
                                 </nz-descriptions-item>
-                                <nz-descriptions-item nzTitle="Année" [nzSpan]="1">{{kit.Annee | date}}
+                                <nz-descriptions-item nzTitle="Année" [nzSpan]="1">{{kit.annee | date}}
                                 </nz-descriptions-item>
                             </nz-descriptions>
                         </div>

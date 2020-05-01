@@ -61,17 +61,17 @@
                         </thead>
                         <tbody>
                           <tr *ngFor="let enregistrement of inventaire.enregistrements">
-                            <td>{{enregistrement.CodeKit}}</td>
-                            <td>{{enregistrement.kit.Annee | date}}</td>
-                            <td>{{enregistrement.kit.fabricant.Nom}}</td>
-                            <td *ngIf="enregistrement.Stock == 0">
-                              <nz-badge nzColor="red" nzText="{{enregistrement.Stock}}"></nz-badge>
+                            <td>{{enregistrement.codekit}}</td>
+                            <td>{{enregistrement.kit.annee | date}}</td>
+                            <td>{{enregistrement.kit.fabricant.nom}}</td>
+                            <td *ngIf="enregistrement.stock == 0">
+                              <nz-badge nzColor="red" nzText="{{enregistrement.stock}}"></nz-badge>
                             </td>
-                            <td *ngIf="enregistrement.Stock > 0 && enregistrement.Stock < 10">
-                              <nz-badge nzStatus="default" nzText="{{enregistrement.Stock}}"></nz-badge>
+                            <td *ngIf="enregistrement.stock > 0 && enregistrement.stock < 10">
+                              <nz-badge nzStatus="default" nzText="{{enregistrement.stock}}"></nz-badge>
                             </td>
-                            <td *ngIf="enregistrement.Stock >= 10">
-                              <nz-badge nzColor="#d8a864" nzText="{{enregistrement.Stock}}"></nz-badge>
+                            <td *ngIf="enregistrement.stock >= 10">
+                              <nz-badge nzColor="#d8a864" nzText="{{enregistrement.stock}}"></nz-badge>
                             </td>
                           </tr>
                         </tbody>

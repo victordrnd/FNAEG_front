@@ -21,11 +21,11 @@ export class CreateKitComponent implements OnInit {
     private fabricantService : FabricantService
   ) {
     this.form = this.fb.group({
-      CodeKit: ['', Validators.required],
-      Duree: ['', Validators.required],
-      Annee: ['', Validators.required],
+      codekit: ['', Validators.required],
+      duree: ['', Validators.required],
+      annee: ['', Validators.required],
       prix: ['', Validators.required],
-      CodeF: ['', Validators.required]
+      codef: ['', Validators.required]
     })
    }
 
@@ -53,9 +53,9 @@ export class CreateKitComponent implements OnInit {
       });
   }
 
-  get CodeKit() { return this.form.get('CodeKit'); }
-  get Duree() { return this.form.get('Duree'); }
-  get Annee() { return this.form.get('Annee'); }
-  get prix() { return this.form.get('Prix'); }
-  get CodeF() { return this.form.get('CodeF'); }
+  get codekit() { return this.form.get('codekit'); }
+  get duree() { return this.form.get('duree'); }
+  get annee() { return this.form.get('annee'); }
+  get prix() { return this.form.get('prix'); }
+  get codef() { return this.form.get('codef'); }
 }
