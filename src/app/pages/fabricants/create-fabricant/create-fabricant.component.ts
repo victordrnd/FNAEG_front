@@ -39,7 +39,7 @@ export class CreateFabricantComponent implements OnInit {
     const fabricant = this.form.value;
     this.fabricantService.create(fabricant).toPromise()
       .then(res => {
-        console.log(res);
+        this.notificationService.success("Succès", `Le fabricant a correctement été créé`);
       })
       .catch(err => {
         this.notificationService.create('error', "Erreur", `Le code du fabricant existe déjà`);

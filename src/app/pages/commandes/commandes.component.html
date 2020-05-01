@@ -1,0 +1,105 @@
+<div class="row m-0 px-0 mb-5">
+
+    <div class="col-md-10 col-12 d-block mx-auto">
+        <div class="text-center mb-5">
+            <h1> Gestion des commandes</h1>
+        </div>
+        <div class="px-md-5">
+            <div class="mb-4 shadow-sm">
+                <nz-collapse [nzBordered]="false">
+                    <nz-collapse-panel [nzHeader]="'Afficher les filtres'" [nzActive]="true">
+                        <div class="row my-3">
+                            <div class="col-4">
+                                <nz-select nzMode="multiple" nzPlaceHolder="Commandes réalisées par"
+									[(ngModel)]="filter.creators" style="width:100%" (ngModelChange)="sendFilter()">
+									<nz-option *ngFor="let user of users" [nzLabel]="user.firstname + ' '+ user.lastname"
+										[nzValue]="user.id"></nz-option>
+								</nz-select>
+                                <ng-template #tagPlaceHolder let-selectedList> et {{ selectedList.length }} autres
+                                </ng-template>
+                            </div>
+                            <div class="col">
+
+                                <div class="float-right">
+                                    <button nz-button nzType="primary" routerLink="new"
+                                        *ngxPermissionsOnly="'orders.create'"><i nz-icon nzType="plus"></i>
+                                        Réaliser une nouvelle commande</button>
+                                </div>
+                            </div>
+                        </div>
+                    </nz-collapse-panel>
+                </nz-collapse>
+            </div>
+
+            <nz-list class="demo-loadmore-list" [nzDataSource]="commandes?.data" [nzItemLayout]="'horizontal'"
+                [nzRenderItem]="item" [nzLoading]="false" [nzLoadMore]="loadMore">
+                <ng-template #item let-commande let-index="index">
+
+                    <nz-list-item [nzActions]="[]">
+                        <nz-skeleton [nzAvatar]="true" [nzActive]="true" [nzTitle]="false" [nzLoading]="false">
+                            <nz-list-item-meta [nzTitle]="nzTitle" [nzDescription]="nzDescription">
+                                <ng-template #nzTitle>
+                                    <a>Commande du {{commande.created_at | date:'medium'}}</a>
+                                </ng-template>
+                                <ng-template #nzDescription>
+                                    <div class="row">
+                                        <div class="col">
+                                            <a>Réalisé par {{commande.creator.firstname}} {{commande.creator.lastname}}
+                                                <nz-divider nzType="vertical"></nz-divider>
+                                                Statut : <span class="badge text-white"
+                                                    [ngClass]="{'1':'waiting','2':'validated','3':'cancelled'}[commande.status.id]"
+                                                    style="font-weight: 200;">{{commande.status.libelle}}</span>
+                                            </a>
+                                        </div>
+                                        <div class="col-2">
+                                            Montant : {{commande.prix | currency: 'EUR'}}
+                                        </div>
+                                        <div class="col-2" *ngxPermissionsOnly="'orders.update'">
+                                            <nz-select [(ngModel)]="commande.status_id"
+                                                [nzDisabled]="commande.status.id == 2"
+                                                (ngModelChange)="changeStatus(commande)"
+                                                [nzNotFoundContent]="'Non trouvé'" class="w-100" nzAllowClear>
+                                                <nz-option [nzValue]="1" nzLabel="En attente"></nz-option>
+                                                <nz-option [nzValue]="2" nzLabel="Validée"></nz-option>
+                                                <nz-option [nzValue]="3" nzLabel="Annulée"></nz-option>
+                                            </nz-select>
+                                        </div>
+
+                                    </div>
+                                    <nz-collapse [nzBordered]="false">
+                                        <nz-collapse-panel [nzHeader]="'Détails'" [nzActive]="false">
+                                            <nz-table #basicTable [nzData]="commande.details"
+                                                [nzShowPagination]="false">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Référence</th>
+                                                        <th>Fabricant</th>
+                                                        <th>Quantité</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr *ngFor="let detail of commande.details">
+                                                        <td>{{detail.CodeKit}}</td>
+                                                        <td>{{detail.kit.fabricant.Nom}}</td>
+                                                        <td>
+                                                            <nz-badge nzStatus="default" nzText="{{detail.Qte}}">
+                                                            </nz-badge>
+                                                        </td>
+
+
+                                                    </tr>
+                                                </tbody>
+                                            </nz-table>
+                                        </nz-collapse-panel>
+                                    </nz-collapse>
+                                </ng-template>
+                            </nz-list-item-meta>
+                        </nz-skeleton>
+                    </nz-list-item>
+                </ng-template>
+                <ng-template #loadMore>
+                </ng-template>
+            </nz-list>
+        </div>
+    </div>
+</div>

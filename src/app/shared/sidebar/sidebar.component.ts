@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
+import { UserService } from 'src/app/core/services/user.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -8,9 +10,19 @@ import { Router } from '@angular/router';
 })
 export class SidebarComponent implements OnInit {
 
-  constructor(public router : Router) { }
-
+  constructor(public router: Router,
+    private userService: UserService) { }
+  isAuthenticated;
   ngOnInit() {
+    this.userService.isAuthenticated.subscribe(state => {
+      this.isAuthenticated = state;
+    })
   }
 
+
+  onExport() {
+    if(this.isAuthenticated){
+      window.open(`${environment.apiurl}/kit/export?token=`+this.userService.getToken(), "_blank");
+    }
+  }
 }

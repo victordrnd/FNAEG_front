@@ -38,4 +38,8 @@ export class KitService {
     return this.http.post(`${environment.apiurl}/kit/create`,kit).pipe(map((res:any) => res.result));
   }
 
+  count(){
+    return this.http.get(`${environment.apiurl}/kit/count`).pipe(map((res:any) => res.result));
+  }
+
 }

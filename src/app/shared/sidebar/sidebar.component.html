@@ -1,23 +1,41 @@
 <ul nz-menu nzMode="inline">
-    <li nz-menu-item nzIcon="home" routerLink="/" [nzSelected]="router.url == '/'"><i nz-icon nzType="home" nzTheme="outline"></i> Dashboard</li>
-    <li nz-submenu nzTitle="Kits" nzIcon="appstore" nzOpen>
+    <li nz-menu-item nzIcon="home" routerLink="/dashboard" [nzSelected]="router.url == '/dashboard'"><i nz-icon
+            nzType="home" nzTheme="outline"></i> Dashboard</li>
+    <li nz-submenu nzTitle="Kits" *ngxPermissionsOnly="'kits.view'" nzIcon="appstore" nzOpen>
         <ul>
             <li nz-menu-item routerLink="/kits" [nzSelected]="router.url == '/kits'">Liste des kits</li>
-            <li nz-menu-item>Exporter les kits</li>
+            <li nz-menu-item (click)="onExport()">Exporter les kits</li>
         </ul>
     </li>
-    <li nz-submenu nzTitle="Fabricants" nzIcon="book" nzOpen>
+    <li nz-submenu nzTitle="Fabricants" *ngxPermissionsOnly="'fabricants.view'" nzIcon="book" nzOpen>
         <ul>
-            <li nz-menu-item routerLink="/fabricants" [nzSelected]="router.url == '/fabricants'">Afficher les fabricants</li>
-            <li nz-menu-item>A Venir</li>
-            <li nz-menu-item>A Venir</li>
+            <li nz-menu-item routerLink="/fabricants" [nzSelected]="router.url == '/fabricants'">Liste des fabricants
+            </li>
         </ul>
     </li>
-    <li nz-submenu nzTitle="Commandes" nzIcon="setting">
+    <li nz-submenu nzTitle="Commandes" *ngxPermissionsOnly="'orders.view'" nzIcon="audit" nzOpen>
         <ul>
-            <li nz-menu-item>A Venir</li>
-            <li nz-menu-item>A Venir</li>
-            <li nz-menu-item>A Venir</li>
+            <li nz-menu-item routerLink="/commandes" [nzSelected]="router.url == '/commandes'">Liste des commandes</li>
+            <li nz-menu-item routerLink="/commandes/new" *ngxPermissionsOnly="'orders.create'" [nzSelected]="router.url == '/commandes/new'">Nouvelle commande
+            </li>
+        </ul>
+    </li>
+    <li nz-submenu nzTitle="Inventaires" *ngxPermissionsOnly="'inventory.view'" nzIcon="barcode"> 
+        <ul>
+            <li nz-menu-item routerLink="/inventaires" [nzSelected]="router.url == '/inventaires'">Liste des inventaires
+            </li>
+        </ul>
+    </li>
+    <li nz-submenu nzTitle="Utilisateurs" nzIcon="user" *ngxPermissionsOnly="'users.view'" >
+        <ul>
+            <li nz-menu-item routerLink="/users" [nzSelected]="router.url == '/users'">Liste des utilisateurs
+            </li>
+        </ul>
+    </li>
+    <li nz-submenu nzTitle="Réglages" nzIcon="setting"  *ngxPermissionsOnly="'permission.edit'">
+        <ul>
+            <li nz-menu-item routerLink="/settings" [nzSelected]="router.url == '/settings'">Gestion des permissions
+            </li>
         </ul>
     </li>
 </ul>

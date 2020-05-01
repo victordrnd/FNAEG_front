@@ -14,7 +14,7 @@ export class FabricantsComponent implements OnInit {
   fabricants:any;
   autocomplete;
   filter = {
-    keyword : '',
+    keyword : null,
     fabricants: [],
     ordersBy : [],
     page : 1
@@ -99,6 +99,7 @@ export class FabricantsComponent implements OnInit {
     if (!found && !deleted) this.filter.ordersBy.push(obj);
     this.sendFilter();
   }
+  
   async changePage(index) {
     this.filter.page = index;
     this.sendFilter();

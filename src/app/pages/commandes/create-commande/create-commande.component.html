@@ -1,0 +1,87 @@
+<div class="row m-0 px-0 mb-5">
+
+    <div class="col-md-10 col-12 d-block mx-auto">
+        <div class="text-center mb-5">
+            <h1>Nouvelle commande</h1>
+        </div>
+        <div class="px-md-5" *ngIf="kits">
+           
+            <nz-transfer [nzDataSource]="kits" [nzShowSearch]="false"  [nzTitles]="['Catalogue', 'Panier']" [nzShowSelectAll]="false"
+                [nzRenderList]="[renderList, renderCart]" (nzSelectChange)="select($event)" (nzChange)="change($event)">
+                <ng-template #renderList let-kit let-direction="direction" let-stat="stat" let-disabled="disabled"
+                    let-onItemSelectAll="onItemSelectAll" let-onItemSelect="onItemSelect">
+                    <nz-table #t [nzData]="kits" nzSize="small">
+                        <thead>
+                            <tr>
+                                <th nzShowCheckbox [nzChecked]="kits.checkAll"
+                                    (nzCheckedChange)="onItemSelectAll($event)"></th>
+                                <th>Référence</th>
+                                <th>Fabricant</th>
+                                <th>Prix</th>
+                                <th>Stock</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let kit of kits" (click)="onItemSelect(kit)">
+                                <td nzShowCheckbox [nzChecked]="kit.checked" 
+                                    (nzCheckedChange)="onItemSelect(kit)" *ngIf="kit.direction == 'left'"></td>
+                                <td *ngIf="kit.direction == 'left'">{{ kit.CodeKit }}</td>
+                                <td *ngIf="kit.direction == 'left'">{{ kit.fabricant.Nom }}</td>
+                                <td *ngIf="kit.direction == 'left'">{{ kit.prix |currency: 'EUR'}}</td>
+                                <td *ngIf="kit.direction == 'left'"><nz-badge nzStatus="default" nzText="{{kit.Stock}}"></nz-badge></td>
+                            </tr>
+                        </tbody>
+                    </nz-table>
+                </ng-template>
+
+                <ng-template #renderCart let-kit let-disabled="disabled"
+                    let-onItemSelectAll="onItemSelectAll" let-onItemSelect="onItemSelect">
+                    <nz-table #t [nzData]="kits" nzSize="small">
+                        <thead>
+                            <tr>
+                                <th nzShowCheckbox [nzChecked]="commande.checkAll"
+                                     (nzCheckedChange)="onItemSelectAll($event)"></th>
+                                <th>Référence</th>
+                                <th>Fabricant</th>
+                                <th>Prix</th>
+                                <th>Stock</th>
+                                <th>Quantité</th>
+                                <th>Stock prévisionnel</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let kit of commande.lignes">
+                                <td nzShowCheckbox [nzChecked]="kit.checked"
+                                    (nzCheckedChange)="onItemSelect(kit)" *ngIf="kit.direction == 'right'"></td>
+                                <td *ngIf="kit.direction == 'right'">{{ kit.CodeKit }}</td>
+                                <td *ngIf="kit.direction == 'right'">{{ kit.fabricant.Nom }}</td>
+                                <td *ngIf="kit.direction == 'right'">{{ kit.prix | currency: 'EUR'}}</td>
+                                <td *ngIf="kit.direction == 'right'">{{kit.Stock}}</td>
+                                <td *ngIf="kit.direction == 'right'"><input nz-input class="w-50" (input)="calculateOrderPrice()" [(ngModel)]="kit.Qte"  min="1"  type="number" name="qte" required /></td>
+                                <td *ngIf="kit.direction == 'right'"><nz-badge nzColor="#d8a864" nzText="{{kit.Qte + kit.Stock}}"></nz-badge></td>
+                            </tr>
+                        </tbody>
+                    </nz-table>
+                </ng-template>
+            </nz-transfer>
+
+            <div class="card mt-5 bg-white border-0">
+                <div class="row p-4">
+                    <div class="col"><h5>Sous total : {{commande.prix | currency: 'EUR'}}</h5></div>
+                    <div class="col">
+                        <nz-divider nzType="vertical"></nz-divider>
+                        <span nz-text class="text-muted">
+                            Kits sélectionnés : {{commande.lignes.length}} 
+                        </span>
+                    </div>
+                    <div class="col">
+                        <button nz-button class="float-right" nzType="primary" (click)="confirmOrder()"><i nz-icon nzType="check"></i>
+                            Confirmer la commande</button>
+                    </div>
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+</div>

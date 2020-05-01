@@ -1,5 +1,5 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-wight shadow-sm bg-white rounded">
-	<a class="navbar-brand" href="#"><img src="../../../assets/logo-dark.svg" class="logo" /></a>
+<nav class="navbar navbar-expand-lg navbar-light  shadow-sm bg-white rounded">
+	<a class="navbar-brand"><img src="../../../assets/logo-dark.svg" class="logo" /></a>
 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
 		aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 		<span class="navbar-toggler-icon"></span>
@@ -7,23 +7,34 @@
 	<div class="collapse navbar-collapse" id="navbarNav">
 		<ul class="navbar-nav mr-auto">
 			<li class="nav-item">
-				<a class="nav-link" [ngClass]="{'active' : router.url == ''}" routerLink="/">Dashboard</a>
+				<a class="nav-link" [ngClass]="{'active' : router.url == '/dashboard'}" routerLink="/dashboard">Dashboard</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" routerLink="/kits" [ngClass]="{'active' : router.url == '/kits'}">Kits<span
-						class="sr-only">(current)</span></a>
+				<a class="nav-link" routerLink="/kits" *ngxPermissionsOnly="'kits.view'" [ngClass]="{'active' : router.url == '/kits'}">Kits</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" routerLink="/fabricants"
+				<a class="nav-link" *ngxPermissionsOnly="'fabricants.view'" routerLink="/fabricants"
 					[ngClass]="{'active' : router.url == '/fabricants'}">Fabricants</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" routerLink="/commandes"
+				<a class="nav-link" routerLink="/commandes" *ngxPermissionsOnly="'orders.view'"
 					[ngClass]="{'active' : router.url == '/commandes'}">Commandes</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" *ngxPermissionsOnly="'inventory.view'" routerLink="/inventaires"
+					[ngClass]="{'active' : router.url == '/inventaires'}">Inventaires</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" *ngxPermissionsOnly="'users.view'" routerLink="/users"
+					[ngClass]="{'active' : router.url == '/users'}">Utilisateurs</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" *ngxPermissionsOnly="'permission.edit'" routerLink="/settings"
+					[ngClass]="{'active' : router.url == '/settings'}">Réglages</a>
 			</li>
 		</ul>
 		<div class="d-inline">
-			<button nz-button nzType="primary"><i nz-icon nzType="user" nzTheme="outline"></i>Se Connecter</button>
+			<button nz-button nzType="primary" (click)="logOut()"><i nz-icon nzType="import" nzTheme="outline"></i>Déconnexion</button>
 		</div>
 	</div>
 </nav>

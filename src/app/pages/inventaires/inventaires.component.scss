@@ -1,0 +1,19 @@
+.loadmore {
+    text-align: center;
+    margin-top: 12px;
+    height: 32px;
+    line-height: 32px;
+  }
+::ng-deep{
+    .ant-list-items .ant-list-item{
+      background-color: #fff !important;
+      border-radius:5px;
+      padding:8px;
+      margin-top:10px;
+      margin-bottom: 10px;
+      
+    }
+    .ant-collapse-borderless > .ant-collapse-item {
+      border-bottom: none;
+  }
+}
