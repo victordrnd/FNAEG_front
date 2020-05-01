@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiurl : "http://localhost:8000/api"
+  apiurl : "https://fnaeg-back.herokuapp.com/api"
 }
