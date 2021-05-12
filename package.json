@@ -22,7 +22,7 @@
     "@ng-bootstrap/ng-bootstrap": "^5.1.4",
     "@ng-select/ng-option-highlight": "0.0.4",
     "@ng-select/ng-select": "^3.7.0",
-    "chart.js": "^2.9.3",
+    "chart.js": "^2.9.4",
     "feather-icons": "^4.25.0",
     "ng-zorro-antd": "^8.5.2",
     "ng2-charts": "^2.3.0",

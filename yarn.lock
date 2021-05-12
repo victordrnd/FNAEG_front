@@ -2079,10 +2079,10 @@ chardet@^0.7.0:
   resolved "https://registry.yarnpkg.com/chardet/-/chardet-0.7.0.tgz#90094849f0937f2eedc2425d0d28a9e5f0cbad9e"
   integrity sha512-mT8iDcrh03qDGRRmoA2hmBJnxpllMR+0/0qlzjqZES6NdiWDcZkCNAk4rPFZ9Q85r27unkiNNg8ZOiwZXBHwcA==
 
-chart.js@^2.9.3:
-  version "2.9.3"
-  resolved "https://registry.yarnpkg.com/chart.js/-/chart.js-2.9.3.tgz#ae3884114dafd381bc600f5b35a189138aac1ef7"
-  integrity sha512-+2jlOobSk52c1VU6fzkh3UwqHMdSlgH1xFv9FKMqHiNCpXsGPQa/+81AFa+i3jZ253Mq9aAycPwDjnn1XbRNNw==
+chart.js@^2.9.4:
+  version "2.9.4"
+  resolved "https://registry.yarnpkg.com/chart.js/-/chart.js-2.9.4.tgz#0827f9563faffb2dc5c06562f8eb10337d5b9684"
+  integrity sha512-B07aAzxcrikjAPyV+01j7BmOpxtQETxTSlQ26BEYJ+3iUkbNKaOJ/nDbT6JjyqYxseM0ON12COHYdU2cTIjC7A==
   dependencies:
     chartjs-color "^2.1.0"
     moment "^2.10.2"
@@ -5200,6 +5200,13 @@ ng5-slider@^1.2.4:
     rxjs "^5.5.6"
     rxjs-compat "^6.5.2"
     tslib "^1.7.1"
+
+ngx-permissions@^7.0.3:
+  version "7.0.3"
+  resolved "https://registry.yarnpkg.com/ngx-permissions/-/ngx-permissions-7.0.3.tgz#aefc58a14d5a71042277cbdb322560cb6e9b6535"
+  integrity sha512-WwmUcO2IuE5gSgsR+wf23XkJDJzUzQ9iVNOGGfHq7tavdQK1VBY7C0oJOq7+H5vLDSfc+pEDsBwc03lXhq7J1g==
+  dependencies:
+    tslib "^1.9.0"
 
 nice-try@^1.0.4:
   version "1.0.5"
